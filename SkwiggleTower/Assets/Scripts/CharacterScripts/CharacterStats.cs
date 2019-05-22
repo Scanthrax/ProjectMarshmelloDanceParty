@@ -10,6 +10,7 @@ public class CharacterStats : MonoBehaviour
 
     public Stat damage;
     public Stat armor;
+    public Stat capacity;
 
     public event System.Action<int, int> OnHealthChanged;
 
