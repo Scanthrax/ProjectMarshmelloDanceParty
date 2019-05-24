@@ -1,9 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using System;
 
 public class RoomManager : MonoBehaviour
 {
+    public static RoomManager instance;
+
+    public void Awake()
+    {
+        instance = this;
+    }
+
+
     /// <summary>
     /// Contains all of the spawners located in the room
     /// </summary>
@@ -24,11 +34,18 @@ public class RoomManager : MonoBehaviour
     /// </summary>
     public int maxAmount;
 
+    [HideInInspector]
+    public Trial trial;
+
 
     private void Start()
     {
         // find all spawn gameobjects with the Respawn label & store them
         listOfSpawners = GameObject.FindGameObjectsWithTag("Respawn");
+
+
+
+
     }
 
 
@@ -41,6 +58,9 @@ public class RoomManager : MonoBehaviour
         // Spawn another type of object with P
         if (Input.GetKeyDown(KeyCode.P))
             SpawnEnemy(2);
+
+        if (trial && Input.GetKeyDown(KeyCode.Q))
+            trial.Begin();
     }
 
     public void SpawnEnemy(int type)
@@ -61,7 +81,7 @@ public class RoomManager : MonoBehaviour
             temp = test2;
 
         // randomly obtain the position of one of the spawners
-        Vector3 position = listOfSpawners[Random.Range(0, listOfSpawners.Length)].transform.position;
+        Vector3 position = listOfSpawners[UnityEngine.Random.Range(0, listOfSpawners.Length)].transform.position;
 
         // instantiate the gameobject at the position
         Instantiate(temp, position, Quaternion.identity);

@@ -34,4 +34,12 @@ public class PLayerControllerTest : MonoBehaviour
             if(Time.frameCount%30 == 0)
                 AudioManager.instance.PlaySoundpool(source,Sounds.AsphaltFootsteps);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Finish"))
+        {
+            RoomManager.instance.trial.NotifyTrialComplete(true);
+        }
+    }
 }
