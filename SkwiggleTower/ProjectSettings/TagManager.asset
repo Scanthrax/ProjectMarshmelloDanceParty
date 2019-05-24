@@ -13,9 +13,9 @@ TagManager:
   - UI
   - 
   - 
+  - Player
   - Platforms
-  - Background
-  - Background Detail
+  - PostProcessing
   - 
   - 
   - 
@@ -44,12 +44,12 @@ TagManager:
   - name: Background
     uniqueID: 3506482109
     locked: 0
-  - name: Background Detail
+  - name: Platforms
     uniqueID: 3548548919
     locked: 0
-  - name: Platforms
+  - name: Player
     uniqueID: 1082940093
     locked: 0
-  - name: Character
+  - name: Foreground
     uniqueID: 1899956415
     locked: 0

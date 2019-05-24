@@ -20,6 +20,8 @@ public class CharacterStats : MonoBehaviour
         xp = 5;
     }
 
+    //add passive healing 
+
     public void TakeDamage(int damage)
     {
         if (this != null)
