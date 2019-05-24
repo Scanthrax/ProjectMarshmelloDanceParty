@@ -44,14 +44,16 @@ public class Trial : MonoBehaviour
     public virtual void UpdateLogic()
     {
         timer -= Time.deltaTime;
+        roomManager.timerText.text = Mathf.CeilToInt(timer).ToString();
+        
     }
 
 
     public virtual void Start()
     {
         Debug.Log("Trial name: " + trialName);
-        roomManager = GetComponent<RoomManager>();
-        roomManager.trial = this;
+        timer = duration;
+        roomManager.timerText.text = Mathf.CeilToInt(timer).ToString();
     }
 
     /// <summary>
@@ -59,12 +61,15 @@ public class Trial : MonoBehaviour
     /// </summary>
     public virtual void Begin()
     {
-        Debug.Log("Trial name " + trialName + " has begun!");
-        // the trial has now started; the Update can occur now
-        started = true;
+        if (!trialCompleted && !started)
+        {
+            Debug.Log("Trial name " + trialName + " has begun!");
+            // the trial has now started; the Update can occur now
+            started = true;
 
-        // the timer will start at the duration & tick down from there
-        timer = duration;
+            // the timer will start at the duration & tick down from there
+            timer = duration;
+        }
     }
 
     /// <summary>
@@ -94,5 +99,5 @@ public class Trial : MonoBehaviour
     /// <summary>
     /// Reference to the room manager
     /// </summary>
-    protected RoomManager roomManager;
+    public RoomManager roomManager;
 }

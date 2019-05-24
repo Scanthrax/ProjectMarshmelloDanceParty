@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using System;
+using TMPro;
+using UnityEngine.Playables;
 
 public class RoomManager : MonoBehaviour
 {
@@ -34,16 +36,33 @@ public class RoomManager : MonoBehaviour
     /// </summary>
     public int maxAmount;
 
-    [HideInInspector]
+    //[HideInInspector]
     public Trial trial;
 
+
+    public TextMeshPro timerText;
+
+
+    public PlayableDirector timeline;
+
+    public PlayState timelineState;
+
+    public TextMeshPro roundTextIntro, trialTextIntro;
+    public TextMeshPro roundTextUI, trialTextUI;
 
     private void Start()
     {
         // find all spawn gameobjects with the Respawn label & store them
         listOfSpawners = GameObject.FindGameObjectsWithTag("Respawn");
+        trial = GetComponent<Trial>();
+        trial.roomManager = this;
 
 
+        if(trial)
+        {
+            trialTextIntro.text = trial.trialName;
+            trialTextUI.text = trial.trialName;
+        }
 
 
     }
@@ -60,7 +79,18 @@ public class RoomManager : MonoBehaviour
             SpawnEnemy(2);
 
         if (trial && Input.GetKeyDown(KeyCode.Q))
+        {
+            timeline.Play();
+        }
+
+        if(timelineState != timeline.state && timeline.state == PlayState.Paused)
+        {
             trial.Begin();
+        }
+
+
+        timelineState = timeline.state;
+
     }
 
     public void SpawnEnemy(int type)
