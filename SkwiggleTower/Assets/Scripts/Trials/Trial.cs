@@ -9,69 +9,6 @@ using UnityEngine;
 public class Trial : MonoBehaviour
 {
 
-
-    /// <summary>
-    /// Gives a notification that the trial has ended; the result of the trial is recieved/sent as a parameter
-    /// </summary>
-    /// <param name="win">Was the trial a success or a failure?</param>
-    /// <returns></returns>
-    public virtual bool NotifyTrialComplete(bool success)
-    {
-        if (started && !trialCompleted)
-        {
-            Debug.Log("The trial " + trialName + " was a " + (success ? "success!" : "failure"));
-
-            trialCompleted = true;
-            return success;
-        }
-        return false;
-    }
-
-
-    public virtual void Update()
-    {
-        // if the trial has started AND the trial has not been completed
-        if (!trialCompleted && started)
-        {
-            // perform the trial's update logic
-            UpdateLogic();
-        }
-    }
-
-    /// <summary>
-    /// The trial's Update logic
-    /// </summary>
-    public virtual void UpdateLogic()
-    {
-        timer -= Time.deltaTime;
-        roomManager.timerText.text = Mathf.CeilToInt(timer).ToString();
-        
-    }
-
-
-    public virtual void Start()
-    {
-        Debug.Log("Trial name: " + trialName);
-        timer = duration;
-        roomManager.timerText.text = Mathf.CeilToInt(timer).ToString();
-    }
-
-    /// <summary>
-    /// This method occurs when the trial actually begins, as opposed to the Start() method
-    /// </summary>
-    public virtual void Begin()
-    {
-        if (!trialCompleted && !started)
-        {
-            Debug.Log("Trial name " + trialName + " has begun!");
-            // the trial has now started; the Update can occur now
-            started = true;
-
-            // the timer will start at the duration & tick down from there
-            timer = duration;
-        }
-    }
-
     /// <summary>
     /// The duration of the trial, in seconds
     /// </summary>
@@ -94,10 +31,114 @@ public class Trial : MonoBehaviour
     /// <summary>
     /// Has the trial started?
     /// </summary>
-    protected bool started = false;
+    [HideInInspector]
+    public bool started = false;
 
     /// <summary>
     /// Reference to the room manager
     /// </summary>
+    [HideInInspector]
     public RoomManager roomManager;
+
+
+
+
+    /// <summary>
+    /// Gives a notification that the trial has ended; the result of the trial is recieved/sent as a parameter
+    /// </summary>
+    /// <param name="win">Was the trial a success or a failure?</param>
+    /// <returns></returns>
+    public virtual bool NotifyTrialComplete(bool success)
+    {
+        if (started && !trialCompleted)
+        {
+            Debug.Log("The trial " + trialName + " was a " + (success ? "success!" : "failure"));
+
+            // determine which cutscene to play based on whether the trial was a success
+            // there is not yet a Failure cutscene, so use the Success cutscene for now
+            var cutscene = success ? roomManager.successCutscene : roomManager.successCutscene;
+            cutscene.Play();
+
+            // we have completed the trial
+            trialCompleted = true;
+        }
+        else
+            Debug.Log("The trial is attempting to complete while the game has not started OR the trial has already been completed.");
+
+        // I'm not sure if we will need a return type? I'll keep it in here for now...
+        return success;
+    }
+
+    /// <summary>
+    /// The Update method that the monobehaviour calls on every frame; different from the trial's Update logic method
+    /// </summary>
+    public virtual void Update()
+    {
+        // if the trial has started AND the trial has not been completed, we perform the Update logic of the trial
+        if (!trialCompleted && started)
+        {
+            // perform the trial's update logic
+            UpdateLogic();
+        }
+
+    }
+
+    /// <summary>
+    /// The trial's Update logic; by default, the round's timer ticks down
+    /// </summary>
+    public virtual void UpdateLogic()
+    {
+        // decrease the timer
+        timer -= Time.deltaTime;
+        // display timer in UI
+        roomManager.timerText.text = Mathf.CeilToInt(timer).ToString();
+
+        // if the timer reaches 0, the trial is a failure
+        if (timer <= 0f)
+            NotifyTrialComplete(false);
+
+    }
+
+    /// <summary>
+    /// Monobehaviour Start method
+    /// </summary>
+    public virtual void Start()
+    {
+        Debug.Log("Trial name: " + trialName);
+
+        roomManager = RoomManager.instance;
+
+        // set timer to the duration of the trial
+        timer = duration;
+        // display timer in UI
+        roomManager.timerText.text = Mathf.CeilToInt(timer).ToString();
+    }
+
+    /// <summary>
+    /// Starts the trial by playing the Intro cutscene
+    /// </summary>
+    public virtual void StartTrial()
+    {
+        // only start the trial if it has not already been started
+        if (!started)
+            roomManager.introCutscene.Play();
+        else
+            Debug.Log("Attempting to start the trial when it has already started");
+    }
+
+
+    /// <summary>
+    /// This method occurs when the trial actually begins, as opposed to the Start() method
+    /// </summary>
+    public virtual void Begin()
+    {
+        if (!trialCompleted && !started)
+        {
+            Debug.Log("Trial name " + trialName + " has begun!");
+
+            // the trial has now started; the Update can occur now
+            started = true;
+        }
+    }
+
 }

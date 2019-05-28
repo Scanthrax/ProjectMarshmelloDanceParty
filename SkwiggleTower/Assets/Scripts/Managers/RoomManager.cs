@@ -36,33 +36,50 @@ public class RoomManager : MonoBehaviour
     /// </summary>
     public int maxAmount;
 
-    //[HideInInspector]
+    /// <summary>
+    /// The trial for the current room
+    /// </summary>
+    [HideInInspector]
     public Trial trial;
 
-
+    /// <summary>
+    /// The text that displays the remaining time of the trial
+    /// </summary>
     public TextMeshPro timerText;
 
 
-    public PlayableDirector timeline;
+    public PlayableDirector introCutscene;
+    public PlayableDirector successCutscene;
+    public PlayableDirector failureCutscene;
 
-    public PlayState timelineState;
 
     public TextMeshPro roundTextIntro, trialTextIntro;
     public TextMeshPro roundTextUI, trialTextUI;
+    public TextMeshPro roundTextCompleted, trialTextCompleted;
+
 
     private void Start()
     {
         // find all spawn gameobjects with the Respawn label & store them
         listOfSpawners = GameObject.FindGameObjectsWithTag("Respawn");
+
+        // the trial component will be dragged onto this gameobject through the inspector
         trial = GetComponent<Trial>();
-        trial.roomManager = this;
 
-
-        if(trial)
+        // if a trial exists, set the UI
+        if (trial)
         {
             trialTextIntro.text = trial.trialName;
             trialTextUI.text = trial.trialName;
         }
+        else
+            Debug.LogWarning("There is no trial set for this room!");
+
+
+        print("A & D to move cube");
+        print("W to jump");
+        print("Q to start trial");
+        print("O & P to spawn objects");
 
 
     }
@@ -80,16 +97,9 @@ public class RoomManager : MonoBehaviour
 
         if (trial && Input.GetKeyDown(KeyCode.Q))
         {
-            timeline.Play();
+            trial.StartTrial();
         }
 
-        if(timelineState != timeline.state && timeline.state == PlayState.Paused)
-        {
-            trial.Begin();
-        }
-
-
-        timelineState = timeline.state;
 
     }
 
@@ -118,5 +128,13 @@ public class RoomManager : MonoBehaviour
 
         // increase the count of enemies in the room
         amountOfEnemies++;
+    }
+
+    /// <summary>
+    /// Used by a signal in the intro cutscene to begin the trial
+    /// </summary>
+    public void BeginTrial()
+    {
+        trial.Begin();
     }
 }

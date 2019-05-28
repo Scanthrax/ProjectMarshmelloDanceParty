@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 
 public enum Sounds { Music, GroundImpact, AsphaltFootsteps }
-public enum SoundChannels { Music, SFX }
+public enum SoundChannels { Music, SFX, Footsteps, GroundImpact}
 
 public class AudioManager : MonoBehaviour
 {
@@ -22,7 +22,6 @@ public class AudioManager : MonoBehaviour
     /// List of sounds 2D sounds that are facilited through the Audio Manager
     /// </summary>
     public List<Sound> managerSounds;
-
 
     /// <summary>
     /// A Dictionary that contains the audio sources of the manager sounds; the key is a Sounds enum
@@ -79,6 +78,7 @@ public class AudioManager : MonoBehaviour
             source.loop = item.loop;
             source.playOnAwake = false;
             source.outputAudioMixerGroup = mixer.FindMatchingGroups(item.channel.ToString())[0];
+
             sourceDictionary.Add(item.sound, source);
         }
 

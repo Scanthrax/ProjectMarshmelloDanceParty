@@ -11,7 +11,7 @@ public class ImpactTest : MonoBehaviour
 
     private void Start()
     {
-        source = AudioManager.instance.AddSource(gameObject,Sounds.GroundImpact, index,SoundChannels.SFX);
+        source = AudioManager.instance.AddSource(gameObject,Sounds.GroundImpact, index,SoundChannels.GroundImpact);
     }
 
 
