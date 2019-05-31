@@ -56,7 +56,7 @@ public class Trial : MonoBehaviour
 
             // determine which cutscene to play based on whether the trial was a success
             // there is not yet a Failure cutscene, so use the Success cutscene for now
-            var cutscene = success ? roomManager.successCutscene : roomManager.successCutscene;
+            var cutscene = success ? roomManager.successCutscene : roomManager.failureCutscene;
             cutscene.Play();
 
             // we have completed the trial
