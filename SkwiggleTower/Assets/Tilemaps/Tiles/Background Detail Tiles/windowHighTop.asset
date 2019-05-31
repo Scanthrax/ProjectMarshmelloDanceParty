@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: windowHighTop
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 21300000, guid: 8c631d1ea7f31c54f87541b62c7c9442, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5234959, g: 0.5798128, b: 0.6415094, a: 1}
   m_Transform:
     e00: 1
     e01: 0
