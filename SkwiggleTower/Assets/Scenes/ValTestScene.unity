@@ -2439,6 +2439,8 @@ GameObject:
   - component: {fileID: 619993670}
   - component: {fileID: 619993671}
   - component: {fileID: 619993672}
+  - component: {fileID: 619993674}
+  - component: {fileID: 619993673}
   m_Layer: 8
   m_Name: Rogue
   m_TagString: Player
@@ -2572,11 +2574,6 @@ MonoBehaviour:
   crouchSpeedDivisor: 3
   coyoteDuration: 0.05
   maxFallSpeed: -25
-  jumpForce: 6.3
-  crouchJumpBoost: 2.5
-  hangingJumpForce: 15
-  jumpHoldForce: 1.9
-  jumpHoldDuration: 0.1
   footOffset: 0.4
   eyeHeight: 1.5
   reachOffset: 0.7
@@ -2612,6 +2609,35 @@ MonoBehaviour:
   jumpPressed: 0
   crouchHeld: 0
   crouchPressed: 0
+--- !u!114 &619993673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619993666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd88564871108244cb08d91e1b7ecd42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackSpeed: 1
+--- !u!114 &619993674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619993666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40eb703ae839c0841bf007c9bd9f9c43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 100
+  damage: {fileID: 0}
+  armor: {fileID: 0}
+  capacity: {fileID: 0}
 --- !u!1 &848148412
 GameObject:
   m_ObjectHideFlags: 0
@@ -4233,6 +4259,52 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1503289533
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1503289535}
+  - component: {fileID: 1503289534}
+  m_Layer: 0
+  m_Name: PlayerManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1503289534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1503289533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dafd82882faae234b8c97d486ea7270c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 619993666}
+  charStats: {fileID: 619993674}
+  xpUI: {fileID: 0}
+--- !u!4 &1503289535
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1503289533}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.599802, y: -0.7494093, z: -7.219757}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1697806534
 GameObject:
   m_ObjectHideFlags: 0

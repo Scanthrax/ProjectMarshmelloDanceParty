@@ -67,8 +67,8 @@ public class PlayerInput : MonoBehaviour
         horizontal += Input.GetAxis("Horizontal");
 
         //Accumulate button inputs
-        jumpPressed = jumpPressed || Input.GetButtonDown("Jump");
-        jumpHeld = jumpHeld || Input.GetButton("Jump");
+        jumpPressed = jumpPressed || Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W);
+        jumpHeld = jumpHeld || Input.GetButton("Jump") || Input.GetKeyDown(KeyCode.W);
 
         crouchPressed = crouchPressed || Input.GetButtonDown("Crouch");
         crouchHeld = crouchHeld || Input.GetButton("Crouch");

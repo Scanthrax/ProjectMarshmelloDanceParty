@@ -18,8 +18,8 @@ public class CharacterAnimator : MonoBehaviour
 
     protected virtual void Start() //Alows different object to inherit from this animator script
     {
-        animator = GetComponentInChildren<Animator>();
-        charCombat = GetComponent<Combat>();
+        animator = GetComponentInChildren<Animator>(); //reference to animator
+        charCombat = GetComponent<Combat>(); //refrence to combat scripts
         charCombat.OnAttack += OnAttack; //Subscribes it to OnAttack Delegate
 
         overrideController = new AnimatorOverrideController(animator.runtimeAnimatorController); //Allows us to swap out clips for other clips
@@ -38,8 +38,8 @@ public class CharacterAnimator : MonoBehaviour
 
     protected virtual void OnAttack()
     {
-        animator.SetTrigger("IsAttack");
-        int attackIndex = Random.Range(0, currentAttackAnimSet.Length);
-        overrideController[replaceableAttackAnim.name] = currentAttackAnimSet[attackIndex];
+        animator.SetTrigger("IsAttack"); 
+        int attackIndex = Random.Range(0, currentAttackAnimSet.Length); //selects randomly among the different attack animations
+        overrideController[replaceableAttackAnim.name] = currentAttackAnimSet[attackIndex]; //overrides the basic animation
     }
 }

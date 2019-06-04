@@ -12,15 +12,15 @@ public class PlayerMovement : MonoBehaviour
     public float coyoteDuration = .05f;     //How long the player can jump after falling
     public float maxFallSpeed = -25f;       //Max speed player can fall
 
-    [Header("Jump Properties")]
-    public float jumpForce = 6.3f;          //Initial force of jump
-    public float crouchJumpBoost = 2.5f;    //Jump boost when crouching
-    public float hangingJumpForce = 15f;    //Force of wall hanging jumo
-    public float jumpHoldForce = 1.9f;      //Incremental force when jump is held
-    public float jumpHoldDuration = .1f;    //How long the jump key can be held
+    [Header("Jump Properties")] //can be overridden in an separate class of Player Movement
+    protected float jumpForce = 6.3f;          //Initial force of jump
+    protected float crouchJumpBoost = 2.5f;    //Jump boost when crouching
+    protected float hangingJumpForce = 15f;    //Force of wall hanging jumo
+    protected float jumpHoldForce = 1.9f;      //Incremental force when jump is held
+    protected float jumpHoldDuration = .1f;    //How long the jump key can be held
 
     [Header("Environment Check Properties")]
-    public float footOffset = .4f;          //X Offset of feet raycast
+    public float footOffset = .2f;          //X Offset of feet raycast
     public float eyeHeight = 1.5f;          //Height of wall checks
     public float reachOffset = .7f;         //X offset for wall grabbing
     public float headClearance = .5f;       //Space needed above the player's head
@@ -255,7 +255,7 @@ public class PlayerMovement : MonoBehaviour
         transform.localScale = scale;
     }
 
-    void Crouch()
+    protected virtual void Crouch() //protected so it can be class specific
     {
         //The player is crouching
         isCrouching = true;
