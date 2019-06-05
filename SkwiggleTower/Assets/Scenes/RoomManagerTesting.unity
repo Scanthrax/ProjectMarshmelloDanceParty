@@ -2444,7 +2444,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -0.96000004}
-  m_SizeDelta: {x: 12.55, y: 3.239}
+  m_SizeDelta: {x: 22.063, y: 6.183}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1249725791
 Animator:
@@ -2531,7 +2531,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -2978,7 +2978,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 16777215
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -4097,8 +4097,6 @@ PlayableDirector:
   - key: {fileID: -5153135053452152316, guid: b25c1b81819a06742bb52b1a6274b1ab, type: 2}
     value: {fileID: 1733838878}
   - key: {fileID: -6482511261765808321, guid: b25c1b81819a06742bb52b1a6274b1ab, type: 2}
-    value: {fileID: 0}
-  - key: {fileID: -6322766271528996011, guid: b25c1b81819a06742bb52b1a6274b1ab, type: 2}
     value: {fileID: 0}
   m_ExposedReferences:
     m_References: []
