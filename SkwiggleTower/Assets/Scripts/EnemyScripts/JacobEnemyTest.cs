@@ -7,7 +7,7 @@ public class JacobEnemyTest : Interactable
 {
     PlayerManager playerManager; //References player
     CharacterStats myStats; //References Enemy Stats
-    public int health;
+    //public int health;
 
     void Start()
     {
@@ -18,10 +18,10 @@ public class JacobEnemyTest : Interactable
 
     void Update()
     {
-        if(health <= 0)
+        /*if(health <= 0)
         {
             Destroy(gameObject);
-        }
+        }*/
     }
 
     public override void Interact()
@@ -34,11 +34,11 @@ public class JacobEnemyTest : Interactable
             playerCombat.Attack(myStats); //Gets reference to damage modifier to attack 
         }
     }
-
+    /*
     public void takeDamage(int damage)
     {
         health -= damage;
         Debug.Log("'Tis but a flesh wound");
-    }
+    }*/
 
 }

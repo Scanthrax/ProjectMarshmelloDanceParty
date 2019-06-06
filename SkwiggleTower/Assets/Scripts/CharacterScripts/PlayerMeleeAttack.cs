@@ -29,7 +29,8 @@ public class PlayerMeleeAttack : MonoBehaviour
                 Collider2D[] enemiesInRange = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatAreEnemies);
                 for(int i = 0; i < enemiesInRange.Length; i++)
                 {
-                    enemiesInRange[i].GetComponent<JacobEnemyTest>().takeDamage(damage);
+                    //Uses a method in JacobEnemyTest.cs for enemy to take damage
+                    //enemiesInRange[i].GetComponent<JacobEnemyTest>().takeDamage(damage);
                 }
             }
             attackCooldown = startAttackCooldown;
@@ -39,7 +40,7 @@ public class PlayerMeleeAttack : MonoBehaviour
             attackCooldown -= Time.deltaTime;
         }
     }
-
+    //This method shows the attack radius, which can be manipulated in Unity
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
