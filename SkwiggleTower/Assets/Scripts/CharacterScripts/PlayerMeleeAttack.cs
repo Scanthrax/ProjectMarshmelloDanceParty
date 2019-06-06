@@ -24,7 +24,7 @@ public class PlayerMeleeAttack : MonoBehaviour
         //once 0, player can attack
         if (attackCooldown <= 0)
         {
-            if(Input.GetKey(KeyCode.Space))
+            if(Input.GetMouseButtonDown(0))
             {
                 Collider2D[] enemiesInRange = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatAreEnemies);
                 for(int i = 0; i < enemiesInRange.Length; i++)
