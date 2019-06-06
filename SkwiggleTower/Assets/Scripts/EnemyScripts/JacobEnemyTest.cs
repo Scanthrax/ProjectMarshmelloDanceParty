@@ -7,7 +7,8 @@ public class JacobEnemyTest : Interactable
 {
     PlayerManager playerManager; //References player
     CharacterStats myStats; //References Enemy Stats
-    //public int health;
+    //This public int health is a test variable set up for testing player melee attack
+    public int health;
 
     void Start()
     {
@@ -18,10 +19,11 @@ public class JacobEnemyTest : Interactable
 
     void Update()
     {
-        /*if(health <= 0)
+        //If health is less than or equal to 0, enemy dies
+        if(health <= 0)
         {
             Destroy(gameObject);
-        }*/
+        }
     }
 
     public override void Interact()
@@ -34,7 +36,7 @@ public class JacobEnemyTest : Interactable
             playerCombat.Attack(myStats); //Gets reference to damage modifier to attack 
         }
     }
-    /*
+    /*I'm commenting this method since there may be multiple methods for the enemy to take damage
     public void takeDamage(int damage)
     {
         health -= damage;
