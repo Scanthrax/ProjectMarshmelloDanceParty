@@ -48,6 +48,11 @@ public class RoomManager : MonoBehaviour
     public TextMeshPro timerText;
 
 
+    public int amtOfEnemiesKilled;
+
+
+
+
     public PlayableDirector introCutscene;
     public PlayableDirector successCutscene;
     public PlayableDirector failureCutscene;
@@ -136,5 +141,12 @@ public class RoomManager : MonoBehaviour
     public void BeginTrial()
     {
         trial.Begin();
+    }
+
+
+    public void OnEnemyDeath()
+    {
+        amtOfEnemiesKilled++;
+        amountOfEnemies--;
     }
 }
