@@ -27,23 +27,25 @@ public class TrialKillEnemies : Trial
     }
 
     // Method one of checking if all enemies defeated, essentially just checks if the number of enemies killed 
-    public void Update()
+    public override void UpdateLogic()
     {
+        base.UpdateLogic();
 
         // Increase enemies killed with K (For testing), only if enemies killed is fewer than / equal to max amount of enemies 
-        if (Input.GetKeyDown(KeyCode.K) && enemiesKilled <= GameObject.Find("Manager").GetComponent<RoomManager>().maxAmount)
+        if (Input.GetKeyDown(KeyCode.K) && enemiesKilled <= RoomManager.instance.maxAmount)
         {
             enemiesKilled++;
             Debug.Log("Enemies Killed: " + enemiesKilled.ToString());
         }
 
         // If number of enemies killed is greater than / equal to max number of enemies (i.e. all enemies have been defeated.
-        if (enemiesKilled >= GameObject.Find("Manager").GetComponent<RoomManager>().maxAmount)
+        if (enemiesKilled >= RoomManager.instance.maxAmount)
         {
             allEnemiesKilled = true;
             NotifyTrialComplete(allEnemiesKilled);
         }
 
+        
         
     }
 
@@ -73,22 +75,22 @@ public class TrialKillEnemies : Trial
         }
     }*/
 
-    public override void UpdateLogic()
-    {
-        base.UpdateLogic();
+    //public override void UpdateLogic()
+    //{
+    //    base.UpdateLogic();
 
-        // update logic can be placed either before or after the base method
-        // it is good practice to place your logic after the base in order to keep things consistent with the Start base method
+    //    // update logic can be placed either before or after the base method
+    //    // it is good practice to place your logic after the base in order to keep things consistent with the Start base method
 
-        /* Something along the lines of:
-        if (RoomManager.enemiesKilled >= RoomManager.maxAmount && timer > 0)
-        {
-            RoomManager.instance.trial.NotifyTrialComplete(true);
-        }
-        */
+    //    /* Something along the lines of:
+    //    if (RoomManager.enemiesKilled >= RoomManager.maxAmount && timer > 0)
+    //    {
+    //        RoomManager.instance.trial.NotifyTrialComplete(true);
+    //    }
+    //    */
 
-        // once you set the win condition, use this function to notify the room manager that the trial is a success
-        if (false)
-            NotifyTrialComplete(true);
-    }
+    //    // once you set the win condition, use this function to notify the room manager that the trial is a success
+    //    if (false)
+    //        NotifyTrialComplete(true);
+    //}
 }
