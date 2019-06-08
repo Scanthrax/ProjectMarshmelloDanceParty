@@ -13,8 +13,8 @@ public class PlayerMovement : MonoBehaviour
     public float maxFallSpeed = -25f;       //Max speed player can fall
 
     [Header("Jump Properties")] //can be overridden in an separate class of Player Movement
-    protected float jumpForce = 6.3f;          //Initial force of jump
-    protected float crouchJumpBoost = 2.5f;    //Jump boost when crouching
+    protected float jumpForce = 1f;          //Initial force of jump
+    protected float crouchJumpBoost = 1f;    //Jump boost when crouching
     protected float hangingJumpForce = 15f;    //Force of wall hanging jumo
     protected float jumpHoldForce = 1.9f;      //Incremental force when jump is held
     protected float jumpHoldDuration = .1f;    //How long the jump key can be held
@@ -188,6 +188,7 @@ public class PlayerMovement : MonoBehaviour
             //If jump is pressed...
             if (input.jumpPressed)
             {
+                Debug.Log("Jump Pressed");
                 //...let go...
                 isHanging = false;
                 //...set the rigidbody to dynamic and apply a jump force...
@@ -210,7 +211,7 @@ public class PlayerMovement : MonoBehaviour
                 rigidBody.AddForce(new Vector2(0f, crouchJumpBoost), ForceMode2D.Impulse);
             }
 
-            //...The player is no longer on the groud and is jumping...
+            //...The player is no longer on the ground and is jumping...
             isOnGround = false;
             isJumping = true;
 
