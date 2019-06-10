@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Valarie Script: Character Stats hold total health, TakeDamage, Heal, gainXP, and Die
+/// </summary>
 public class CharacterStats : MonoBehaviour
 {
     public int maxhealth = 100;
@@ -12,7 +15,7 @@ public class CharacterStats : MonoBehaviour
     public Stat armor;
     public Stat capacity;
 
-    public event System.Action<int, int> OnHealthChanged;
+    public event System.Action<int, int> OnHealthChanged; //Delegate On Health Changed
 
     private void Awake()
     {

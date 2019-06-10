@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Valarie Interactable 
+/// Valarie Interactable, OnFocused and OnDefocused.
 /// </summary>
 public class Interactable : MonoBehaviour
 {
