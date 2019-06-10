@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Stat : MonoBehaviour
+public class Stat 
 {
     [SerializeField]
     public int baseValue; //Starting value

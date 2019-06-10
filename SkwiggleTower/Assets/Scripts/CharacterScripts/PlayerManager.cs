@@ -20,7 +20,7 @@ public class PlayerManager : MonoBehaviour
     public CharacterStats charStats;
     private int xpPM;
     public TextMeshProUGUI xpUI;
-    public GameObject winText;
+   // public GameObject winText;
 
     void Start()
     {
