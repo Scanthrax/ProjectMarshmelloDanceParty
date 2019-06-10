@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Valarie Script: contains the scripts to equip and remove different attacks treated like items 
+/// defines is a scriptable object 
+/// </summary>
 [CreateAssetMenu(fileName = "New Attack PU", menuName = "AttackMod")]
 public class AttackModifier : Item
 {

@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Valarie Script: holds all the scripts associated with Attacks, Attack delay
+/// </summary>
 [RequireComponent(typeof(CharacterStats))]
 public class Combat : MonoBehaviour
 {
@@ -56,7 +59,7 @@ public class Combat : MonoBehaviour
         }
         else
         {
-            // if(stats.currentHealth <= 0)
+            //if(stats.currentHealth <= 0)
 
             InCombat = false;
         }

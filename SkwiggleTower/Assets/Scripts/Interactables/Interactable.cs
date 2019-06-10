@@ -12,7 +12,7 @@ public class Interactable : MonoBehaviour
     protected int healthGained = 10;
     protected int xpGained = 10;
 
-    bool isFocus = false;
+   // bool isFocus = false;
     Transform player;
 
     bool hasInteracted = false;
@@ -24,7 +24,7 @@ public class Interactable : MonoBehaviour
 
     private void Update()
     {
-        if (isFocus && !hasInteracted)
+        if (!hasInteracted)
         {
             float distance = Vector3.Distance(player.position, interactionTransform.position);
             if (distance <= radius)
@@ -37,16 +37,21 @@ public class Interactable : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// play will go to item or enemy it clicks on
+    /// </summary>
+    /// <param name="playerTransform"></param>
     public void OnFocused(Transform playerTransform)
     {
-        isFocus = true;
+        //isFocus = true;
         player = playerTransform;
         hasInteracted = false;
     }
 
+    //Stops focusing on object
     public void OnDefocused()
     {
-        isFocus = false;
+        //isFocus = false;
         player = null;
         hasInteracted = false;
     }
