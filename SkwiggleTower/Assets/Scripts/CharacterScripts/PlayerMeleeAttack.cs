@@ -29,8 +29,13 @@ public class PlayerMeleeAttack : MonoBehaviour
                 Collider2D[] enemiesInRange = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatAreEnemies);
                 for(int i = 0; i < enemiesInRange.Length; i++)
                 {
-                    //Uses a method in JacobEnemyTest.cs for enemy to take damage
-                    //enemiesInRange[i].GetComponent<JacobEnemyTest>().takeDamage(damage);
+                    //Uses a method in JacobEnemyTest.cs for enemy to take damage'
+
+                    var enemyComponent = enemiesInRange[i].GetComponent<Enemy>();
+                    if (enemyComponent)
+                    {
+                        enemyComponent.Interact();
+                    }
                 }
             }
             attackCooldown = startAttackCooldown;

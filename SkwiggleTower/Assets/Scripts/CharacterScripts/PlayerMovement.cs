@@ -311,4 +311,9 @@ public class PlayerMovement : MonoBehaviour
         return hit;
     }
 
+    public int GetDirection()
+    {
+        return direction;
+    }
+
 }
