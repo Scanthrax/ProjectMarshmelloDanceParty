@@ -2754,7 +2754,7 @@ Canvas:
   m_GameObject: {fileID: 843817267}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -4468,7 +4468,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 410431d72cf08c4449062030f11097e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetMesh: {fileID: 0}
   numAttacks: 1
 --- !u!1 &1697806534
 GameObject:
@@ -5806,6 +5805,7 @@ CompositeCollider2D:
       - {x: -9, y: -4}
       - {x: 20, y: -4}
   m_VertexDistance: 0.0005
+  m_OffsetDistance: 0.000005
 --- !u!50 &1697806539
 Rigidbody2D:
   serializedVersion: 4
@@ -5842,6 +5842,7 @@ TilemapCollider2D:
   m_UsedByComposite: 1
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0.00001
 --- !u!1001 &3685032514393323133
 PrefabInstance:
   m_ObjectHideFlags: 0

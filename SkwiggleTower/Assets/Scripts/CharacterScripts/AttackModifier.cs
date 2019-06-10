@@ -6,7 +6,6 @@ using UnityEngine;
 public class AttackModifier : Item
 {
     public int equipSlot = 0; //UI slot filled
-    public SkinnedMeshRenderer mesh;
 
     public int damageModifier; //damage the attack will add to player
     public int armorModifier; //armor for player
