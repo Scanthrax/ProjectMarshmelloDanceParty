@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Valarie Interactable 
+/// </summary>
 public class Interactable : MonoBehaviour
 {
     public float radius = 3f;
