@@ -423,7 +423,7 @@ MonoBehaviour:
   target: {fileID: 619993668}
   zoomSpeed: 4
   minZoom: 3
-  maxZoom: 7
+  maxZoom: 5
 --- !u!1 &493046578
 GameObject:
   m_ObjectHideFlags: 0
