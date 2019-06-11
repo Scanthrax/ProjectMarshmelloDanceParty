@@ -3317,6 +3317,7 @@ MonoBehaviour:
   maxAmount: 5
   trial: {fileID: 0}
   timerText: {fileID: 562143679}
+  amtOfEnemiesKilled: 0
   introCutscene: {fileID: 791675458}
   successCutscene: {fileID: 2079379263}
   failureCutscene: {fileID: 2079379263}
@@ -3389,15 +3390,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 2008320251}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ed09e0abd6478b41969f76f479f564f, type: 3}
+  m_Script: {fileID: 11500000, guid: 07a6f5355ab8d024b8909dea50e8f934, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 30
-  trialName: KILL THEM ALL!
+  duration: 10
+  trialName: KILL X ENEMIES
   started: 0
   roomManager: {fileID: 0}
   enemiesKilled: 0
-  allEnemiesKilled: 0
+  killsNeeded: 4
 --- !u!114 &2008320256
 MonoBehaviour:
   m_ObjectHideFlags: 0

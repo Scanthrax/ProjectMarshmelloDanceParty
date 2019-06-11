@@ -5,6 +5,9 @@ using UnityEngine;
 [System.Serializable]
 public class TrialKillEnemies : Trial
 {
+    // Matt Thompson
+    // Last Modified: 6/10/19
+
     /// <summary>
     /// Enemies killed so far in current trial
     /// </summary>
@@ -49,12 +52,13 @@ public class TrialKillEnemies : Trial
         
     }
 
-    /* Alternative method of checking if all enemies have been defeated, may be preferable for utility it adds with number of enemies being counted
+        /* Alternative method of checking if all enemies have been defeated, may be preferable for utility it adds with number of enemies being counted
         // This is essentially how I kept track of enemies remaining in my pirate game so it should work here as well, 
-        // only potential problem is that it will count all enemies in the scene, so if multiple trials are in the same scene I don't think this will work for our needs
+        // only potential problem is that it will count all enemies in the scene, so if multiple trials are in the same scene I don't think this will work for our needs */
      
-    public void LateUpdate()
+   /* public override void UpdateLogic()
     { 
+        base.UpdateLogic();
         // Looks for enemies with "Enemy" tag and adds them to a list
         // then checks length of list to see how many enemies are alive, which could also be useful elsewhere (i.e. "Enemies remaining" counter)
 
@@ -75,22 +79,4 @@ public class TrialKillEnemies : Trial
         }
     }*/
 
-    //public override void UpdateLogic()
-    //{
-    //    base.UpdateLogic();
-
-    //    // update logic can be placed either before or after the base method
-    //    // it is good practice to place your logic after the base in order to keep things consistent with the Start base method
-
-    //    /* Something along the lines of:
-    //    if (RoomManager.enemiesKilled >= RoomManager.maxAmount && timer > 0)
-    //    {
-    //        RoomManager.instance.trial.NotifyTrialComplete(true);
-    //    }
-    //    */
-
-    //    // once you set the win condition, use this function to notify the room manager that the trial is a success
-    //    if (false)
-    //        NotifyTrialComplete(true);
-    //}
 }
