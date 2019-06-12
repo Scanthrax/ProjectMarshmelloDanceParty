@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Valarie Script Health Bar in worldspace above player
+/// </summary>
 [RequireComponent(typeof(CharacterStats))]
 public class HealthUI : MonoBehaviour
 {

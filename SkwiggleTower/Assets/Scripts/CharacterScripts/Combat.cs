@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Valarie Script: holds all the scripts associated with Attacks, Attack delay
+/// Valarie Script: holds all the scripts associated with Attacks, Attack delay. UML created 6.12
 /// </summary>
 [RequireComponent(typeof(CharacterStats))]
 public class Combat : MonoBehaviour

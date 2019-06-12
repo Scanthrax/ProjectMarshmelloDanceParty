@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Valarie Script  this is the Script that specfies how the player interacts with the enemy
+/// Valarie Script  this is the Script that specfies how the player interacts with the enemy, UML created
 /// </summary>
 [RequireComponent(typeof(CharacterStats))]
 public class Enemy : Interactable

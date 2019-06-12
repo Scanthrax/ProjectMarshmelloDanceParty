@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Valarie Script: 
+/// Valarie Script: UML created 6.12
 /// </summary>
 public class AttackManager : MonoBehaviour
 {
@@ -23,7 +23,7 @@ public class AttackManager : MonoBehaviour
 
     public int numAttacks; //number of different attacks available
 
-    public void Start()
+    void Start()
     {
         currentAttack = new AttackModifier[numAttacks]; //instantiates attacks
 
