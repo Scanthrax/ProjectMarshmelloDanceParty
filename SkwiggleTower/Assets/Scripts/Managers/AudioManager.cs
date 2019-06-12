@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿//Author:   Ron Weeden
+//Modified: 6/11/2019
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -6,6 +9,9 @@ using UnityEngine.Audio;
 public enum Sounds { Music, GroundImpact, AsphaltFootsteps }
 public enum SoundChannels { Music, SFX, Footsteps, GroundImpact}
 
+/// <summary>
+/// The AudioManager singleton class handles audio requests
+/// </summary>
 public class AudioManager : MonoBehaviour
 {
     /// <summary>

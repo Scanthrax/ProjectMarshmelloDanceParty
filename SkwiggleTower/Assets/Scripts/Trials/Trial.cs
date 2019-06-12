@@ -1,9 +1,15 @@
-﻿using System;
+﻿//Author:   Ron Weeden
+//Modified: 6/11/2019
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+/// <summary>
+/// Base trial script
+/// </summary>
 [System.Serializable]
 [DisallowMultipleComponent]
 public class Trial : MonoBehaviour
@@ -48,7 +54,7 @@ public class Trial : MonoBehaviour
     /// </summary>
     /// <param name="win">Was the trial a success or a failure?</param>
     /// <returns></returns>
-    public virtual bool NotifyTrialComplete(bool success)
+    public virtual void NotifyTrialComplete(bool success)
     {
         if (started && !trialCompleted)
         {
@@ -65,8 +71,8 @@ public class Trial : MonoBehaviour
         else
             Debug.Log("The trial is attempting to complete while the game has not started OR the trial has already been completed.");
 
-        // I'm not sure if we will need a return type? I'll keep it in here for now...
-        return success;
+        // I'm not sure if we will need a return type?
+        //return success;
     }
 
     /// <summary>
