@@ -8,12 +8,14 @@ using UnityEngine;
 public class Interactable : MonoBehaviour
 {
     public float radius = 3f;
-    public Transform interactionTransform;
+    public Transform interactionTransform; //either a designated space in front of the enemy or just the enemy
     protected int healthGained = 10;
     protected int xpGained = 10;
 
-   // bool isFocus = false;
-    Transform player;
+    bool isFocus = false;
+
+    [SerializeField]
+    private Transform player;
 
     bool hasInteracted = false;
 
@@ -38,12 +40,12 @@ public class Interactable : MonoBehaviour
     }
 
     /// <summary>
-    /// play will go to item or enemy it clicks on
+    /// player will go to item or enemy it clicks on
     /// </summary>
     /// <param name="playerTransform"></param>
     public void OnFocused(Transform playerTransform)
     {
-        //isFocus = true;
+        isFocus = true;
         player = playerTransform;
         hasInteracted = false;
     }
@@ -51,7 +53,7 @@ public class Interactable : MonoBehaviour
     //Stops focusing on object
     public void OnDefocused()
     {
-        //isFocus = false;
+        isFocus = false;
         player = null;
         hasInteracted = false;
     }
