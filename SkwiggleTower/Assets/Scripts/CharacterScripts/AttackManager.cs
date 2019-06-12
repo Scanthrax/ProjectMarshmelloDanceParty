@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Valarie Script: 
+/// </summary>
 public class AttackManager : MonoBehaviour
 {
     #region Singleton

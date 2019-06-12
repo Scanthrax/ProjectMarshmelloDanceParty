@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Valarie Script: 
+/// </summary>
 [System.Serializable]
 public class Stat 
 {

@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Valarie Script 
+/// </summary>
 //We first ensure this script runs before all other player scripts to prevent laggy
 //inputs
 [DefaultExecutionOrder(-100)]
@@ -74,6 +77,7 @@ public class PlayerInput : MonoBehaviour
         crouchHeld = crouchHeld || Input.GetButton("Crouch");
     }
 
+    //Not being used for Prototype
     //void ProcessTouchInputs()
     //{
     //    //If this isn't a mobile platform AND we aren't testing in editor, exit

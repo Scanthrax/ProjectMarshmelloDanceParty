@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public class CharacterStats : MonoBehaviour
 {
-    public int maxhealth = 100;
+    public int maxHealth = 100;
     public int currentHealth { get; private set; } //any class can get the value only change it in this class
     public int xp { get; private set; }
 
@@ -19,7 +19,7 @@ public class CharacterStats : MonoBehaviour
 
     private void Awake()
     {
-        currentHealth = maxhealth; //initial value
+        currentHealth = maxHealth; //initial value
         xp = 5;
     }
 
@@ -35,7 +35,7 @@ public class CharacterStats : MonoBehaviour
             currentHealth -= damage;
             //Debug.Log(transform.name + " takes " + damage + " damage.");
 
-            OnHealthChanged?.Invoke(maxhealth, currentHealth);
+            OnHealthChanged?.Invoke(maxHealth, currentHealth);
 
             if (currentHealth <= 0)
             {
@@ -46,9 +46,9 @@ public class CharacterStats : MonoBehaviour
 
     public void Heal(int healing)
     {
-        currentHealth += Mathf.Clamp(healing, 1, maxhealth); //prevents excessive Health
+        currentHealth += Mathf.Clamp(healing, 1, maxHealth); //prevents excessive Health
 
-        OnHealthChanged?.Invoke(maxhealth, currentHealth);
+        OnHealthChanged?.Invoke(maxHealth, currentHealth);
     }
 
     public void gainXP(int _xp) //Gain XP
