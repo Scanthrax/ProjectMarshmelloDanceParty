@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// Valarie Script 
+/// Valarie Script : UML created
 /// </summary>
 //We first ensure this script runs before all other player scripts to prevent laggy
 //inputs

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Valarie Script: Character Stats hold total health, TakeDamage, Heal, gainXP, and Die
+/// Valarie Script: Character Stats hold total health, TakeDamage, Heal, gainXP, and Die. UML made
 /// </summary>
 public class CharacterStats : MonoBehaviour
 {

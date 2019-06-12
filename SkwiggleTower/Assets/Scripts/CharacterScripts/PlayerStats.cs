@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Valarie Script: 
+/// Valarie Script: UML created 
 /// </summary>
 public class PlayerStats : CharacterStats
 {
