@@ -25,7 +25,7 @@ public class HealthUI : MonoBehaviour
 
         foreach (Canvas C in FindObjectsOfType<Canvas>())
         {
-            if (C.renderMode == RenderMode.WorldSpace)
+            if (C.renderMode == RenderMode.ScreenSpaceCamera)
             {
                 ui = Instantiate(uiPrefab, C.transform).transform;
                 healthSlider = ui.GetChild(0).GetComponent<Image>(); //Finds image child of prefab

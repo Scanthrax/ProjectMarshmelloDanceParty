@@ -6044,6 +6044,7 @@ CompositeCollider2D:
       - {x: -9, y: -4}
       - {x: 20, y: -4}
   m_VertexDistance: 0.0005
+  m_OffsetDistance: 0.000005
 --- !u!50 &1697806539
 Rigidbody2D:
   serializedVersion: 4
@@ -6080,6 +6081,7 @@ TilemapCollider2D:
   m_UsedByComposite: 1
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0.00001
 --- !u!1001 &3685032514393323133
 PrefabInstance:
   m_ObjectHideFlags: 0

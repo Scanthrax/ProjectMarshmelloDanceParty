@@ -16,8 +16,11 @@ public class PlayerInput : MonoBehaviour
     [HideInInspector] public float horizontal;      //Float that stores horizontal input
     [HideInInspector] public bool jumpHeld;         //Bool that stores jump pressed
     [HideInInspector] public bool jumpPressed;      //Bool that stores jump held
-    [HideInInspector] public bool crouchHeld;       //Bool that stores crouch pressed
-    [HideInInspector] public bool crouchPressed;    //Bool that stores crouch held
+    [HideInInspector] public bool crouchHeld;       //Bool that stores crouch held
+    [HideInInspector] public bool crouchPressed;    //Bool that stores crouch pressed
+    [HideInInspector] public bool primaryAttackPressed;         //Bool that stores attack pressed
+    [HideInInspector] public bool primaryAttackHeld;            //Bool that stores attack  held 
+    [HideInInspector] public bool secondaryAttackPressed;      //Bool that stores secondary attack  held 
 
     bool dPadCrouchPrev;                            //Previous values of touch Thumbstick
     bool readyToClear;                              //Bool used to keep input in sync
@@ -53,13 +56,15 @@ public class PlayerInput : MonoBehaviour
         //If we're not ready to clear input, exit
         if (!readyToClear)
             return;
-
         //Reset all inputs
         horizontal = 0f;
         jumpPressed = false;
         jumpHeld = false;
         crouchPressed = false;
         crouchHeld = false;
+        primaryAttackPressed = false;
+        primaryAttackHeld = false;
+        secondaryAttackPressed = false;
 
         readyToClear = false;
     }
@@ -68,6 +73,10 @@ public class PlayerInput : MonoBehaviour
     {
         //Accumulate horizontal axis input
         horizontal += Input.GetAxis("Horizontal");
+
+        //Attack Inputs
+        primaryAttackPressed = Input.GetMouseButtonDown(0)|| Input.GetKeyDown("Fire1");
+        secondaryAttackPressed = Input.GetMouseButtonDown(1) || Input.GetKeyDown("Fire2");
 
         //Accumulate button inputs
         jumpPressed = jumpPressed || Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W);
