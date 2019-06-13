@@ -10,6 +10,9 @@ public class RogueAnimController : MonoBehaviour
 
     AudioSource footstepSource, impactSource;
 
+    public Rigidbody2D rock;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -93,5 +96,12 @@ public class RogueAnimController : MonoBehaviour
         {
             impactSource.Play();
         }
+    }
+
+
+    public void ThrowRock()
+    {
+        var rockRb = Instantiate(rock,this.transform.position + new Vector3(pm.GetDirection() * 0.6f,0.1f),Quaternion.identity);
+        rockRb.AddForce(Vector2.right * pm.GetDirection() * 1000f);
     }
 }
