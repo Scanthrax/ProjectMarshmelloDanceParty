@@ -25,20 +25,45 @@ public class RogueSecondaryAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Attack is activated by right click
-        if (Input.GetMouseButtonDown(1) && !isClicked)
+        //detecting platform layer 9
+        int layerMask = 1 << 9;
+        RaycastHit2D hit = Physics2D.Raycast(playerPos.position, Vector2.right, dashDist, layerMask);
+        if (hit.collider == null)
         {
-            isClicked = true;
+            //Attack is activated by right click
+            if (Input.GetMouseButtonDown(1) && !isClicked)
+            {
+                isClicked = true;
+            }
+            if (isClicked && dashDist >= 0)
+            {
+                playerPos.position += new Vector3(dashSpeed, 0, 0);
+                dashDist -= 1;
+            }
+            if (dashDist < 0)
+            {
+                dashDist = startDashDist;
+                isClicked = false;
+            }
         }
-        if(isClicked && dashDist >= 0)
+        else
         {
-            playerPos.position += new Vector3(dashSpeed, 0, 0);
-            dashDist -= 1;
-        }
-        if(dashDist < 0)
-        {
-            dashDist = startDashDist;
-            isClicked = false;
+            Debug.Log("I see you");
+            float distance = hit.point.x - playerPos.position.x;
+            if (Input.GetMouseButtonDown(1) && !isClicked)
+            {
+                isClicked = true;
+            }
+            if (isClicked && distance >= 0)
+            {
+                playerPos.position += new Vector3(dashSpeed, 0, 0);
+                distance -= 1;
+            }
+            if (dashDist < 0)
+            {
+                dashDist = startDashDist;
+                isClicked = false;
+            }
         }
     }
 }
