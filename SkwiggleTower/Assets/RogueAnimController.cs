@@ -50,6 +50,25 @@ public class RogueAnimController : MonoBehaviour
         {
             anim.SetBool("primaryHold", false);
         }
+
+    }
+
+    private void FixedUpdate()
+    {
+        if (anim.GetBool("usingAbility"))
+        {
+            rb.velocity = Vector2.zero;
+        }
+    }
+
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Finish"))
+        {
+            RoomManager.instance.trial.NotifyTrialComplete(true);
+        }
     }
 
 
