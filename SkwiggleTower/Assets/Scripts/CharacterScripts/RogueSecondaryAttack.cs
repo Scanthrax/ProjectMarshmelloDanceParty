@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿//Jacob Hreshchyshyn
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ public class RogueSecondaryAttack : MonoBehaviour
     public Vector2 attackRange;
     public int damage;
     public float distanceFromPlayer;
-    public float dashCooldown;
+    public float startDashCooldown;
     public float dashDist;
     public float dashSpeed;
     public float ultPowerGenerated;
@@ -19,10 +20,12 @@ public class RogueSecondaryAttack : MonoBehaviour
     public Transform playerPosTop;
     public LayerMask whatAreEnemies;
     private float startDashDist;
+    private float dashCoolDown;
     private bool isClicked;
     // Start is called before the first frame update
     void Start()
     {
+        dashCoolDown = 0;
         startDashDist = dashDist;
         isClicked = false;
     }
@@ -44,9 +47,10 @@ public class RogueSecondaryAttack : MonoBehaviour
             if (hitMidR.collider == null)
             {
                 //Attack is activated by right click
-                if (Input.GetMouseButtonDown(1) && !isClicked)
+                if (Input.GetMouseButtonDown(1) && !isClicked && dashCoolDown <= 0)
                 {
                     isClicked = true;
+                    dashCoolDown = startDashCooldown;
                 }
                 if (isClicked && dashDist >= 0)
                 {
@@ -59,12 +63,15 @@ public class RogueSecondaryAttack : MonoBehaviour
                     dashDist = startDashDist;
                     isClicked = false;
                 }
-                Collider2D[] enemiesInRange = Physics2D.OverlapBoxAll(attackPos.position, attackRange, whatAreEnemies);
-                for (int i = 0; i < enemiesInRange.Length; i++)
+                if (isClicked)
                 {
-                    //Uses a method in CharacterStats.cs for enemy to take damage
-                    enemiesInRange[i].GetComponent<CharacterStats>().TakeDamage(damage);
-                    Debug.Log("Got 'em");
+                    Collider2D[] enemiesInRange = Physics2D.OverlapBoxAll(attackPos.position, attackRange, whatAreEnemies);
+                    for (int i = 0; i < enemiesInRange.Length; i++)
+                    {
+                        //Uses a method in CharacterStats.cs for enemy to take damage
+                        enemiesInRange[i].GetComponent<CharacterStats>().TakeDamage(damage);
+                        Debug.Log("Got 'em");
+                    }
                 }
             }
             else
@@ -73,9 +80,10 @@ public class RogueSecondaryAttack : MonoBehaviour
                 //Debug.Log("I see you");
                 float distanceMid = hitMidR.point.x - playerPos.position.x;
 
-                if (Input.GetMouseButtonDown(1) && !isClicked)
+                if (Input.GetMouseButtonDown(1) && !isClicked && dashCoolDown <= 0)
                 {
                     isClicked = true;
+                    dashCoolDown = startDashCooldown;
                 }
                 if (isClicked && distanceMid > 1)
                 {
@@ -87,12 +95,15 @@ public class RogueSecondaryAttack : MonoBehaviour
                     dashDist = startDashDist;
                     isClicked = false;
                 }
-                Collider2D[] enemiesInRange = Physics2D.OverlapBoxAll(attackPos.position, attackRange, whatAreEnemies);
-                for (int i = 0; i < enemiesInRange.Length; i++)
+                if (isClicked)
                 {
-                    //Uses a method in CharacterStats.cs for enemy to take damage
-                    enemiesInRange[i].GetComponent<CharacterStats>().TakeDamage(damage);
-                    Debug.Log("Got 'em");
+                    Collider2D[] enemiesInRange = Physics2D.OverlapBoxAll(attackPos.position, attackRange, whatAreEnemies);
+                    for (int i = 0; i < enemiesInRange.Length; i++)
+                    {
+                        //Uses a method in CharacterStats.cs for enemy to take damage
+                        enemiesInRange[i].GetComponent<CharacterStats>().TakeDamage(damage);
+                        Debug.Log("Got 'em");
+                    }
                 }
             }
         }
@@ -101,9 +112,10 @@ public class RogueSecondaryAttack : MonoBehaviour
             if (hitMidL.collider == null)
             {
                 //Attack is activated by right click
-                if (Input.GetMouseButtonDown(1) && !isClicked)
+                if (Input.GetMouseButtonDown(1) && !isClicked && dashCoolDown <= 0)
                 {
                     isClicked = true;
+                    dashCoolDown = startDashCooldown;
                 }
                 if (isClicked && dashDist >= 0)
                 {
@@ -116,12 +128,15 @@ public class RogueSecondaryAttack : MonoBehaviour
                     dashDist = startDashDist;
                     isClicked = false;
                 }
-                Collider2D[] enemiesInRange = Physics2D.OverlapBoxAll(attackPos.position, attackRange, whatAreEnemies);
-                for (int i = 0; i < enemiesInRange.Length; i++)
+                if (isClicked)
                 {
-                    //Uses a method in CharacterStats.cs for enemy to take damage
-                    enemiesInRange[i].GetComponent<CharacterStats>().TakeDamage(damage);
-                    Debug.Log("Got 'em");
+                    Collider2D[] enemiesInRange = Physics2D.OverlapBoxAll(attackPos.position, attackRange, whatAreEnemies);
+                    for (int i = 0; i < enemiesInRange.Length; i++)
+                    {
+                        //Uses a method in CharacterStats.cs for enemy to take damage
+                        enemiesInRange[i].GetComponent<CharacterStats>().TakeDamage(damage);
+                        Debug.Log("Got 'em");
+                    }
                 }
             }
             else
@@ -130,9 +145,10 @@ public class RogueSecondaryAttack : MonoBehaviour
                 //Debug.Log("I see you");
                 float distanceMid = playerPos.position.x - hitMidR.point.x;
 
-                if (Input.GetMouseButtonDown(1) && !isClicked)
+                if (Input.GetMouseButtonDown(1) && !isClicked && dashCoolDown <= 0)
                 {
                     isClicked = true;
+                    dashCoolDown = startDashCooldown;
                 }
                 if (isClicked && distanceMid >= -2)
                 {
@@ -144,15 +160,19 @@ public class RogueSecondaryAttack : MonoBehaviour
                     dashDist = startDashDist;
                     isClicked = false;
                 }
-                Collider2D[] enemiesInRange = Physics2D.OverlapBoxAll(attackPos.position, attackRange, whatAreEnemies);
-                for (int i = 0; i < enemiesInRange.Length; i++)
+                if (isClicked)
                 {
-                    //Uses a method in CharacterStats.cs for enemy to take damage
-                    enemiesInRange[i].GetComponent<CharacterStats>().TakeDamage(damage);
-                    Debug.Log("Got 'em");
+                    Collider2D[] enemiesInRange = Physics2D.OverlapBoxAll(attackPos.position, attackRange, whatAreEnemies);
+                    for (int i = 0; i < enemiesInRange.Length; i++)
+                    {
+                        //Uses a method in CharacterStats.cs for enemy to take damage
+                        enemiesInRange[i].GetComponent<CharacterStats>().TakeDamage(damage);
+                        Debug.Log("Got 'em");
+                    }
                 }
             }
         }
+        dashCoolDown -= 1;
     }
     private void OnDrawGizmosSelected()
     {
