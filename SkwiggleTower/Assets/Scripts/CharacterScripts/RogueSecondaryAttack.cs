@@ -33,9 +33,13 @@ public class RogueSecondaryAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        dashAttack();
+        if ((Input.GetMouseButtonDown(1) || isClicked))
+        {
+            dashAttack();
+        }
+        dashCoolDown--;
     }
-    public void dashAttack()
+    public bool dashAttack()
     {
         //detecting platform layer 9
         int layerMask = 1 << 9;
@@ -46,12 +50,12 @@ public class RogueSecondaryAttack : MonoBehaviour
         RaycastHit2D hitMidL = Physics2D.Raycast(playerPos.position, Vector2.left, wallDetectDist, layerMask);
         //RaycastHit2D hitTopR = Physics2D.Raycast(playerPosTop.position, Vector2.right, wallDetectDist, layerMask);
         //RaycastHit2D hitBottomR = Physics2D.Raycast(playerPosBottom.position, Vector2.right, wallDetectDist, layerMask);
-        if(playerPos.localScale == new Vector3(1, 1, 1))//checks if player is facing right
+        if (playerPos.localScale == new Vector3(1, 1, 1))//checks if player is facing right
         {
             if (hitMidR.collider == null)
             {
                 //Attack is activated by right click
-                if (Input.GetMouseButtonDown(1) && !isClicked && dashCoolDown <= 0)
+                if (!isClicked && dashCoolDown <= 0)
                 {
                     isClicked = true;
                     dashCoolDown = startDashCooldown;
@@ -84,7 +88,7 @@ public class RogueSecondaryAttack : MonoBehaviour
                 //Debug.Log("I see you");
                 float distanceMid = hitMidR.point.x - playerPos.position.x;
 
-                if (Input.GetMouseButtonDown(1) && !isClicked && dashCoolDown <= 0)
+                if (!isClicked && dashCoolDown <= 0)
                 {
                     isClicked = true;
                     dashCoolDown = startDashCooldown;
@@ -116,7 +120,7 @@ public class RogueSecondaryAttack : MonoBehaviour
             if (hitMidL.collider == null)
             {
                 //Attack is activated by right click
-                if (Input.GetMouseButtonDown(1) && !isClicked && dashCoolDown <= 0)
+                if (!isClicked && dashCoolDown <= 0)
                 {
                     isClicked = true;
                     dashCoolDown = startDashCooldown;
@@ -149,7 +153,7 @@ public class RogueSecondaryAttack : MonoBehaviour
                 //Debug.Log("I see you");
                 float distanceMid = playerPos.position.x - hitMidR.point.x;
 
-                if (Input.GetMouseButtonDown(1) && !isClicked && dashCoolDown <= 0)
+                if (!isClicked && dashCoolDown <= 0)
                 {
                     isClicked = true;
                     dashCoolDown = startDashCooldown;
@@ -177,6 +181,7 @@ public class RogueSecondaryAttack : MonoBehaviour
             }
         }
         dashCoolDown -= 1;
+        return isClicked;
     }
     private void OnDrawGizmosSelected()
     {
