@@ -44,10 +44,10 @@ public class RogueAnimController : MonoBehaviour
         {
             anim.SetBool("primaryHold", true);
 
-            if (pm.isOnGround && !anim.GetBool("usingAbility"))
-            {
+            //if (pm.isOnGround && !anim.GetBool("usingAbility"))
+            //{
                 anim.SetTrigger("Primary");
-            }
+            //}
         }
 
         if(Input.GetMouseButtonUp(0))
@@ -59,10 +59,10 @@ public class RogueAnimController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (anim.GetBool("usingAbility"))
-        {
-            rb.velocity = Vector2.zero;
-        }
+        //if (anim.GetBool("usingAbility"))
+        //{
+        //    rb.velocity = Vector2.zero;
+        //}
     }
 
 
