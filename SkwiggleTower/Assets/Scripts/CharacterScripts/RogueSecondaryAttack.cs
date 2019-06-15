@@ -33,6 +33,10 @@ public class RogueSecondaryAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        dashAttack();
+    }
+    public void dashAttack()
+    {
         //detecting platform layer 9
         int layerMask = 1 << 9;
         //Generates raycasts that will be used to detect walls in front of the player from a certain distance
