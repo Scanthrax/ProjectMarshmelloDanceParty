@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+/// <summary>
+/// Valarie Script
+/// </summary>
 public class PlayerManager : MonoBehaviour
 {
     #region Singleton
@@ -19,8 +22,6 @@ public class PlayerManager : MonoBehaviour
     public GameObject player;
     public CharacterStats charStats;
     private int xpPM;
-    public TextMeshProUGUI xpUI;
-   // public GameObject winText;
 
     void Start()
     {
@@ -29,9 +30,8 @@ public class PlayerManager : MonoBehaviour
 
     void Update()
     {
-        xpPM = charStats.xp;
-        xpUI.SetText("XP: " + xpPM);
-        LevelUp();
+       xpPM = charStats.xp; //Adds xp to the player
+       LevelUp();
     }
 
     public void KillPlayer()
