@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Valarie Script : UML created
+/// </summary>
 //We first ensure this script runs before all other player scripts to prevent laggy
 //inputs
 [DefaultExecutionOrder(-100)]
@@ -13,8 +16,11 @@ public class PlayerInput : MonoBehaviour
     [HideInInspector] public float horizontal;      //Float that stores horizontal input
     [HideInInspector] public bool jumpHeld;         //Bool that stores jump pressed
     [HideInInspector] public bool jumpPressed;      //Bool that stores jump held
-    [HideInInspector] public bool crouchHeld;       //Bool that stores crouch pressed
-    [HideInInspector] public bool crouchPressed;    //Bool that stores crouch held
+    [HideInInspector] public bool crouchHeld;       //Bool that stores crouch held
+    [HideInInspector] public bool crouchPressed;    //Bool that stores crouch pressed
+    [HideInInspector] public bool primaryAttackPressed;         //Bool that stores attack pressed
+    [HideInInspector] public bool primaryAttackHeld;            //Bool that stores attack  held 
+    [HideInInspector] public bool secondaryAttackPressed;      //Bool that stores secondary attack  held 
 
     bool dPadCrouchPrev;                            //Previous values of touch Thumbstick
     bool readyToClear;                              //Bool used to keep input in sync
@@ -50,13 +56,15 @@ public class PlayerInput : MonoBehaviour
         //If we're not ready to clear input, exit
         if (!readyToClear)
             return;
-
         //Reset all inputs
         horizontal = 0f;
         jumpPressed = false;
         jumpHeld = false;
         crouchPressed = false;
         crouchHeld = false;
+        primaryAttackPressed = false;
+        primaryAttackHeld = false;
+        secondaryAttackPressed = false;
 
         readyToClear = false;
     }
@@ -66,6 +74,10 @@ public class PlayerInput : MonoBehaviour
         //Accumulate horizontal axis input
         horizontal += Input.GetAxis("Horizontal");
 
+        //Attack Inputs
+        primaryAttackPressed = Input.GetMouseButtonDown(0);
+        secondaryAttackPressed = Input.GetMouseButtonDown(1);
+
         //Accumulate button inputs
         jumpPressed = jumpPressed || Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W);
         jumpHeld = jumpHeld || Input.GetButton("Jump") || Input.GetKeyDown(KeyCode.W);
@@ -74,6 +86,7 @@ public class PlayerInput : MonoBehaviour
         crouchHeld = crouchHeld || Input.GetButton("Crouch");
     }
 
+    //Not being used for Prototype
     //void ProcessTouchInputs()
     //{
     //    //If this isn't a mobile platform AND we aren't testing in editor, exit

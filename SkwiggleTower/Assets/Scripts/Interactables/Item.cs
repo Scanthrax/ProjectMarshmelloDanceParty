@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Valarie Script: Scriptable base object for Attack Modifiers, Items, and possibly classes UML created 6.12.19
+/// </summary>
 [CreateAssetMenu(fileName = "New Item", menuName = "Items")]
 public class Item : ScriptableObject
 {
