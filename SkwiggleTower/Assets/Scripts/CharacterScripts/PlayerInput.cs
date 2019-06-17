@@ -75,8 +75,8 @@ public class PlayerInput : MonoBehaviour
         horizontal += Input.GetAxis("Horizontal");
 
         //Attack Inputs
-        primaryAttackPressed = Input.GetMouseButtonDown(0)|| Input.GetKeyDown("Fire1");
-        secondaryAttackPressed = Input.GetMouseButtonDown(1) || Input.GetKeyDown("Fire2");
+        primaryAttackPressed = Input.GetMouseButtonDown(0);
+        secondaryAttackPressed = Input.GetMouseButtonDown(1);
 
         //Accumulate button inputs
         jumpPressed = jumpPressed || Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W);
