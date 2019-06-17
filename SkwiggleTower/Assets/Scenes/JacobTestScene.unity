@@ -4017,7 +4017,7 @@ MonoBehaviour:
   attackRange: {x: 1, y: 0.5}
   damage: 10
   distanceFromPlayer: 0
-  startDashCooldown: 20
+  startDashCooldown: 30
   dashDist: 3
   dashSpeed: 1
   ultPowerGenerated: 0

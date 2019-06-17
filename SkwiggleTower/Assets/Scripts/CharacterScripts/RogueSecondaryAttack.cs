@@ -189,3 +189,4 @@ public class RogueSecondaryAttack : MonoBehaviour
         Gizmos.DrawWireCube(attackPos.position, attackRange);
     }
 }
+
