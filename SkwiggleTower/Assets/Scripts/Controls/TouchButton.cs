@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
-
+/// <summary>
+/// Valarie Script: Not FOr Prototype, Multi input device scripts
+/// </summary>
 public class TouchButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     int pointerID;

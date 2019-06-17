@@ -13,7 +13,7 @@ public class EnemyStats : CharacterStats
         //Reward Player
         PlayerManager.instance.charStats.Heal(healthGained); //references character stats in the Playermanager Health
         PlayerManager.instance.charStats.gainXP(xpGained); //references character stats in the Playermanager XP;
-        Debug.Log("'Tis but a flesh wound,");
+        Debug.Log("Enemy Died");
         //Play Animation 
         Destroy(gameObject);
     }

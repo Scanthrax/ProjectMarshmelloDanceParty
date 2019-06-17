@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Valarie Script: UML created 
+/// </summary>
 public class PlayerStats : CharacterStats
 {
     //Inherits from generic CharacterStats 
