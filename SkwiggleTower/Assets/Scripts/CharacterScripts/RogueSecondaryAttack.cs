@@ -33,7 +33,8 @@ public class RogueSecondaryAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((Input.GetMouseButtonDown(1) || isClicked))
+        //if ((Input.GetMouseButtonDown(1) || isClicked))
+        if (isClicked)
         {
             dashAttack();
         }
@@ -181,6 +182,12 @@ public class RogueSecondaryAttack : MonoBehaviour
             }
         }
         dashCoolDown -= 1;
+
+
+
+        if (!isClicked)
+            GetComponent<Animator>().SetTrigger("secondaryEnd");
+
         return isClicked;
     }
     private void OnDrawGizmosSelected()
@@ -188,5 +195,12 @@ public class RogueSecondaryAttack : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(attackPos.position, attackRange);
     }
+
+
+    public void Click()
+    {
+        isClicked = true;
+    }
+
 }
 

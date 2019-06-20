@@ -8,11 +8,13 @@ public class RogueAnimController : MonoBehaviour
     Animator anim;
     PlayerMovement pm;
 
-    AudioSource footstepSource, impactSource;
+    public AudioSource footstepSource, impactSource, slingshotStretch, slingshotShoot;
 
     public Rigidbody2D rock;
 
     public float impulse;
+
+    public PlayerInput PI;
 
     // Start is called before the first frame update
     void Start()
@@ -20,34 +22,27 @@ public class RogueAnimController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         pm = GetComponent<PlayerMovement>();
         anim = GetComponent<Animator>();
-        footstepSource = AudioManager.instance.AddSource(gameObject, Sounds.AsphaltFootsteps, SoundChannels.Footsteps);
-        impactSource = AudioManager.instance.AddSource(gameObject, Sounds.GroundImpact, 1, SoundChannels.GroundImpact);
+
+        PI = GetComponent<PlayerInput>();
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        anim.SetBool("isMoving", Mathf.Abs(rb.velocity.x) > 0.1f);
+        anim.SetBool("isMoving", PI.horizontal != 0f);
 
         anim.SetBool("inAir", !pm.isOnGround);
 
         if (Input.GetMouseButtonDown(1))
         {
-            if (pm.isOnGround && !anim.GetBool("usingAbility"))
-            {
-                anim.SetTrigger("Secondary");
-            }
+            anim.SetTrigger("Secondary");
         }
 
         if (Input.GetMouseButtonDown(0))
         {
             anim.SetBool("primaryHold", true);
-
-            //if (pm.isOnGround && !anim.GetBool("usingAbility"))
-            //{
-                anim.SetTrigger("Primary");
-            //}
+            anim.SetTrigger("Primary");
         }
 
         if(Input.GetMouseButtonUp(0))
@@ -76,10 +71,7 @@ public class RogueAnimController : MonoBehaviour
     }
 
 
-    public void SetUsingAbility(int i)
-    {
-        anim.SetBool("usingAbility", i == 0);
-    }
+
 
     public void GetFootstep()
     {
@@ -104,5 +96,11 @@ public class RogueAnimController : MonoBehaviour
     {
         var rockRb = Instantiate(rock,this.transform.position + new Vector3(pm.GetDirection() * 0.6f,0.1f),Quaternion.identity);
         rockRb.AddForce(Vector2.right * pm.GetDirection() * impulse);
+        slingshotShoot.Play();
+    }
+
+    public void SlingStretch()
+    {
+        slingshotStretch.Play();
     }
 }

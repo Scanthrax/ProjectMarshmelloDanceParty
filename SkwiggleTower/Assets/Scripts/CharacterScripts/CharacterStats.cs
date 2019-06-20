@@ -60,6 +60,6 @@ public class CharacterStats : MonoBehaviour
     {
         //Die in some way, should be overriden
         // Debug.Log(transform.name + " died.");
-
+        RoomManager.instance.OnEnemyDeath();
     }
 }
