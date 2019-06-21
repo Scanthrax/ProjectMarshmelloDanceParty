@@ -11,7 +11,6 @@ using UnityEngine;
 /// Base trial script
 /// </summary>
 [System.Serializable]
-[DisallowMultipleComponent]
 public class Trial : MonoBehaviour
 {
 
@@ -47,6 +46,8 @@ public class Trial : MonoBehaviour
     public RoomManager roomManager;
 
 
+
+    public bool debug;
 
 
     /// <summary>
@@ -103,6 +104,13 @@ public class Trial : MonoBehaviour
         if (timer <= 0f)
             NotifyTrialComplete(false);
 
+        if (debug)
+        {
+            if (Input.GetKeyDown(KeyCode.O))
+                NotifyTrialComplete(true);
+            if (Input.GetKeyDown(KeyCode.P))
+                NotifyTrialComplete(false);
+        }
     }
 
     /// <summary>

@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class TestImpactSound : MonoBehaviour
 {
-    public AudioSource source;
+    public AudioSource impactSource;
+    public AudioSource groanSource;
 
     public void PlayImpact()
     {
-        source.Play();
+        impactSource.Play();
+        AudioManager.instance.PlaySoundpool(groanSource, Sounds.Groans);
     }
 
 }

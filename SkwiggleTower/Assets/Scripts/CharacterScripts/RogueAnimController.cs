@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿//Author:   Ron Weeden
+//Modified: 6/20/2019
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +11,7 @@ public class RogueAnimController : MonoBehaviour
     Animator anim;
     PlayerMovement pm;
 
-    public AudioSource footstepSource, impactSource, slingshotStretch, slingshotShoot;
+    public AudioSource footstepSource, impactSource, slingshotStretch, slingshotShoot, secondarySource;
 
     public Rigidbody2D rock;
 
@@ -83,7 +86,7 @@ public class RogueAnimController : MonoBehaviour
 
         var impact = collision.relativeVelocity.magnitude;
 
-        print(impact);
+        //print(impact);
 
         if (impact > 10f)
         {
@@ -102,5 +105,11 @@ public class RogueAnimController : MonoBehaviour
     public void SlingStretch()
     {
         slingshotStretch.Play();
+    }
+
+
+    public void SecondarySound()
+    {
+        secondarySource.Play();
     }
 }

@@ -1,12 +1,12 @@
 ﻿//Author:   Ron Weeden
-//Modified: 6/11/2019
+//Modified: 6/20/2019
 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public enum Sounds { Music, GroundImpact, AsphaltFootsteps, SlingshotStretch}
+public enum Sounds { Music, GroundImpact, AsphaltFootsteps, SlingshotStretch, Groans}
 public enum SoundChannels { Music, SFX, Footsteps, GroundImpact}
 
 /// <summary>

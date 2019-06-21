@@ -35,7 +35,7 @@ public class RockAttack : MonoBehaviour
         }
         else
         {
-            print("rock impact: " + collision.relativeVelocity.magnitude);
+            //print("rock impact: " + collision.relativeVelocity.magnitude);
 
 
             if (collision.relativeVelocity.magnitude > 10f)
