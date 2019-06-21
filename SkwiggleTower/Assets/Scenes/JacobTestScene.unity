@@ -4015,6 +4015,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2792f6fbbdcd925428c3081ec9f082a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1597569772}
   attackRange: {x: 1, y: 0.5}
   damage: 10
   distanceFromPlayer: 0
@@ -4030,6 +4031,20 @@ MonoBehaviour:
   whatAreEnemies:
     serializedVersion: 2
     m_Bits: 2048
+--- !u!114 &1597569783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597569772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e8debb4e41ffcb40b2eda1e989e8c17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poisonTicks: 180
+  active: 0
 --- !u!1 &1692686930
 GameObject:
   m_ObjectHideFlags: 0
