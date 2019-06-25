@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿//Author:   Ron Weeden
+//Modified: 6/20/2019
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -24,7 +27,7 @@ public class RoomManager : MonoBehaviour
     /// <summary>
     /// test objects to spawn
     /// </summary>
-    public GameObject test1, test2;
+    public GameObject testEnemyPrefab;
 
     /// <summary>
     /// Current amount of enemies in the room
@@ -63,10 +66,17 @@ public class RoomManager : MonoBehaviour
     public TextMeshPro roundTextCompleted, trialTextCompleted;
 
 
+    public GameObject trials;
+
+
     private void Start()
     {
         // find all spawn gameobjects with the Respawn label & store them
         listOfSpawners = GameObject.FindGameObjectsWithTag("Respawn");
+
+
+
+
 
         // the trial component will be dragged onto this gameobject through the inspector
         trial = GetComponent<Trial>();
@@ -76,9 +86,17 @@ public class RoomManager : MonoBehaviour
         {
             trialTextIntro.text = trial.trialName;
             trialTextUI.text = trial.trialName;
+
+            trial.StartTrial();
+
         }
         else
-            Debug.LogWarning("There is no trial set for this room!");
+        {
+            var listOfTrials = trials.GetComponents<Trial>();
+            trial = listOfTrials[UnityEngine.Random.Range(0, listOfTrials.Length)];
+
+            ///Debug.LogWarning("There is no trial set for this room!");
+        }
 
 
         print("A & D to move cube");
@@ -93,12 +111,12 @@ public class RoomManager : MonoBehaviour
     private void Update()
     {
         // Spawn one type of object with O
-        if (Input.GetKeyDown(KeyCode.O))
-            SpawnEnemy(1);
+        if (Input.GetKeyDown(KeyCode.K))
+            SpawnEnemy();
 
         // Spawn another type of object with P
-        if (Input.GetKeyDown(KeyCode.P))
-            SpawnEnemy(2);
+        if (Input.GetKeyDown(KeyCode.L))
+            SpawnEnemy();
 
         if (trial && Input.GetKeyDown(KeyCode.Q))
         {
@@ -108,28 +126,19 @@ public class RoomManager : MonoBehaviour
 
     }
 
-    public void SpawnEnemy(int type)
+    public void SpawnEnemy()
     {
         // if we cannot spawn anymore enemies, exit the method
         if (amountOfEnemies >= maxAmount)
             return;
 
-        // store a temporary gameobject that will be instantiated
-        // the type of object is determined by the input parameter
-        GameObject temp;
 
-        // if the type is 1, spawn one type of object
-        if (type == 1)
-            temp = test1;
-        // otherwise, spawn the other type of object
-        else
-            temp = test2;
 
         // randomly obtain the position of one of the spawners
         Vector3 position = listOfSpawners[UnityEngine.Random.Range(0, listOfSpawners.Length)].transform.position;
 
         // instantiate the gameobject at the position
-        Instantiate(temp, position, Quaternion.identity);
+        Instantiate(testEnemyPrefab, position, Quaternion.identity);
 
         // increase the count of enemies in the room
         amountOfEnemies++;
@@ -146,6 +155,7 @@ public class RoomManager : MonoBehaviour
 
     public void OnEnemyDeath()
     {
+        print("Room manager increase amt of enemies killed");
         amtOfEnemiesKilled++;
         amountOfEnemies--;
     }

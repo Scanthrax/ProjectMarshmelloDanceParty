@@ -6,7 +6,6 @@ using UnityEngine;
 public class RogueSecondaryAttack : MonoBehaviour
 {
     //Not all of these variables are used yet. Currently working on getting the dash to work correctly.
-    public GameObject player;
     public Vector2 attackRange;
     public int damage;
     public float distanceFromPlayer;
@@ -23,20 +22,19 @@ public class RogueSecondaryAttack : MonoBehaviour
     private float startDashDist;
     private float dashCoolDown;
     private bool isClicked;
-    private bool ultIsActive;
     // Start is called before the first frame update
     void Start()
     {
         dashCoolDown = 0;
         startDashDist = dashDist;
         isClicked = false;
-        ultIsActive = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if ((Input.GetMouseButtonDown(1) || isClicked))
+        //if ((Input.GetMouseButtonDown(1) || isClicked))
+        if (isClicked)
         {
             dashAttack();
         }
@@ -82,15 +80,6 @@ public class RogueSecondaryAttack : MonoBehaviour
                         //Uses a method in CharacterStats.cs for enemy to take damage
                         enemiesInRange[i].GetComponent<CharacterStats>().TakeDamage(damage);
                         Debug.Log("Got 'em");
-                        if(player.GetComponent<RogueUltTestActivation>().active && GetComponent<RoguePoisonUlt>() == null)
-                        {
-                            enemiesInRange[i].gameObject.AddComponent<RoguePoisonUlt>();
-                            Debug.Log("This will activate");
-                        }
-                        else if(!player.GetComponent<RogueUltTestActivation>().active && GetComponent<RogueUltTestActivation>() != null)
-                        {
-                            Debug.Log("This will not activate");
-                        }
                     }
                 }
             }
@@ -123,15 +112,6 @@ public class RogueSecondaryAttack : MonoBehaviour
                         //Uses a method in CharacterStats.cs for enemy to take damage
                         enemiesInRange[i].GetComponent<CharacterStats>().TakeDamage(damage);
                         Debug.Log("Got 'em");
-                        if (player.GetComponent<RogueUltTestActivation>().active && GetComponent<RoguePoisonUlt>() == null)
-                        {
-                            enemiesInRange[i].gameObject.AddComponent<RoguePoisonUlt>();
-                            Debug.Log("This will activate");
-                        }
-                        else if (!player.GetComponent<RogueUltTestActivation>().active && GetComponent<RogueUltTestActivation>() != null)
-                        {
-                            Debug.Log("This will not activate");
-                        }
                     }
                 }
             }
@@ -165,15 +145,6 @@ public class RogueSecondaryAttack : MonoBehaviour
                         //Uses a method in CharacterStats.cs for enemy to take damage
                         enemiesInRange[i].GetComponent<CharacterStats>().TakeDamage(damage);
                         Debug.Log("Got 'em");
-                        if (player.GetComponent<RogueUltTestActivation>().active && GetComponent<RoguePoisonUlt>() == null)
-                        {
-                            enemiesInRange[i].gameObject.AddComponent<RoguePoisonUlt>();
-                            Debug.Log("This will activate");
-                        }
-                        else if (!player.GetComponent<RogueUltTestActivation>().active && GetComponent<RogueUltTestActivation>() != null)
-                        {
-                            Debug.Log("This will not activate");
-                        }
                     }
                 }
             }
@@ -206,20 +177,17 @@ public class RogueSecondaryAttack : MonoBehaviour
                         //Uses a method in CharacterStats.cs for enemy to take damage
                         enemiesInRange[i].GetComponent<CharacterStats>().TakeDamage(damage);
                         Debug.Log("Got 'em");
-                        if (player.GetComponent<RogueUltTestActivation>().active && GetComponent<RoguePoisonUlt>() == null)
-                        {
-                            enemiesInRange[i].gameObject.AddComponent<RoguePoisonUlt>();
-                            Debug.Log("This will activate");
-                        }
-                        else if (!player.GetComponent<RogueUltTestActivation>().active && GetComponent<RogueUltTestActivation>() != null)
-                        {
-                            Debug.Log("This will not activate");
-                        }
                     }
                 }
             }
         }
         dashCoolDown -= 1;
+
+
+
+        if (!isClicked)
+            GetComponent<Animator>().SetTrigger("secondaryEnd");
+
         return isClicked;
     }
     private void OnDrawGizmosSelected()
@@ -227,13 +195,12 @@ public class RogueSecondaryAttack : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(attackPos.position, attackRange);
     }
-    public bool getUltBool()
+
+
+    public void Click()
     {
-        return ultIsActive;
+        isClicked = true;
     }
-    public void setUltBool(bool isActive)
-    {
-        ultIsActive = isActive;
-    }
+
 }
 
