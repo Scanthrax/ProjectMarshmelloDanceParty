@@ -82,12 +82,12 @@ public class RogueSecondaryAttack : MonoBehaviour
                         //Uses a method in CharacterStats.cs for enemy to take damage
                         enemiesInRange[i].GetComponent<CharacterStats>().TakeDamage(damage);
                         Debug.Log("Got 'em");
-                        if(player.GetComponent<RogueUltTestActivation>().active && GetComponent<RoguePoisonUlt>() == null)
+                        if (player.GetComponent<RogueUltTestActivation>().active && GetComponent<RoguePoisonUlt>() == null)
                         {
                             enemiesInRange[i].gameObject.AddComponent<RoguePoisonUlt>();
                             Debug.Log("This will activate");
                         }
-                        else if(!player.GetComponent<RogueUltTestActivation>().active && GetComponent<RogueUltTestActivation>() != null)
+                        else if (!player.GetComponent<RogueUltTestActivation>().active && GetComponent<RogueUltTestActivation>() != null)
                         {
                             Debug.Log("This will not activate");
                         }
