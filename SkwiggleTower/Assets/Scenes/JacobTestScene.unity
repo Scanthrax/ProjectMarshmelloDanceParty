@@ -156,7 +156,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.32}
+    oldSize: {x: 0.16, y: 0.32}
     newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -182,7 +182,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -199,10 +199,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 82abbd2e4f364394d95a358b6b39599b, type: 3}
+  m_SortingLayerID: 1899956415
+  m_SortingLayer: 5
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: a33b7f7f94ce47a4b9eeefad2020ca1a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -239,7 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 316170f1debb5904080aed12f3c64467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxhealth: 100
+  maxHealth: 100
   damage:
     baseValue: 0
   armor:
@@ -1948,6 +1948,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dampTime: 0.15
   target: {fileID: 1597569780}
+  zoomSpeed: 4
+  minZoom: 3
+  maxZoom: 7
 --- !u!81 &696609725
 AudioListener:
   m_ObjectHideFlags: 0
@@ -2043,7 +2046,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 410431d72cf08c4449062030f11097e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetMesh: {fileID: 0}
   numAttacks: 0
 --- !u!114 &1065515673
 MonoBehaviour:
@@ -2059,7 +2061,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1597569772}
   charStats: {fileID: 1597569774}
-  xpUI: {fileID: 1158616131}
 --- !u!4 &1065515674
 Transform:
   m_ObjectHideFlags: 0
@@ -3834,7 +3835,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 316170f1debb5904080aed12f3c64467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxhealth: 100
+  maxHealth: 100
   damage:
     baseValue: 0
   armor:
@@ -3858,7 +3859,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.32}
+    oldSize: {x: 0.16, y: 0.32}
     newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -3884,7 +3885,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3901,10 +3902,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1899956415
+  m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 82abbd2e4f364394d95a358b6b39599b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a33b7f7f94ce47a4b9eeefad2020ca1a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4014,6 +4015,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2792f6fbbdcd925428c3081ec9f082a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1597569772}
   attackRange: {x: 1, y: 0.5}
   damage: 10
   distanceFromPlayer: 0
@@ -4029,6 +4031,20 @@ MonoBehaviour:
   whatAreEnemies:
     serializedVersion: 2
     m_Bits: 2048
+--- !u!114 &1597569783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597569772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e8debb4e41ffcb40b2eda1e989e8c17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poisonTicks: 180
+  active: 0
 --- !u!1 &1692686930
 GameObject:
   m_ObjectHideFlags: 0
