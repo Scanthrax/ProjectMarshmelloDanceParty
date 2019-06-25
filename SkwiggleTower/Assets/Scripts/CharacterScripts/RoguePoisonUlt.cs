@@ -19,12 +19,16 @@ public class RoguePoisonUlt : MonoBehaviour
         timer--;
         if (timer > 0 && timer % 15 == 0)
         {
+            //Changes sprite color to green
             GetComponent<CharacterStats>().TakeDamage(damage);
+            GetComponent<SpriteRenderer>().color = Color.green;//new Color(53, 234, 32);
             Debug.Log("Taking damage" + damage);
         }
         else if(timer <= 0)
         {
-           DestroyScriptInstance();
+            //Changes sprite color back to original color
+            GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+            DestroyScriptInstance();
         }
     }
     void DestroyScriptInstance()
