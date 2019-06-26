@@ -17,7 +17,7 @@ TagManager:
   - Platforms
   - PostProcessing
   - Enemy
-  - 
+  - PlayerProjectile
   - 
   - 
   - 
@@ -55,4 +55,7 @@ TagManager:
     locked: 0
   - name: Foreground
     uniqueID: 1899956415
+    locked: 0
+  - name: Cutscene Elements
+    uniqueID: 3850001293
     locked: 0

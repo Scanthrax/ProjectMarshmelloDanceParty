@@ -1,11 +1,16 @@
-﻿using System;
+﻿//Author:   Ron Weeden
+//Modified: 6/11/2019
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+/// <summary>
+/// Base trial script
+/// </summary>
 [System.Serializable]
-[DisallowMultipleComponent]
 public class Trial : MonoBehaviour
 {
 
@@ -42,13 +47,15 @@ public class Trial : MonoBehaviour
 
 
 
+    public bool debug;
+
 
     /// <summary>
     /// Gives a notification that the trial has ended; the result of the trial is recieved/sent as a parameter
     /// </summary>
     /// <param name="win">Was the trial a success or a failure?</param>
     /// <returns></returns>
-    public virtual bool NotifyTrialComplete(bool success)
+    public virtual void NotifyTrialComplete(bool success)
     {
         if (started && !trialCompleted)
         {
@@ -65,8 +72,8 @@ public class Trial : MonoBehaviour
         else
             Debug.Log("The trial is attempting to complete while the game has not started OR the trial has already been completed.");
 
-        // I'm not sure if we will need a return type? I'll keep it in here for now...
-        return success;
+        // I'm not sure if we will need a return type?
+        //return success;
     }
 
     /// <summary>
@@ -97,6 +104,13 @@ public class Trial : MonoBehaviour
         if (timer <= 0f)
             NotifyTrialComplete(false);
 
+        if (debug)
+        {
+            if (Input.GetKeyDown(KeyCode.O))
+                NotifyTrialComplete(true);
+            if (Input.GetKeyDown(KeyCode.P))
+                NotifyTrialComplete(false);
+        }
     }
 
     /// <summary>
