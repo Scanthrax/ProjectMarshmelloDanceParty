@@ -84,7 +84,7 @@ namespace UnityEditor
 	}
 
 	[CustomEditor(typeof(TintBrushSmooth))]
-	public class TintBrushSmoothEditor : GridBrushEditorBase
+	public class TintBrushSmoothEditor : Tilemaps.GridBrushEditorBase
 	{
 		public TintBrushSmooth brush { get { return target as TintBrushSmooth; } }
 
