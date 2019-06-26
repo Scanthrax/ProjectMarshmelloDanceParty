@@ -48,12 +48,12 @@ public class RogueSecondaryAttack : MonoBehaviour
         //If that distance is shorter than the default dash distance, the player instead travels the differance between the detected platform and the player's current position
         //Right now, mid raycast is working correctly. Since it's a prototype, it just needs to demonstrate basic unpolished functionality
         RaycastHit2D hitMidR = Physics2D.Raycast(playerPos.position, Vector2.right, wallDetectDist, layerMask);
+        RaycastHit2D hitTopR = Physics2D.Raycast(playerPosTop.position, Vector2.right, wallDetectDist, layerMask);
+        RaycastHit2D hitBottomR = Physics2D.Raycast(playerPosBottom.position, Vector2.right, wallDetectDist, layerMask);
         RaycastHit2D hitMidL = Physics2D.Raycast(playerPos.position, Vector2.left, wallDetectDist, layerMask);
-        //RaycastHit2D hitTopR = Physics2D.Raycast(playerPosTop.position, Vector2.right, wallDetectDist, layerMask);
-        //RaycastHit2D hitBottomR = Physics2D.Raycast(playerPosBottom.position, Vector2.right, wallDetectDist, layerMask);
         if (playerPos.localScale == new Vector3(1, 1, 1))//checks if player is facing right
         {
-            if (hitMidR.collider == null)
+            if (hitMidR.collider == null)// && hitBottomR.collider == null && hitTopR.collider == null)
             {
                 //Attack is activated by right click
                 if (!isClicked && dashCoolDown <= 0)
@@ -80,12 +80,12 @@ public class RogueSecondaryAttack : MonoBehaviour
                         //Uses a method in CharacterStats.cs for enemy to take damage
                         enemiesInRange[i].GetComponent<CharacterStats>().TakeDamage(damage);
                         Debug.Log("Got 'em");
-                        if (player.GetComponent<RogueUltTestActivation>().active && GetComponent<RoguePoisonUlt>() == null)
+                        if (GetComponent<RogueUltTestActivation>().active && GetComponent<RoguePoisonUlt>() == null)
                         {
                             enemiesInRange[i].gameObject.AddComponent<RoguePoisonUlt>();
                             Debug.Log("This will activate");
                         }
-                        else if (!player.GetComponent<RogueUltTestActivation>().active && GetComponent<RogueUltTestActivation>() != null)
+                        else if (!GetComponent<RogueUltTestActivation>().active && GetComponent<RogueUltTestActivation>() != null)
                         {
                             Debug.Log("This will not activate");
                         }
@@ -96,19 +96,23 @@ public class RogueSecondaryAttack : MonoBehaviour
             {
                 //If wall is detected and distance is less than dashDist, it calculates new distance and dashes that amount to the right
                 //Debug.Log("I see you");
-                float distanceMid = hitMidR.point.x - playerPos.position.x;
-
+                //float distanceMid = hitMidR.point.x - playerPos.position.x;
+                //float distanceTop = hitTopR.point.x - playerPos.position.x;
+                float distanceBottom = hitBottomR.point.x - playerPos.position.x;
+                //float smallestDist = Mathf.Min(distanceMid, distanceTop, distanceBottom);
+                float smallestDist = distanceBottom;
+                Debug.Log(smallestDist);
                 if (!isClicked && dashCoolDown <= 0)
                 {
                     isClicked = true;
                     dashCoolDown = startDashCooldown;
                 }
-                if (isClicked && distanceMid > 1)
+                if (isClicked && smallestDist > 1)
                 {
                     playerPos.position += new Vector3(dashSpeed, 0, 0);
-                    distanceMid -= 1;
+                    smallestDist -= 1;
                 }
-                if (distanceMid <= 1)
+                if (smallestDist <= 1)
                 {
                     dashDist = startDashDist;
                     isClicked = false;
@@ -121,11 +125,20 @@ public class RogueSecondaryAttack : MonoBehaviour
                         //Uses a method in CharacterStats.cs for enemy to take damage
                         enemiesInRange[i].GetComponent<CharacterStats>().TakeDamage(damage);
                         Debug.Log("Got 'em");
+                        if (GetComponent<RogueUltTestActivation>().active && GetComponent<RoguePoisonUlt>() == null)
+                        {
+                            enemiesInRange[i].gameObject.AddComponent<RoguePoisonUlt>();
+                            Debug.Log("This will activate");
+                        }
+                        else if (!GetComponent<RogueUltTestActivation>().active && GetComponent<RogueUltTestActivation>() != null)
+                        {
+                            Debug.Log("This will not activate");
+                        }
                     }
                 }
             }
         }
-        else//the case if player is facing left
+        /*else//the case if player is facing left
         {
             if (hitMidL.collider == null)
             {
@@ -154,6 +167,15 @@ public class RogueSecondaryAttack : MonoBehaviour
                         //Uses a method in CharacterStats.cs for enemy to take damage
                         enemiesInRange[i].GetComponent<CharacterStats>().TakeDamage(damage);
                         Debug.Log("Got 'em");
+                        if (GetComponent<RogueUltTestActivation>().active && GetComponent<RoguePoisonUlt>() == null)
+                        {
+                            enemiesInRange[i].gameObject.AddComponent<RoguePoisonUlt>();
+                            Debug.Log("This will activate");
+                        }
+                        else if (!GetComponent<RogueUltTestActivation>().active && GetComponent<RogueUltTestActivation>() != null)
+                        {
+                            Debug.Log("This will not activate");
+                        }
                     }
                 }
             }
@@ -186,10 +208,19 @@ public class RogueSecondaryAttack : MonoBehaviour
                         //Uses a method in CharacterStats.cs for enemy to take damage
                         enemiesInRange[i].GetComponent<CharacterStats>().TakeDamage(damage);
                         Debug.Log("Got 'em");
+                        if (GetComponent<RogueUltTestActivation>().active && GetComponent<RoguePoisonUlt>() == null)
+                        {
+                            enemiesInRange[i].gameObject.AddComponent<RoguePoisonUlt>();
+                            Debug.Log("This will activate");
+                        }
+                        else if (!GetComponent<RogueUltTestActivation>().active && GetComponent<RogueUltTestActivation>() != null)
+                        {
+                            Debug.Log("This will not activate");
+                        }
                     }
                 }
             }
-        }
+        }*/
         dashCoolDown -= 1;
 
 
@@ -203,6 +234,7 @@ public class RogueSecondaryAttack : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(attackPos.position, attackRange);
+       // Gizmos.DrawWireSphere(playerPosTop.position, 1);
     }
 
 
