@@ -72,18 +72,18 @@ public class PlayerInput : MonoBehaviour
     void ProcessInputs()
     {
         //Accumulate horizontal axis input
-        horizontal += Input.GetAxis("Horizontal");
+        horizontal += Input.GetAxis("P1Movement");
 
         //Attack Inputs
         primaryAttackPressed = Input.GetMouseButtonDown(0);
         secondaryAttackPressed = Input.GetMouseButtonDown(1);
 
         //Accumulate button inputs
-        jumpPressed = jumpPressed || Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W);
-        jumpHeld = jumpHeld || Input.GetButton("Jump") || Input.GetKeyDown(KeyCode.W);
+        jumpPressed = jumpPressed || Input.GetButtonDown("P1Jump") || Input.GetKeyDown(KeyCode.W);
+        jumpHeld = jumpHeld || Input.GetButton("P1Jump") || Input.GetKeyDown(KeyCode.W);
 
-        crouchPressed = crouchPressed || Input.GetButtonDown("Crouch");
-        crouchHeld = crouchHeld || Input.GetButton("Crouch");
+        //crouchPressed = crouchPressed || Input.GetButtonDown("Crouch");
+        //crouchHeld = crouchHeld || Input.GetButton("Crouch");
     }
 
     //Not being used for Prototype

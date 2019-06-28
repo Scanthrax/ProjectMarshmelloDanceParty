@@ -8,15 +8,17 @@ using UnityEngine;
 using System;
 using TMPro;
 using UnityEngine.Playables;
+using UnityEngine.InputSystem.Plugins.PlayerInput;
+using UnityEngine.InputSystem;
 
 public class RoomManager : MonoBehaviour
 {
+    /// <summary>
+    /// Singleton instance
+    /// </summary>
     public static RoomManager instance;
 
-    public void Awake()
-    {
-        instance = this;
-    }
+
 
 
     /// <summary>
@@ -69,14 +71,29 @@ public class RoomManager : MonoBehaviour
     public GameObject trials;
 
 
+    public UnityEngine.InputSystem.Plugins.PlayerInput.PlayerInput[] playerInputs;
+
+
+    public int amtOfPlayers;
+
+    public InputActionAsset inputMaster;
+
+    public void Awake()
+    {
+        instance = this;
+
+
+        playerInputs = new UnityEngine.InputSystem.Plugins.PlayerInput.PlayerInput[4];
+    }
+
     private void Start()
     {
         // find all spawn gameobjects with the Respawn label & store them
         listOfSpawners = GameObject.FindGameObjectsWithTag("Respawn");
 
 
-
-
+        
+        amtOfPlayers = 0;
 
         // the trial component will be dragged onto this gameobject through the inspector
         trial = GetComponent<Trial>();
@@ -158,5 +175,19 @@ public class RoomManager : MonoBehaviour
         print("Room manager increase amt of enemies killed");
         amtOfEnemiesKilled++;
         amountOfEnemies--;
+    }
+
+    public int AddPlayer(UnityEngine.InputSystem.Plugins.PlayerInput.PlayerInput pi)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            if(playerInputs[i] == null)
+            {
+                playerInputs[i] = pi;
+                return i;
+            }
+        }
+
+        return -1;
     }
 }
