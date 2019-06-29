@@ -1966,7 +1966,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1155070813, guid: f83a991402496114cb47d6403a1bae81, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.15
+      value: 0.87
       objectReference: {fileID: 0}
     - target: {fileID: 3145485811843257206, guid: f83a991402496114cb47d6403a1bae81,
         type: 3}
@@ -11554,6 +11554,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   attackRange: {x: 0.49, y: 0.84}
+  startDashCooldown: 30
+  dashCooldown: 0
 --- !u!1 &1744427454
 GameObject:
   m_ObjectHideFlags: 0

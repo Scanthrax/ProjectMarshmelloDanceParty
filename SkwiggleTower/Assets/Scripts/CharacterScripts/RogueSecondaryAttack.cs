@@ -75,7 +75,7 @@ public class RogueSecondaryAttack : MonoBehaviour
                 if (isClicked)
                 {
                     Physics2D.IgnoreLayerCollision(8, 11, true);
-                    Collider2D[] enemiesInRange = Physics2D.OverlapBoxAll(attackPos.position, attackRange, whatAreEnemies);
+                    Collider2D[] enemiesInRange = Physics2D.OverlapBoxAll(attackPos.position, attackRange, 0, whatAreEnemies);
                     for (int i = 0; i < enemiesInRange.Length; i++)
                     {
                         //Uses a method in CharacterStats.cs for enemy to take damage
