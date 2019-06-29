@@ -11,7 +11,7 @@ public class CameraFollow : MonoBehaviour
     public float dampTime = 0.15f;
     private Vector3 velocity = Vector3.zero;
     private float offset = 0f; 
-    public Transform target;
+    public List<Transform> target;
 
 
     //Zoom feature
@@ -37,15 +37,30 @@ public class CameraFollow : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        if (target)
+        if (target.Count != 0)
         {
+            Vector3 accumulatePos = Vector3.zero;
+            float minX = target[0].position.x, maxX = target[0].position.x;
+            foreach (var character in target)
+            {
+                accumulatePos += character.position;
+
+                if (character.position.x < minX)
+                    minX = character.position.x;
+                else if(character.position.x > maxX)
+                    maxX = character.position.x;
+            }
+
+            Vector3 averagePos = accumulatePos / target.Count;
+
             //Follow Character
-            Vector3 point = GetComponent<Camera>().WorldToViewportPoint(target.position);
-            Vector3 delta = target.position - GetComponent<Camera>().ViewportToWorldPoint(new Vector3(0.5f, 0.5f, point.z));
+            Vector3 point = GetComponent<Camera>().WorldToViewportPoint(averagePos);
+            Vector3 delta = averagePos - GetComponent<Camera>().ViewportToWorldPoint(new Vector3(0.5f, 0.5f, point.z));
             Vector3 destination = transform.position + delta;
             transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, dampTime);
             //Zoom update
-            cam.orthographicSize = offset + currentZoom;
+            //cam.orthographicSize = offset + currentZoom;
+            cam.orthographicSize = Mathf.Abs(maxX - minX);
         }
     }
 

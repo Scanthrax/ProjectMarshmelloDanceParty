@@ -52,7 +52,13 @@ public class PlayerAttackTest : MonoBehaviour
             var canBeDamaged = enemiesInRange[i].GetComponent<CharacterStats>();
 
             if (canBeDamaged)
+            {
                 canBeDamaged.TakeDamage(damage);
+
+                // RON: added impulse
+                canBeDamaged.GetComponent<Rigidbody2D>().AddForce(Vector2.right * -1000f + Vector2.up * 200f);
+            }
+
         }
     }
 

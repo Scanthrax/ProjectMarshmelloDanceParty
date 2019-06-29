@@ -25,6 +25,7 @@ public class PlayerInput : MonoBehaviour
     bool dPadCrouchPrev;                            //Previous values of touch Thumbstick
     bool readyToClear;                              //Bool used to keep input in sync
 
+    public int playerID;
 
     void Update()
     {
@@ -72,15 +73,15 @@ public class PlayerInput : MonoBehaviour
     void ProcessInputs()
     {
         //Accumulate horizontal axis input
-        horizontal += Input.GetAxis("P1Movement");
+        horizontal += Input.GetAxis("P" + playerID + "Movement");
 
         //Attack Inputs
-        primaryAttackPressed = Input.GetMouseButtonDown(0);
-        secondaryAttackPressed = Input.GetMouseButtonDown(1);
+        primaryAttackPressed = Input.GetAxis("P" + playerID + "Primary") > 0.5f;// || Input.GetButton("KBPrimary");
+        secondaryAttackPressed = Input.GetAxis("P" + playerID + "Secondary") > 0.5f;// || Input.GetButton("KBPrimary");
 
         //Accumulate button inputs
-        jumpPressed = jumpPressed || Input.GetButtonDown("P1Jump") || Input.GetKeyDown(KeyCode.W);
-        jumpHeld = jumpHeld || Input.GetButton("P1Jump") || Input.GetKeyDown(KeyCode.W);
+        jumpPressed = jumpPressed || Input.GetButtonDown("P" + playerID + "Jump") || Input.GetKeyDown(KeyCode.W);
+        jumpHeld = jumpHeld || Input.GetButton("P" + playerID + "Jump") || Input.GetKeyDown(KeyCode.W);
 
         //crouchPressed = crouchPressed || Input.GetButtonDown("Crouch");
         //crouchHeld = crouchHeld || Input.GetButton("Crouch");

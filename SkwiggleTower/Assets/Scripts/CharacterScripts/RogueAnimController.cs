@@ -20,7 +20,6 @@ public class RogueAnimController : MonoBehaviour
     public float impulse;
 
     public PlayerInput PI;
-    public UnityEngine.InputSystem.Plugins.PlayerInput.PlayerInput PInput;
 
 
     public int playerIndex;
@@ -44,13 +43,11 @@ public class RogueAnimController : MonoBehaviour
         pm = GetComponent<PlayerMovement>();
         anim = GetComponent<Animator>();
         PI = GetComponent<PlayerInput>();
-        PInput = GetComponent<UnityEngine.InputSystem.Plugins.PlayerInput.PlayerInput>();
+        //PInput = GetComponent<UnityEngine.InputSystem.Plugins.PlayerInput.PlayerInput>();
         
         PManager = PlayerManager.instance;
 
         RM = RoomManager.instance;
-
-        playerIndex = RM.AddPlayer(PInput);
         if (playerIndex == -1) Destroy(gameObject);
         //PInput.actions = RM.inputMaster;
 
@@ -64,18 +61,18 @@ public class RogueAnimController : MonoBehaviour
 
         anim.SetBool("inAir", !pm.isOnGround);
 
-        if (Input.GetButtonDown("P1Secondary"))
+        if (PI.secondaryAttackPressed)
         {
             anim.SetTrigger("Secondary");
         }
 
-        if (Input.GetButtonDown("P1Primary"))
+
+        if (PI.primaryAttackPressed)
         {
             anim.SetBool("primaryHold", true);
             anim.SetTrigger("Primary");
         }
-
-        if(Input.GetButtonUp("P1Primary"))
+        else
         {
             anim.SetBool("primaryHold", false);
         }
