@@ -37,6 +37,7 @@ public class CameraFollow : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
+
         if (target.Count != 0)
         {
             Vector3 accumulatePos = Vector3.zero;
@@ -60,7 +61,15 @@ public class CameraFollow : MonoBehaviour
             transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, dampTime);
             //Zoom update
             //cam.orthographicSize = offset + currentZoom;
-            cam.orthographicSize = Mathf.Abs(maxX - minX);
+
+            var desiredZoom = Mathf.Abs(maxX - minX);
+
+            cam.orthographicSize = Mathf.Clamp(desiredZoom, minZoom, maxZoom);
+
+            foreach (var item in target)
+            {
+                item.position = new Vector3(Mathf.Clamp(item.position.x,transform.position.x - (cam.orthographicSize * (16f/9f)), transform.position.x + (cam.orthographicSize * (16f / 9f))),item.position.y,item.position.z);
+            }
         }
     }
 

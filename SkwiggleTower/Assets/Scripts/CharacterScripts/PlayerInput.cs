@@ -27,6 +27,16 @@ public class PlayerInput : MonoBehaviour
 
     public int playerID;
 
+    public string prefix;
+
+    bool enabled;
+
+
+    private void Start()
+    {
+        enabled = false;
+    }
+
     void Update()
     {
         //Clear out existing input values
@@ -37,7 +47,8 @@ public class PlayerInput : MonoBehaviour
       //      return;
 
         //Process keyboard, mouse, gamepad (etc) inputs
-        ProcessInputs();
+        if(enabled)
+            ProcessInputs();
         //Process mobile (touch) inputs
        // ProcessTouchInputs();
 
@@ -73,15 +84,15 @@ public class PlayerInput : MonoBehaviour
     void ProcessInputs()
     {
         //Accumulate horizontal axis input
-        horizontal += Input.GetAxis("P" + playerID + "Movement");
+        horizontal += Input.GetAxis(prefix + "Movement");
 
         //Attack Inputs
-        primaryAttackPressed = Input.GetAxis("P" + playerID + "Primary") > 0.5f;// || Input.GetButton("KBPrimary");
-        secondaryAttackPressed = Input.GetAxis("P" + playerID + "Secondary") > 0.5f;// || Input.GetButton("KBPrimary");
+        primaryAttackPressed = Input.GetAxis(prefix + "Primary") > 0.5f || Input.GetButton(prefix + "Primary");
+        secondaryAttackPressed = Input.GetAxis(prefix + "Secondary") > 0.5f || Input.GetButton(prefix + "Secondary");
 
         //Accumulate button inputs
-        jumpPressed = jumpPressed || Input.GetButtonDown("P" + playerID + "Jump") || Input.GetKeyDown(KeyCode.W);
-        jumpHeld = jumpHeld || Input.GetButton("P" + playerID + "Jump") || Input.GetKeyDown(KeyCode.W);
+        jumpPressed = jumpPressed || Input.GetButtonDown(prefix + "Jump") || Input.GetKeyDown(KeyCode.W);
+        jumpHeld = jumpHeld || Input.GetButton(prefix + "Jump") || Input.GetKeyDown(KeyCode.W);
 
         //crouchPressed = crouchPressed || Input.GetButtonDown("Crouch");
         //crouchHeld = crouchHeld || Input.GetButton("Crouch");
@@ -113,4 +124,16 @@ public class PlayerInput : MonoBehaviour
     //    //if button is pressed for first time or held
     //    dPadCrouchPrev = dPadCrouch;
     //}
+
+
+    public void SetMappings(int id, bool gamepad)
+    {
+        playerID = id + 1;
+
+        prefix = !gamepad ? "KB" : "P" + playerID.ToString();
+
+        print("enabling " + prefix);
+        enabled = true;
+    }
+
 }

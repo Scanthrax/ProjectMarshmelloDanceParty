@@ -22,7 +22,7 @@ public class RogueAnimController : MonoBehaviour
     public PlayerInput PI;
 
 
-    public int playerIndex;
+
 
 
 
@@ -48,7 +48,6 @@ public class RogueAnimController : MonoBehaviour
         PManager = PlayerManager.instance;
 
         RM = RoomManager.instance;
-        if (playerIndex == -1) Destroy(gameObject);
         //PInput.actions = RM.inputMaster;
 
     }
@@ -69,6 +68,8 @@ public class RogueAnimController : MonoBehaviour
 
         if (PI.primaryAttackPressed)
         {
+            print("HELLO");
+
             anim.SetBool("primaryHold", true);
             anim.SetTrigger("Primary");
         }
