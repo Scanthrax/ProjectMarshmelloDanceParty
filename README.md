@@ -1,6 +1,6 @@
 # ProjectMarshmelloDanceParty
 
-#Unity 2D Platformer that utilizes unity version 2019.1.2f1
+#Unity 2D Platformer that utilizes unity version 2019.2.0b6
 
 #GIT QUICK TIPS TO AVOID HOT FIXES:
 
