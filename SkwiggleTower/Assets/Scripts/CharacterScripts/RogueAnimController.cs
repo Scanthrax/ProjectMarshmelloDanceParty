@@ -10,6 +10,8 @@ public class RogueAnimController : MonoBehaviour
     Rigidbody2D rb;
     Animator anim;
     PlayerMovement pm;
+    RoomManager RM;
+    PlayerManager PManager;
 
     public AudioSource footstepSource, impactSource, slingshotStretch, slingshotShoot, secondarySource;
 
@@ -19,14 +21,35 @@ public class RogueAnimController : MonoBehaviour
 
     public PlayerInput PI;
 
+
+
+
+
+
+
+
+    private void Awake()
+    {
+
+
+    }
+
+
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         pm = GetComponent<PlayerMovement>();
         anim = GetComponent<Animator>();
-
         PI = GetComponent<PlayerInput>();
+        //PInput = GetComponent<UnityEngine.InputSystem.Plugins.PlayerInput.PlayerInput>();
+        
+        PManager = PlayerManager.instance;
+
+        RM = RoomManager.instance;
+        //PInput.actions = RM.inputMaster;
+
     }
 
     // Update is called once per frame
@@ -37,18 +60,20 @@ public class RogueAnimController : MonoBehaviour
 
         anim.SetBool("inAir", !pm.isOnGround);
 
-        if (Input.GetMouseButtonDown(1))
+        if (PI.secondaryAttackPressed)
         {
             anim.SetTrigger("Secondary");
         }
 
-        if (Input.GetMouseButtonDown(0))
+
+        if (PI.primaryAttackPressed)
         {
+            print("HELLO");
+
             anim.SetBool("primaryHold", true);
             anim.SetTrigger("Primary");
         }
-
-        if(Input.GetMouseButtonUp(0))
+        else
         {
             anim.SetBool("primaryHold", false);
         }

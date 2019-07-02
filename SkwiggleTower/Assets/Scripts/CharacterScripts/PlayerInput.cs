@@ -25,6 +25,17 @@ public class PlayerInput : MonoBehaviour
     bool dPadCrouchPrev;                            //Previous values of touch Thumbstick
     bool readyToClear;                              //Bool used to keep input in sync
 
+    public int playerID;
+
+    public string prefix;
+
+    bool enabled;
+
+
+    private void Start()
+    {
+        enabled = false;
+    }
 
     void Update()
     {
@@ -36,7 +47,8 @@ public class PlayerInput : MonoBehaviour
       //      return;
 
         //Process keyboard, mouse, gamepad (etc) inputs
-        ProcessInputs();
+        if(enabled)
+            ProcessInputs();
         //Process mobile (touch) inputs
        // ProcessTouchInputs();
 
@@ -72,18 +84,18 @@ public class PlayerInput : MonoBehaviour
     void ProcessInputs()
     {
         //Accumulate horizontal axis input
-        horizontal += Input.GetAxis("Horizontal");
+        horizontal += Input.GetAxis(prefix + "Movement");
 
         //Attack Inputs
-        primaryAttackPressed = Input.GetMouseButtonDown(0);
-        secondaryAttackPressed = Input.GetMouseButtonDown(1);
+        primaryAttackPressed = Input.GetAxis(prefix + "Primary") > 0.5f || Input.GetButton(prefix + "Primary");
+        secondaryAttackPressed = Input.GetAxis(prefix + "Secondary") > 0.5f || Input.GetButton(prefix + "Secondary");
 
         //Accumulate button inputs
-        jumpPressed = jumpPressed || Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W);
-        jumpHeld = jumpHeld || Input.GetButton("Jump") || Input.GetKeyDown(KeyCode.W);
+        jumpPressed = jumpPressed || Input.GetButtonDown(prefix + "Jump") || Input.GetKeyDown(KeyCode.W);
+        jumpHeld = jumpHeld || Input.GetButton(prefix + "Jump") || Input.GetKeyDown(KeyCode.W);
 
-        crouchPressed = crouchPressed || Input.GetButtonDown("Crouch");
-        crouchHeld = crouchHeld || Input.GetButton("Crouch");
+        //crouchPressed = crouchPressed || Input.GetButtonDown("Crouch");
+        //crouchHeld = crouchHeld || Input.GetButton("Crouch");
     }
 
     //Not being used for Prototype
@@ -112,4 +124,16 @@ public class PlayerInput : MonoBehaviour
     //    //if button is pressed for first time or held
     //    dPadCrouchPrev = dPadCrouch;
     //}
+
+
+    public void SetMappings(int id, bool gamepad)
+    {
+        playerID = id + 1;
+
+        prefix = !gamepad ? "KB" : "P" + playerID.ToString();
+
+        print("enabling " + prefix);
+        enabled = true;
+    }
+
 }

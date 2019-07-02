@@ -8,15 +8,17 @@ using UnityEngine;
 using System;
 using TMPro;
 using UnityEngine.Playables;
+using UnityEngine.InputSystem.Plugins.PlayerInput;
+using UnityEngine.InputSystem;
 
 public class RoomManager : MonoBehaviour
 {
+    /// <summary>
+    /// Singleton instance
+    /// </summary>
     public static RoomManager instance;
 
-    public void Awake()
-    {
-        instance = this;
-    }
+
 
 
     /// <summary>
@@ -69,14 +71,38 @@ public class RoomManager : MonoBehaviour
     public GameObject trials;
 
 
+
+    public int amtOfPlayers;
+
+    public InputActionAsset inputMaster;
+
+
+    bool isKeyboardDetected;
+    bool[] isGamepadDetected;
+
+    public List<PlayerInput> playerInputs;
+    public int amtOfCurrentPlayers;
+
+    public void Awake()
+    {
+        instance = this;
+
+
+        isKeyboardDetected = false;
+    }
+
     private void Start()
     {
+        isKeyboardDetected = false;
+        isGamepadDetected = new bool[4];
+        amtOfCurrentPlayers = 0;
+
         // find all spawn gameobjects with the Respawn label & store them
         listOfSpawners = GameObject.FindGameObjectsWithTag("Respawn");
 
 
-
-
+        
+        amtOfPlayers = 0;
 
         // the trial component will be dragged onto this gameobject through the inspector
         trial = GetComponent<Trial>();
@@ -124,6 +150,46 @@ public class RoomManager : MonoBehaviour
         }
 
 
+        if (amtOfCurrentPlayers <= 4)
+        {
+            #region Check for Keyboard player
+            // if we haven't detected a keyboard
+            if (!isKeyboardDetected)
+            {
+                // check for an action button
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    // we have now detected a keyboard
+                    isKeyboardDetected = true;
+                    // set the mappings of the player
+                    playerInputs[amtOfCurrentPlayers].SetMappings(amtOfCurrentPlayers, false);
+                    // we now have one more player
+                    amtOfCurrentPlayers++;
+                }
+            }
+            #endregion
+            #region Check for Gamepad Players
+            // check for 4 gamepads
+            for (int i = 0; i < isGamepadDetected.Length; i++)
+            {
+                // if the gamepad is detected, continue through the loop
+                if (isGamepadDetected[i]) continue;
+
+                // check for the gamepad's action button
+                if (Input.GetKeyDown("joystick " + (i + 1) + " button 0"))
+                {
+                    print("HERE I AM: " + (i + 1));
+                    // set the mappings of the player
+                    playerInputs[amtOfCurrentPlayers].SetMappings(i, true);
+                    // we now have one more player
+                    amtOfCurrentPlayers++;
+                    isGamepadDetected[i] = true;
+                }
+
+            }
+            #endregion
+        }
+
     }
 
     public void SpawnEnemy()
@@ -159,4 +225,6 @@ public class RoomManager : MonoBehaviour
         amtOfEnemiesKilled++;
         amountOfEnemies--;
     }
+
+
 }
