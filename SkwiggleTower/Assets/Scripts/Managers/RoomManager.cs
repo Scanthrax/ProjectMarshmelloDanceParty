@@ -8,8 +8,6 @@ using UnityEngine;
 using System;
 using TMPro;
 using UnityEngine.Playables;
-using UnityEngine.InputSystem.Plugins.PlayerInput;
-using UnityEngine.InputSystem;
 
 public class RoomManager : MonoBehaviour
 {
@@ -73,8 +71,6 @@ public class RoomManager : MonoBehaviour
 
 
     public int amtOfPlayers;
-
-    public InputActionAsset inputMaster;
 
 
     bool isKeyboardDetected;
