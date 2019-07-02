@@ -37,7 +37,7 @@ public class CharacterSelector : MonoBehaviour
     /// <summary>
     /// The portrait renderer for this selector
     /// </summary>
-    public SpriteRenderer portraitRend;
+    public List<SpriteRenderer> portraitRends;
 
     /// <summary>
     /// The text for this selector
@@ -60,10 +60,18 @@ public class CharacterSelector : MonoBehaviour
     bool skipFrame;
 
 
+
+    public Animator slidePortrait;
+
+
     private void Start()
     {
-        // render the portrait dark at the start (i.e. inactive)
-        portraitRend.color = CharacterSelectionManager.instance.noPlayerColor;
+        foreach (var rend in portraitRends)
+        {
+            // render the portrait dark at the start (i.e. inactive)
+            rend.color = CharacterSelectionManager.instance.noPlayerColor;
+            rend.sortingOrder = playerID;
+        }
     }
 
     private void Update()
@@ -76,7 +84,8 @@ public class CharacterSelector : MonoBehaviour
             // checks if the player has made a selection
             if (Input.GetButtonDown(prefix + "Jump") && skipFrame)
             {
-                portraitRend.color = Color.white;
+                foreach (var rend in portraitRends)
+                    rend.color = Color.white;
             }
 
 
@@ -103,8 +112,11 @@ public class CharacterSelector : MonoBehaviour
         print("enabling player " + playerID + " with controller " + controller);
         enabled = true;
 
-
-        portraitRend.color = CharacterSelectionManager.instance.selectionColor;
+        foreach (var rend in portraitRends)
+        {
+            rend.color = CharacterSelectionManager.instance.selectionColor;
+            rend.sortingOrder = playerID;
+        }
     }
 
 
@@ -116,6 +128,10 @@ public class CharacterSelector : MonoBehaviour
             if (Input.GetAxis(prefix + "Movement") > 0.2f)
             {
                 characterIndex = (characterIndex + 1) % 4;
+
+                slidePortrait.Play("slide");
+
+
                 @switch = true;
             }
 
@@ -135,9 +151,14 @@ public class CharacterSelector : MonoBehaviour
 
         characterIndex = Mathf.Abs(characterIndex);
 
-        portraitRend.sprite = CharacterSelectionManager.instance.portraits[characterIndex].sprite;
+        portraitRends[0].sprite = CharacterSelectionManager.instance.portraits[characterIndex - 1 <= 0? 3 : characterIndex - 1].sprite;
+        portraitRends[1].sprite = CharacterSelectionManager.instance.portraits[characterIndex].sprite;
+
         text.text = CharacterSelectionManager.instance.portraits[characterIndex].@class.ToString();
     }
+
+
+
 
 
 

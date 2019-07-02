@@ -65,6 +65,8 @@ public class CharacterSelectionManager : MonoBehaviour
     /// </summary>
     public Color noPlayerColor, selectionColor;
 
+
+
     private void Awake()
     {
         // obtain the singleton
