@@ -1,0 +1,967 @@
+fileFormatVersion: 2
+guid: 187f5e90e8fca5046a9488c7105ceaa1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7123590871970093969
+    second: castle_brick_red_tile_set_0
+  - first:
+      213: 1262804002870663742
+    second: castle_brick_red_tile_set_1
+  - first:
+      213: 4859413850422985667
+    second: castle_brick_red_tile_set_2
+  - first:
+      213: -2435366069995471139
+    second: castle_brick_red_tile_set_3
+  - first:
+      213: 6610450609628012346
+    second: castle_brick_red_tile_set_4
+  - first:
+      213: -4950802117577372563
+    second: castle_brick_red_tile_set_5
+  - first:
+      213: 5191803473829851651
+    second: castle_brick_red_tile_set_6
+  - first:
+      213: 8248239750702543584
+    second: castle_brick_red_tile_set_7
+  - first:
+      213: 8676679404611617300
+    second: castle_brick_red_tile_set_8
+  - first:
+      213: -1200316352432368653
+    second: castle_brick_red_tile_set_9
+  - first:
+      213: 6502001314077458846
+    second: castle_brick_red_tile_set_10
+  - first:
+      213: 5937565104551220196
+    second: castle_brick_red_tile_set_11
+  - first:
+      213: 4983661766162575069
+    second: castle_brick_red_tile_set_12
+  - first:
+      213: 55149517487933289
+    second: castle_brick_red_tile_set_13
+  - first:
+      213: 5558263152357297447
+    second: castle_brick_red_tile_set_14
+  - first:
+      213: -7333822015830275610
+    second: castle_brick_red_tile_set_15
+  - first:
+      213: -6398114926099123013
+    second: castle_brick_red_tile_set_16
+  - first:
+      213: 716088068654724783
+    second: castle_brick_red_tile_set_17
+  - first:
+      213: 1206334033593001695
+    second: castle_brick_red_tile_set_18
+  - first:
+      213: 6697374312469133567
+    second: castle_brick_red_tile_set_19
+  - first:
+      213: -761041563476869558
+    second: castle_brick_red_tile_set_20
+  - first:
+      213: 2288669726693244648
+    second: castle_brick_red_tile_set_21
+  - first:
+      213: -7187740664800671043
+    second: castle_brick_red_tile_set_22
+  - first:
+      213: 1957985030883333698
+    second: castle_brick_red_tile_set_23
+  - first:
+      213: 4276395335028183073
+    second: castle_brick_red_tile_set_24
+  - first:
+      213: 7505398756033287332
+    second: castle_brick_red_tile_set_25
+  - first:
+      213: -7863377743383857435
+    second: castle_brick_red_tile_set_26
+  - first:
+      213: -7112365059237029372
+    second: castle_brick_red_tile_set_27
+  - first:
+      213: -6732089305709615319
+    second: castle_brick_red_tile_set_28
+  - first:
+      213: -2920206798875266859
+    second: castle_brick_red_tile_set_29
+  - first:
+      213: -6007909194272042035
+    second: castle_brick_red_tile_set_30
+  - first:
+      213: -8393084088025866650
+    second: castle_brick_red_tile_set_31
+  - first:
+      213: 4222507313834131551
+    second: castle_brick_red_tile_set_32
+  - first:
+      213: -4508798448375906506
+    second: castle_brick_red_tile_set_33
+  - first:
+      213: -2705920354577190581
+    second: castle_brick_red_tile_set_34
+  - first:
+      213: -2233527134575267683
+    second: castle_brick_red_tile_set_35
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 48
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: castle_brick_red_tile_set_0
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 269
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b14c3a1f21c1c2741a6c9e0a0a8b0550
+      internalID: 7123590871970093969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_brick_red_tile_set_1
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 269
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7d7588e7fa4eda4989f330c82878564
+      internalID: 1262804002870663742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_brick_red_tile_set_2
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 269
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b80d504c097ff54ab7487112267494b
+      internalID: 4859413850422985667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_brick_red_tile_set_3
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 269
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb8feb2b49a99a04887a5aefc0f3089d
+      internalID: -2435366069995471139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_brick_red_tile_set_4
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 269
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0846a3a7a55047241bcd3feefd106aa9
+      internalID: 6610450609628012346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_brick_red_tile_set_5
+      rect:
+        serializedVersion: 2
+        x: 317
+        y: 269
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc65227a41f94fc459e302472b31a4e9
+      internalID: -4950802117577372563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_brick_red_tile_set_6
+      rect:
+        serializedVersion: 2
+        x: 377
+        y: 269
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7ce0db57189d444da7740f0ad4a4eee
+      internalID: 5191803473829851651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_brick_red_tile_set_7
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 269
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59ead291825947f49afd662ea86446ab
+      internalID: 8248239750702543584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_brick_red_tile_set_8
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 210
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47305afcb689b7046a67c65dfef94f11
+      internalID: 8676679404611617300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_brick_red_tile_set_9
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 210
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fbac3b49597b2747bf921c2a1f7f35f
+      internalID: -1200316352432368653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_brick_red_tile_set_10
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 210
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34cc6c5fa5f76bd40817ae53f0a1b2af
+      internalID: 6502001314077458846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_brick_red_tile_set_11
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 210
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a01c89e0ea12b5640bdcbe8e4f38cbbf
+      internalID: 5937565104551220196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_brick_red_tile_set_12
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 210
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a99d3390948fbe41a3ca4067f3b79f3
+      internalID: 4983661766162575069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_brick_red_tile_set_13
+      rect:
+        serializedVersion: 2
+        x: 317
+        y: 210
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df3793d2f3371c940a3dcfaacbe205a2
+      internalID: 55149517487933289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_brick_red_tile_set_14
+      rect:
+        serializedVersion: 2
+        x: 377
+        y: 210
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b9946663bb685146827421eb7ec7548
+      internalID: 5558263152357297447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_brick_red_tile_set_15
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 210
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4179ec1dc671bc2499d708a3ba87f308
+      internalID: -7333822015830275610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_brick_red_tile_set_16
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 149
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02855a84998062e42bbab2e80d273941
+      internalID: -6398114926099123013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_brick_red_tile_set_17
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 149
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6a3db4e91c785c46823e83d459f5076
+      internalID: 716088068654724783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_brick_red_tile_set_18
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 149
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62c836e6fd33e624592f761bd0859f70
+      internalID: 1206334033593001695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_brick_red_tile_set_19
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 149
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a01c0dd2125c8346ba629d65da78b11
+      internalID: 6697374312469133567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_brick_red_tile_set_20
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 149
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d989f7d8b215bbb44bfbd91f62754e1d
+      internalID: -761041563476869558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_brick_red_tile_set_21
+      rect:
+        serializedVersion: 2
+        x: 317
+        y: 149
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 836984122178d65438e2aa7306574d83
+      internalID: 2288669726693244648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_brick_red_tile_set_22
+      rect:
+        serializedVersion: 2
+        x: 377
+        y: 149
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af18148d8e3837c4295d5d07a8d0e2f2
+      internalID: -7187740664800671043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_brick_red_tile_set_23
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 149
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 203d0d2ea2f43474b90b0fa0f4ae6c27
+      internalID: 1957985030883333698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_brick_red_tile_set_24
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 88
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86c169f5fa9cf004b85e51ad4bc74a1c
+      internalID: 4276395335028183073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_brick_red_tile_set_25
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 88
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8ce21af2542aae43a5dc628899cecd3
+      internalID: 7505398756033287332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_brick_red_tile_set_26
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 88
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44990cbe9a6725a448e5350e155f8e92
+      internalID: -7863377743383857435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_brick_red_tile_set_27
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 88
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 057f0b7598a892e499aaf8ee185b2952
+      internalID: -7112365059237029372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_brick_red_tile_set_28
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 88
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62a6309c95c806f4a97862bb0460731c
+      internalID: -6732089305709615319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_brick_red_tile_set_29
+      rect:
+        serializedVersion: 2
+        x: 317
+        y: 88
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e797477166fcd04a9634e6a0c43b27a
+      internalID: -2920206798875266859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_brick_red_tile_set_30
+      rect:
+        serializedVersion: 2
+        x: 377
+        y: 88
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cde30941316edc48b00b1fc11c36669
+      internalID: -6007909194272042035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_brick_red_tile_set_31
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 27
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa2df77011df2db468cf5a71de92c4a5
+      internalID: -8393084088025866650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_brick_red_tile_set_32
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 27
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ee7832285e11f745b015261851ff1a8
+      internalID: 4222507313834131551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_brick_red_tile_set_33
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 27
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 297fe1ec37bca4549b27b79e8f61f43d
+      internalID: -4508798448375906506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_brick_red_tile_set_34
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 29
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bc2d258c8d2df24484c72bca8ffbde2
+      internalID: -2705920354577190581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_brick_red_tile_set_35
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 27
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a03b5f57d355344399d70fd1574b629
+      internalID: -2233527134575267683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

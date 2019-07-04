@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Val Script 7/1/19
+/// </summary>
 public class EnemyController : MonoBehaviour
 {
     public float lookRadius = 10f;

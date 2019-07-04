@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Val Script 7/1/19
+/// </summary>
 public class EnemyStats : CharacterStats
 {
     //Amount of health and xp the player gains by killing them 
