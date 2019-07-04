@@ -59,19 +59,18 @@ public class CharacterSelector : MonoBehaviour
     /// </summary>
     bool skipFrame;
 
-
+    public SpriteMask mask;
 
     public Animator slidePortrait;
+
+    public CharacterSelectionManager.Portraits portrait;
+
+
+    int animDirection;
 
 
     private void Start()
     {
-        foreach (var rend in portraitRends)
-        {
-            // render the portrait dark at the start (i.e. inactive)
-            rend.color = CharacterSelectionManager.instance.noPlayerColor;
-            rend.sortingOrder = playerID;
-        }
     }
 
     private void Update()
@@ -115,8 +114,9 @@ public class CharacterSelector : MonoBehaviour
         foreach (var rend in portraitRends)
         {
             rend.color = CharacterSelectionManager.instance.selectionColor;
-            rend.sortingOrder = playerID;
         }
+
+        text.text = portrait.@class.ToString();
     }
 
 
@@ -127,38 +127,49 @@ public class CharacterSelector : MonoBehaviour
         {
             if (Input.GetAxis(prefix + "Movement") > 0.2f)
             {
-                characterIndex = (characterIndex + 1) % 4;
+                characterIndex++;
+                if (characterIndex > 3)
+                    characterIndex = 0;
 
-                slidePortrait.Play("slide");
 
+                slidePortrait.Play("SlidePortraitRight");
 
                 @switch = true;
+                characterIndex = Mathf.Abs(characterIndex);
+                portrait = CharacterSelectionManager.instance.portraits[characterIndex];
+                text.text = portrait.@class.ToString();
+
+                portraitRends[0].sprite = portrait.sprite;
+
             }
 
             else if (Input.GetAxis(prefix + "Movement") < -0.2f)
             {
-                characterIndex = (characterIndex - 1) % 4;
+                characterIndex--;
+                if (characterIndex < 0)
+                    characterIndex = 3;
+
+                slidePortrait.Play("SlidePortraitLeft");
+
+
                 @switch = true;
+                characterIndex = Mathf.Abs(characterIndex);
+                portrait = CharacterSelectionManager.instance.portraits[characterIndex];
+                text.text = portrait.@class.ToString();
+
+                portraitRends[1].sprite = portrait.sprite;
             }
         }
-        else
-        {
-            if (Mathf.Abs(Input.GetAxis(prefix + "Movement")) < 0.2f)
-            {
-                @switch = false;
-            }
-        }
 
-        characterIndex = Mathf.Abs(characterIndex);
-
-        portraitRends[0].sprite = CharacterSelectionManager.instance.portraits[characterIndex - 1 <= 0? 3 : characterIndex - 1].sprite;
-        portraitRends[1].sprite = CharacterSelectionManager.instance.portraits[characterIndex].sprite;
-
-        text.text = CharacterSelectionManager.instance.portraits[characterIndex].@class.ToString();
     }
 
 
+    public void SetPortraits(int i)
+    {
 
+        @switch = false;
+        portraitRends[i].sprite = portrait.sprite;
+    }
 
 
 

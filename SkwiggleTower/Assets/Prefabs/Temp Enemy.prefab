@@ -53,7 +53,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -61,6 +61,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -121,7 +122,7 @@ BoxCollider2D:
   m_Offset: {x: -0.17, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.37, y: 0.485}
     oldSize: {x: 1.2916666, y: 1.375}
     newSize: {x: 1.09375, y: 1.09375}
     adaptiveTilingThreshold: 0.5
@@ -162,7 +163,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b864ab6ff13ce64eae11d0d8fa4b6a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  source: {fileID: 2978388165198071908}
+  impactSource: {fileID: 0}
+  groanSource: {fileID: 0}
 --- !u!82 &2978388165198071908
 AudioSource:
   m_ObjectHideFlags: 0

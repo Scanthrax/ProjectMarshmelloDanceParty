@@ -77,6 +77,25 @@ public class CharacterSelectionManager : MonoBehaviour
     {
         // initialize array
         isDeviceDetected = new bool[5];
+
+        for (int i = 0; i < characterSelectors.Count; i++)
+        {
+            foreach (var rend in characterSelectors[i].portraitRends)
+            {
+                // render the portrait dark at the start (i.e. inactive)
+                rend.color = noPlayerColor;
+                rend.sortingOrder = i;
+                rend.sprite = portraits[i].sprite;
+            }
+
+            characterSelectors[i].mask.frontSortingOrder = i;
+            characterSelectors[i].mask.backSortingOrder = i - 1;
+            characterSelectors[i].characterIndex = i;
+            characterSelectors[i].portrait = portraits[i];
+        }
+
+
+
     }
 
     private void Update()
@@ -120,5 +139,7 @@ public class CharacterSelectionManager : MonoBehaviour
             #endregion
         }
         #endregion
+
+
     }
 }
