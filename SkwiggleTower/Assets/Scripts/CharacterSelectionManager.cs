@@ -33,6 +33,9 @@ public class CharacterSelectionManager : MonoBehaviour
         /// The character class that this instance belongs to
         /// </summary>
         public Class @class;
+
+
+        public Color color;
     }
 
     /// <summary>

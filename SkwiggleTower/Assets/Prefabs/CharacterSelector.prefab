@@ -292,6 +292,8 @@ MonoBehaviour:
   portrait:
     sprite: {fileID: 0}
     class: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
+  light: {fileID: 3099711017133026656}
 --- !u!95 &1900141630959794702
 Animator:
   serializedVersion: 3

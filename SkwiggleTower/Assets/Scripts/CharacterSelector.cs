@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.LWRP;
 
 public class CharacterSelector : MonoBehaviour
 {
@@ -66,11 +67,12 @@ public class CharacterSelector : MonoBehaviour
     public CharacterSelectionManager.Portraits portrait;
 
 
-    int animDirection;
+    public Light2D light;
 
 
     private void Start()
     {
+        light.color = portrait.color;
     }
 
     private void Update()
@@ -141,6 +143,8 @@ public class CharacterSelector : MonoBehaviour
 
                 portraitRends[0].sprite = portrait.sprite;
 
+
+                light.color = portrait.color;
             }
 
             else if (Input.GetAxis(prefix + "Movement") < -0.2f)
@@ -158,6 +162,9 @@ public class CharacterSelector : MonoBehaviour
                 text.text = portrait.@class.ToString();
 
                 portraitRends[1].sprite = portrait.sprite;
+
+
+                light.color = portrait.color;
             }
         }
 
