@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Val Script 7/1/19
+/// </summary>
 public class CharacterAnimator : MonoBehaviour
 {
     const float animSmoothTime = .1f; //variable to smooth out animations 
