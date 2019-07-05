@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Valarie Script: UML Created; all movement physics checks,properties, debug raycasts. 
+/// </summary>
 public class PlayerMovement : MonoBehaviour
 {
     public bool drawDebugRaycasts = true;   //Should the environment checks be visualized
@@ -266,7 +269,7 @@ public class PlayerMovement : MonoBehaviour
         bodyCollider.offset = colliderCrouchOffset;
     }
 
-    void StandUp()
+    protected virtual void StandUp()
     {
         //If the player's head is blocked, they can't stand so exit
         if (isHeadBlocked)
@@ -309,6 +312,12 @@ public class PlayerMovement : MonoBehaviour
 
         //Return the results of the raycast
         return hit;
+    }
+
+    public int GetDirection()
+    {
+        return direction;
+
     }
 
 }

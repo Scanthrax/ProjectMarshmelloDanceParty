@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Valarie Script  this is the Script that specfies how the player interacts with the enemy, UML created
+/// </summary>
 [RequireComponent(typeof(CharacterStats))]
 public class Enemy : Interactable
 {
@@ -17,7 +20,6 @@ public class Enemy : Interactable
 
     public override void Interact()
     {
-        base.Interact();
 
         Combat playerCombat = playerManager.player.GetComponent<Combat>(); //Attack enemy
         if (playerCombat != null)

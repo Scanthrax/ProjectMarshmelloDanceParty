@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Valarie Script: Basic get set for modifiers UML made
+/// </summary>
 [System.Serializable]
 public class Stat 
 {

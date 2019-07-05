@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// Valarie Script: Wont be used in Prototype, Multi-input controls
+/// </summary>
 public class Thumbstick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
     public float smoothing = 5f;        //Controls the smoothness of thumbstick inputs

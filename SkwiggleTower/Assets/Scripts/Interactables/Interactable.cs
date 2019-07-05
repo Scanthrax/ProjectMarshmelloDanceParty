@@ -2,15 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Valarie Interactable, OnFocused and OnDefocused. UML created
+/// </summary>
 public class Interactable : MonoBehaviour
 {
     public float radius = 3f;
-    public Transform interactionTransform;
+    public Transform interactionTransform; //either a designated space in front of the enemy or just the enemy
     protected int healthGained = 10;
     protected int xpGained = 10;
 
     bool isFocus = false;
-    Transform player;
+
+    [SerializeField]
+    private Transform player;
 
     bool hasInteracted = false;
 
@@ -21,9 +26,9 @@ public class Interactable : MonoBehaviour
 
     private void Update()
     {
-        if (isFocus && !hasInteracted)
+        if (!hasInteracted)
         {
-            float distance = Vector3.Distance(player.position, interactionTransform.position);
+            float distance = Vector2.Distance(player.position, interactionTransform.position);
             if (distance <= radius)
             {
                 //Debug.Log("INTERACT");
@@ -34,6 +39,10 @@ public class Interactable : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// player will go to item or enemy it clicks on
+    /// </summary>
+    /// <param name="playerTransform"></param>
     public void OnFocused(Transform playerTransform)
     {
         isFocus = true;
@@ -41,6 +50,7 @@ public class Interactable : MonoBehaviour
         hasInteracted = false;
     }
 
+    //Stops focusing on object
     public void OnDefocused()
     {
         isFocus = false;

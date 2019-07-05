@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65a6307ae91f1864fb0e826dbc9d3ea9, type: 3}
   m_Name: BaseAttack
   m_EditorClassIdentifier: 
-  name: Basae Attack
+  name: Base Attack
   icon: {fileID: 21300010, guid: 195d2ebbbf668124ab3fa9932a849bcb, type: 3}
   isDefaultItem: 0
   equipSlot: 0
-  mesh: {fileID: 0}
   damageModifier: 10
   armorModifier: 20

@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Valarie Script: Character Stats hold total health, TakeDamage, Heal, gainXP, and Die. UML made
+/// </summary>
 public class CharacterStats : MonoBehaviour
 {
-    public int maxhealth = 100;
+    public int maxHealth = 100;
     public int currentHealth { get; private set; } //any class can get the value only change it in this class
     public int xp { get; private set; }
 
@@ -12,11 +15,11 @@ public class CharacterStats : MonoBehaviour
     public Stat armor;
     public Stat capacity;
 
-    public event System.Action<int, int> OnHealthChanged;
+    public event System.Action<int, int> OnHealthChanged; //Delegate On Health Changed
 
     private void Awake()
     {
-        currentHealth = maxhealth; //initial value
+        currentHealth = maxHealth; //initial value
         xp = 5;
     }
 
@@ -30,9 +33,9 @@ public class CharacterStats : MonoBehaviour
             damage = Mathf.Clamp(damage, 0, int.MaxValue); //prevents negative damage values 
 
             currentHealth -= damage;
-            //Debug.Log(transform.name + " takes " + damage + " damage.");
+            Debug.Log(transform.name + " takes " + damage + " damage.");
 
-            OnHealthChanged?.Invoke(maxhealth, currentHealth);
+            OnHealthChanged?.Invoke(maxHealth, currentHealth);
 
             if (currentHealth <= 0)
             {
@@ -43,9 +46,9 @@ public class CharacterStats : MonoBehaviour
 
     public void Heal(int healing)
     {
-        currentHealth += Mathf.Clamp(healing, 1, maxhealth); //prevents excessive Health
+        currentHealth += Mathf.Clamp(healing, 1, maxHealth); //prevents excessive Health
 
-        OnHealthChanged?.Invoke(maxhealth, currentHealth);
+        OnHealthChanged?.Invoke(maxHealth, currentHealth);
     }
 
     public void gainXP(int _xp) //Gain XP
@@ -57,6 +60,6 @@ public class CharacterStats : MonoBehaviour
     {
         //Die in some way, should be overriden
         // Debug.Log(transform.name + " died.");
-
+        RoomManager.instance.OnEnemyDeath();
     }
 }
