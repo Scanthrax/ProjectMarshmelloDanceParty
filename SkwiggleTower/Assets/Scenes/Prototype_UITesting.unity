@@ -130,8 +130,8 @@ GameObject:
   m_Component:
   - component: {fileID: 104715930}
   - component: {fileID: 104715931}
-  m_Layer: 0
-  m_Name: Rogue_Face (7)
+  m_Layer: 5
+  m_Name: poisonicon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -145,11 +145,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 104715929}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -556.4099, y: 347, z: -10799.999}
+  m_LocalPosition: {x: -227, y: -199, z: 0}
   m_LocalScale: {x: 350.04242, y: 350.04242, z: 350.04242}
-  m_Children: []
-  m_Father: {fileID: 1469088601}
-  m_RootOrder: 9
+  m_Children:
+  - {fileID: 1607475724}
+  m_Father: {fileID: 1039876556}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &104715931
 SpriteRenderer:
@@ -694,8 +695,8 @@ GameObject:
   m_Component:
   - component: {fileID: 439605158}
   - component: {fileID: 439605159}
-  m_Layer: 0
-  m_Name: Rogue_Face (5)
+  m_Layer: 5
+  m_Name: dashicon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -709,11 +710,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 439605157}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -740, y: 347, z: -10799.999}
+  m_LocalPosition: {x: -410.5888, y: -199.00003, z: 0}
   m_LocalScale: {x: 350.04242, y: 350.04242, z: 350.04242}
-  m_Children: []
-  m_Father: {fileID: 1469088601}
-  m_RootOrder: 7
+  m_Children:
+  - {fileID: 1928540721}
+  m_Father: {fileID: 1039876556}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &439605159
 SpriteRenderer:
@@ -22254,7 +22256,7 @@ GameObject:
   m_Component:
   - component: {fileID: 577141333}
   - component: {fileID: 577141334}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Rogue_Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22269,11 +22271,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 577141332}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -880, y: 478, z: -10799.999}
+  m_LocalPosition: {x: -550.58875, y: -63, z: 0}
   m_LocalScale: {x: 583.404, y: 583.404, z: 583.404}
   m_Children: []
-  m_Father: {fileID: 1469088601}
-  m_RootOrder: 2
+  m_Father: {fileID: 1039876556}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &577141334
 SpriteRenderer:
@@ -22334,8 +22336,8 @@ GameObject:
   m_Component:
   - component: {fileID: 667321378}
   - component: {fileID: 667321379}
-  m_Layer: 0
-  m_Name: Rogue_Face (1)
+  m_Layer: 5
+  m_Name: healthbar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22349,11 +22351,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 667321377}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -627, y: 497, z: -10799.999}
-  m_LocalScale: {x: 37355.355, y: 2176.6802, z: 583.404}
-  m_Children: []
-  m_Father: {fileID: 1469088601}
-  m_RootOrder: 3
+  m_LocalPosition: {x: -297.58887, y: -49.001003, z: 0}
+  m_LocalScale: {x: 37355.348, y: 2176.6802, z: 583.404}
+  m_Children:
+  - {fileID: 1891652771}
+  m_Father: {fileID: 1039876556}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &667321379
 SpriteRenderer:
@@ -22544,8 +22547,8 @@ GameObject:
   m_Component:
   - component: {fileID: 830038431}
   - component: {fileID: 830038432}
-  m_Layer: 0
-  m_Name: Rogue_Face (4)
+  m_Layer: 5
+  m_Name: ult
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22559,11 +22562,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 830038430}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -732.3, y: 457, z: -10799.999}
-  m_LocalScale: {x: 16159.928, y: 2176.6802, z: 583.404}
+  m_LocalPosition: {x: -0.0028188676, y: 0, z: 0}
+  m_LocalScale: {x: 0.4326001, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1469088601}
-  m_RootOrder: 6
+  m_Father: {fileID: 1437770667}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &830038432
 SpriteRenderer:
@@ -24152,6 +24155,46 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1039876555
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1039876556}
+  m_Layer: 5
+  m_Name: InGameUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1039876556
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039876555}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 577141333}
+  - {fileID: 667321378}
+  - {fileID: 1437770667}
+  - {fileID: 439605158}
+  - {fileID: 104715930}
+  m_Father: {fileID: 1469088601}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1134647453
 GameObject:
   m_ObjectHideFlags: 0
@@ -24523,8 +24566,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1437770667}
   - component: {fileID: 1437770668}
-  m_Layer: 0
-  m_Name: Rogue_Face (3)
+  m_Layer: 5
+  m_Name: ultbar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24538,11 +24581,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1437770666}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -627, y: 457.00003, z: -10799.999}
-  m_LocalScale: {x: 37355.355, y: 2176.6802, z: 583.404}
-  m_Children: []
-  m_Father: {fileID: 1469088601}
-  m_RootOrder: 5
+  m_LocalPosition: {x: -297.58887, y: -89.001, z: 0}
+  m_LocalScale: {x: 37355.348, y: 2176.6802, z: 583.404}
+  m_Children:
+  - {fileID: 830038431}
+  m_Father: {fileID: 1039876556}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1437770668
 SpriteRenderer:
@@ -24685,15 +24729,7 @@ RectTransform:
   m_Children:
   - {fileID: 2172094995223020292}
   - {fileID: 2172094994731580562}
-  - {fileID: 577141333}
-  - {fileID: 667321378}
-  - {fileID: 1891652771}
-  - {fileID: 1437770667}
-  - {fileID: 830038431}
-  - {fileID: 439605158}
-  - {fileID: 1928540721}
-  - {fileID: 104715930}
-  - {fileID: 1607475724}
+  - {fileID: 1039876556}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -24712,8 +24748,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1607475724}
   - component: {fileID: 1607475725}
-  m_Layer: 0
-  m_Name: Rogue_Face (8)
+  m_Layer: 5
+  m_Name: blackbg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24727,11 +24763,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1607475723}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -556.62, y: 346.36, z: -10799.999}
-  m_LocalScale: {x: 11032.905, y: 10898.746, z: 11008.834}
+  m_LocalPosition: {x: -0.00059959776, y: -0.0018274327, z: 0}
+  m_LocalScale: {x: 31.518763, y: 31.1355, z: 31.449999}
   m_Children: []
-  m_Father: {fileID: 1469088601}
-  m_RootOrder: 10
+  m_Father: {fileID: 104715930}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1607475725
 SpriteRenderer:
@@ -34229,8 +34265,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1891652771}
   - component: {fileID: 1891652772}
-  m_Layer: 0
-  m_Name: Rogue_Face (2)
+  m_Layer: 5
+  m_Name: health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34244,11 +34280,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1891652770}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -664, y: 497, z: -10799.999}
-  m_LocalScale: {x: 30011.293, y: 2176.6802, z: 583.404}
+  m_LocalPosition: {x: -0.0009904874, y: 0, z: 0}
+  m_LocalScale: {x: 0.80340016, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1469088601}
-  m_RootOrder: 4
+  m_Father: {fileID: 667321378}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1891652772
 SpriteRenderer:
@@ -34309,8 +34345,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1928540721}
   - component: {fileID: 1928540722}
-  m_Layer: 0
-  m_Name: Rogue_Face (6)
+  m_Layer: 5
+  m_Name: greymask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34324,11 +34360,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1928540720}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -760.59, y: 346.36, z: -10799.999}
-  m_LocalScale: {x: 6938.934, y: 10898.746, z: 11008.834}
+  m_LocalPosition: {x: -0.05882082, y: -0.0018273455, z: 0}
+  m_LocalScale: {x: 19.82312, y: 31.1355, z: 31.449999}
   m_Children: []
-  m_Father: {fileID: 1469088601}
-  m_RootOrder: 8
+  m_Father: {fileID: 439605158}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1928540722
 SpriteRenderer:
@@ -34991,7 +35027,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 3.382}
+  m_AnchoredPosition: {x: -3.09, y: 4.05}
   m_SizeDelta: {x: 3.816, y: 1.275}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2172094994246396582
@@ -35007,7 +35043,7 @@ GameObject:
   - component: {fileID: 2172094994246396634}
   - component: {fileID: 2172094994246396635}
   - component: {fileID: 2172094994246396580}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Timer UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35438,7 +35474,7 @@ GameObject:
   - component: {fileID: 2172094994335023385}
   - component: {fileID: 2172094994335023386}
   - component: {fileID: 2172094994335023387}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Trial UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36080,7 +36116,7 @@ GameObject:
   - component: {fileID: 2172094994956537047}
   - component: {fileID: 2172094994956537040}
   - component: {fileID: 2172094994956537041}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Round UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36719,7 +36755,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2172094995223020293}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 328, y: -254, z: 0}
   m_LocalScale: {x: 108, y: 108, z: 108}
   m_Children:
   - {fileID: 2172094994956537042}
@@ -36737,7 +36773,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2172094995223020292}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
