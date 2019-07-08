@@ -21,7 +21,7 @@ public class RoguePoisonUlt : MonoBehaviour
         {
             //Changes sprite color to green
             GetComponent<CharacterStats>().TakeDamage(damage);
-            GetComponent<SpriteRenderer>().color = Color.green;//new Color(53, 234, 32);
+            GetComponent<SpriteRenderer>().color = Color.green;
             Debug.Log("Taking damage" + damage);
         }
         else if(timer <= 0)
