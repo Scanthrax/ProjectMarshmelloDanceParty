@@ -7,8 +7,8 @@ using UnityEngine;
 public class EnemyStats : CharacterStats
 {
     //Amount of health and xp the player gains by killing them 
-    int healthGained = 20;
-    int xpGained = 100;
+    int healthGained = 0;
+    int ultGained = 10;
 
     public override void Die()
     {
@@ -16,7 +16,7 @@ public class EnemyStats : CharacterStats
 
         //Reward Player
         PlayerManager.instance.charStats.Heal(healthGained); //references character stats in the Playermanager Health
-        PlayerManager.instance.charStats.gainXP(xpGained); //references character stats in the Playermanager XP;
+        PlayerManager.instance.charStats.gainXP(ultGained); //references character stats in the Playermanager XP;
         Debug.Log("Enemy Died");
         //Play Animation 
         Destroy(gameObject);
