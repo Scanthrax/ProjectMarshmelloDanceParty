@@ -57,6 +57,9 @@ public class PlayerMovement : MonoBehaviour
     const float smallAmount = .05f;         //A small amount used for hanging position
 
 
+    //RON
+    PlayerStats PS;
+
     void Start()
     {
         //Get a reference to the required components
@@ -77,6 +80,9 @@ public class PlayerMovement : MonoBehaviour
         //Calculate crouching collider size and offset
         colliderCrouchSize = new Vector2(bodyCollider.size.x, bodyCollider.size.y / 2f);
         colliderCrouchOffset = new Vector2(bodyCollider.offset.x, bodyCollider.offset.y / 2f);
+
+
+        PS = GetComponent<PlayerStats>();
     }
 
     void FixedUpdate()
@@ -87,6 +93,8 @@ public class PlayerMovement : MonoBehaviour
         //Process ground and air movements
         GroundMovement();
         MidAirMovement();
+
+        PS.direction = direction;
     }
 
     void PhysicsCheck()
@@ -317,7 +325,6 @@ public class PlayerMovement : MonoBehaviour
     public int GetDirection()
     {
         return direction;
-
     }
 
 }

@@ -562,6 +562,7 @@ MonoBehaviour:
     baseValue: 0
   primary: {fileID: 0}
   secondary: {fileID: 0}
+  direction: 0
 --- !u!61 &277410766
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -22221,6 +22222,29 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
+--- !u!1 &686454609 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3685032513800629311, guid: f83a991402496114cb47d6403a1bae81,
+    type: 3}
+  m_PrefabInstance: {fileID: 845152468}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &686454620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 686454609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c018ae447ed695a448b23247b036d401, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 2
+  projectile: {fileID: 7729152762026024449, guid: e43df56e997fb224ca7e590f1de56c84,
+    type: 3}
+  impulse: 10
+  offset: {x: 0.53, y: 0.41}
 --- !u!1 &712868867 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3685032513800629311, guid: f83a991402496114cb47d6403a1bae81,
@@ -22251,6 +22275,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c018ae447ed695a448b23247b036d401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  duration: 2
+  projectile: {fileID: 7729152762026024449, guid: e43df56e997fb224ca7e590f1de56c84,
+    type: 3}
+  impulse: 10
+  offset: {x: 0.46, y: 0.1}
 --- !u!114 &712868870 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 712868869, guid: f83a991402496114cb47d6403a1bae81,
@@ -22529,6 +22558,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.y
       value: 1.3333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 3685032513800629307, guid: f83a991402496114cb47d6403a1bae81,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f83a991402496114cb47d6403a1bae81, type: 3}
@@ -24400,6 +24434,11 @@ PrefabInstance:
       propertyPath: secondary
       value: 
       objectReference: {fileID: 712868870}
+    - target: {fileID: 3685032513800629303, guid: f83a991402496114cb47d6403a1bae81,
+        type: 3}
+      propertyPath: direction
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3685032513800629310, guid: f83a991402496114cb47d6403a1bae81,
         type: 3}
       propertyPath: m_Color.r
@@ -24459,7 +24498,7 @@ PrefabInstance:
     - target: {fileID: 3685032513800629301, guid: f83a991402496114cb47d6403a1bae81,
         type: 3}
       propertyPath: playerID
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 712868869, guid: f83a991402496114cb47d6403a1bae81, type: 3}
       propertyPath: duration
@@ -34060,7 +34099,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 845152468}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 686454609}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9187403968de37b4a9d32a549317ad4d, type: 3}
@@ -35686,8 +35725,8 @@ MonoBehaviour:
   trials: {fileID: 801014292}
   amtOfPlayers: 0
   playerInputs:
-  - {fileID: 712868868}
   - {fileID: 1773974062}
+  - {fileID: 712868868}
   amtOfCurrentPlayers: 0
 --- !u!222 &2172094994956537040
 CanvasRenderer:
@@ -37353,6 +37392,7 @@ MonoBehaviour:
     baseValue: 0
   primary: {fileID: 0}
   secondary: {fileID: 0}
+  direction: 0
 --- !u!61 &5420769238288300757
 BoxCollider2D:
   m_ObjectHideFlags: 0

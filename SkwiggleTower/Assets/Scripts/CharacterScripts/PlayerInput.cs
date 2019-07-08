@@ -35,6 +35,8 @@ public class PlayerInput : MonoBehaviour
     private void Start()
     {
         enabled = false;
+
+
     }
 
     void Update()

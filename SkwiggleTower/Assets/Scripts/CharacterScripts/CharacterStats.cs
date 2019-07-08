@@ -22,11 +22,14 @@ public class CharacterStats : MonoBehaviour
     public Ability primary;
     public Ability secondary;
 
+    public int direction;
+
 
     private void Awake()
     {
         currentHealth = maxHealth; //initial value
         xp = 5;
+        direction = 1;
     }
 
     //add passive healing 

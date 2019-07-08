@@ -15,8 +15,9 @@ GameObject:
   - component: {fileID: 1339205034641145824}
   - component: {fileID: 1631048381354739426}
   - component: {fileID: 7284206876093713158}
+  - component: {fileID: 5975571388277939758}
   m_Layer: 12
-  m_Name: Rock
+  m_Name: Fruit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 1082940093
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e0f694f2c4ed1ef42bfb3cf702cbb0f3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fb77f9b959986ec468355d394c0ab191, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -121,7 +122,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.0625
+  m_Radius: 0.09
 --- !u!114 &1339205034641145824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,3 +328,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5975571388277939758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7078690826283477000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9802ad4e3a3a1894fa70c136d9ed7f1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 3602669967722040864}
+  fruits:
+  - {fileID: 21300000, guid: e0b465d1dded0f84a840b24686c343fc, type: 3}
+  - {fileID: 21300000, guid: fb77f9b959986ec468355d394c0ab191, type: 3}
+  - {fileID: 21300000, guid: 9356bc1029da6f54f81e3d7bf2fcff95, type: 3}
+  - {fileID: 21300000, guid: 9518ee62b4bab1b4bb1f452589b5fc89, type: 3}

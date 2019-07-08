@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class Ability : MonoBehaviour
 {
-    public float timer;
+    float timer;
     public float duration;
 
     public bool onCooldown { get { return timer < duration; } }
 
     public float percentage { get { return timer / duration; } }
+
+
+    private void Start()
+    {
+        timer = duration;
+    }
 
     public void Cast()
     {
