@@ -17,6 +17,12 @@ public class CharacterStats : MonoBehaviour
 
     public event System.Action<int, int> OnHealthChanged; //Delegate On Health Changed
 
+
+    // RON
+    public Ability primary;
+    public Ability secondary;
+
+
     private void Awake()
     {
         currentHealth = maxHealth; //initial value

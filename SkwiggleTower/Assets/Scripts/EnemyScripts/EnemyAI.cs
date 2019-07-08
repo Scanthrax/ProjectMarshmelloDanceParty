@@ -86,7 +86,32 @@ public class EnemyAI : MonoBehaviour
 
     void UpdatePath()
     {
+
+        var players = RoomManager.instance.playerInputs;
+
+        PlayerInput player = null;
+        float shortestDist = 0f;
+
+        for (int i = 0; i < players.Count; i++)
+        {
+            if (i == 0)
+            {
+                player = players[i];
+                shortestDist = Vector2.Distance(transform.position, player.transform.position);
+                continue;
+            }
+
+            var currentDist = Vector2.Distance(transform.position, players[i].transform.position);
+
+            if (currentDist < shortestDist)
+            {
+                shortestDist = currentDist;
+                player = players[i];
+            }
+
+        }
+
         if(seeker.IsDone()) //if not currently calculating a path it can update its path
-        seeker.StartPath(rb.position, target.position, OnPathComplete);
+            seeker.StartPath(rb.position, player.transform.position, OnPathComplete);
     }
 }
