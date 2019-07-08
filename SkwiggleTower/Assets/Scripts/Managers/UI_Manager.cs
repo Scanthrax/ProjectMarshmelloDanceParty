@@ -1,33 +1,50 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class UI_Manager : MonoBehaviour
 {
     // Matt Thompson
-    // Last Modified: 6/30/2019
+    // Last Modified: 7/7/2019
+
 
     #region Variables
+    
+    // rect transforms for health and mana bars, for rescaling with percentage
+    [Header ("Rect Transforms")]
+    [SerializeField]
+    RectTransform P1_HealthBarTransform;
+    [SerializeField]
+    RectTransform P2_HealthBarTransform;
+    [SerializeField]
+    RectTransform P3_HealthBarTransform;
+    [SerializeField]
+    RectTransform P4_HealthBarTransform;
+
+    [SerializeField]
+    RectTransform P1_ManaBarTransform;
+    [SerializeField]
+    RectTransform P2_ManaBarTransform;
+    [SerializeField]
+    RectTransform P3_ManaBarTransform;
+    [SerializeField]
+    RectTransform P4_ManaBarTransform;
+
     // Objects for players, used for determining which icon to show in which position, etc.
     [Header("Player Objects")]
     public GameObject Player1;
     public GameObject Player2;
     public GameObject Player3;
     public GameObject Player4;
-
     public int numPlayers;
 
-    // Variables for player max, current and health ratio, used for Red health bar (current health not needed?)
+    // Variables for player max, current and health ratio, used for Red health bar
     [Header("Player Health")]
-    public float P1_healthPct;
-    public float P2_healthPct;
-    public float P3_healthPct;
-    public float P4_healthPct;
-
-    public int P1_maxHealth;
-    public int P2_maxHealth;
-    public int P3_maxHealth;
-    public int P4_maxHealth;
+    private float P1_healthPct;
+    private float P2_healthPct;
+    private float P3_healthPct;
+    private float P4_healthPct;
 
     // variables keeping track of most recently recorded value for currentHealth, 
     // so as to only run update logic if health has changed rather than every tick
@@ -38,15 +55,10 @@ public class UI_Manager : MonoBehaviour
 
     // Variables for player max, current and mana ratio, used for Blue mana bar
     [Header("Player Mana")]
-    public float P1_manaPct;
-    public float P2_manaPct;
-    public float P3_manaPct;
-    public float P4_manaPct;
-
-    public float P1_maxMana;
-    public float P2_maxMana;
-    public float P3_maxMana;
-    public float P4_maxMana;
+    private float P1_manaPct;
+    private float P2_manaPct;
+    private float P3_manaPct;
+    private float P4_manaPct;
 
     // variables keeping track of most recently recorded value for currentMana, 
     // so as to only run update logic if mana has changed rather than every tick
@@ -56,11 +68,6 @@ public class UI_Manager : MonoBehaviour
     private int P4_previousMana;
 
     [Header("Bars, bar sizes, etc.")]
-    // background bars for player health
-    public GameObject P1_healthBarBG;
-    public GameObject P2_healthBarBG;
-    public GameObject P3_healthBarBG;
-    public GameObject P4_healthBarBG;
 
     // "foreground" bars for player health (red bars)
     public GameObject P1_healthBarFG;
@@ -68,23 +75,13 @@ public class UI_Manager : MonoBehaviour
     public GameObject P3_healthBarFG;
     public GameObject P4_healthBarFG;
 
-    // background bars for player mana
-    public GameObject P1_manaBarBG;
-    public GameObject P2_manaBarBG;
-    public GameObject P3_manaBarBG;
-    public GameObject P4_manaBarBG;
-
     // "foreground" bars for player mana (blue bars)
     public GameObject P1_manaBarFG;
     public GameObject P2_manaBarFG;
     public GameObject P3_manaBarFG;
     public GameObject P4_manaBarFG;
 
-    // max size of player heath and mana bars, used for determining bar size to preserve scaling
-    public Vector3 P1_barMaxSize;
-    public Vector3 P2_barMaxSize;
-    public Vector3 P3_barMaxSize;
-    public Vector3 P4_barMaxSize;
+    // temporary vector used for adjusting bars
     private Vector3 tempVector;
 
     // icons for player face, primary and secondary attacks
@@ -160,8 +157,15 @@ public class UI_Manager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void Update()
     {
+        // testing code, deals one damage to player
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            // player takes damage equal to their armor value +1, essentially taking 1 damage
+            Player1.GetComponent<CharacterStats>().TakeDamage(Player1.GetComponent<CharacterStats>().armor.GetValue() + 1);
+        }
+
         // logic for updating scale of bars, uses a temporary vector3 to store and modify scale before altering scale of bar
         // only updates if player health or mana has changed since last check, so as to not be constantly running all calculations
         #region Health and Mana bar checks and updates
@@ -169,12 +173,11 @@ public class UI_Manager : MonoBehaviour
         {
             if (P1_previousHealth != Player1.GetComponent<PlayerStats>().currentHealth)
             {
+                Debug.Log("Health should be updating");
                 // calculated based on current/max health
-                P1_healthPct = (Player1.GetComponent<PlayerStats>().currentHealth) / (Player1.GetComponent<PlayerStats>().maxHealth);
-                // uses temp Vector3 to update x value of bar scale (width?)
-                tempVector = P1_healthBarFG.transform.localScale;
-                tempVector.x = P1_healthPct * P1_barMaxSize.x;
-                P1_healthBarFG.transform.localScale = tempVector;
+                P1_healthPct = (float) (Player1.GetComponent<PlayerStats>().currentHealth) / (Player1.GetComponent<PlayerStats>().maxHealth);
+                // adjusts size of health rectangle with health percentage as variable
+                SetBarAmount(P1_HealthBarTransform, P1_healthPct);
                 // updates most recently recored health value
                 P1_previousHealth = Player1.GetComponent<PlayerStats>().currentHealth;
             }
@@ -183,10 +186,8 @@ public class UI_Manager : MonoBehaviour
             {
                 // calculated based on current/max mana
                 P1_manaPct = (Player1.GetComponent<PlayerStats>().currentMana) / (Player1.GetComponent<PlayerStats>().maxMana);
-                // uses temp Vector3 to update x value of bar scale (width?)
-                tempVector = P1_manaBarFG.transform.localScale;
-                tempVector.x = P1_manaPct * P1_barMaxSize.x;
-                P1_manaBarFG.transform.localScale = tempVector;
+                // adjusts size of mana rectangle with health percentage as variable
+                SetBarAmount(P1_ManaBarTransform, P1_manaPct);
                 // updates most recently recored mana value
                 P1_previousMana = Player1.GetComponent<PlayerStats>().currentMana;
             } */
@@ -197,10 +198,8 @@ public class UI_Manager : MonoBehaviour
             {
                 // calculated based on current/max health
                 P2_healthPct = (Player2.GetComponent<PlayerStats>().currentHealth) / (Player2.GetComponent<PlayerStats>().maxHealth);
-                // uses temp Vector3 to update x value of bar scale
-                tempVector = P2_healthBarFG.transform.localScale;
-                tempVector.x = P2_healthPct * P2_barMaxSize.x;
-                P2_healthBarFG.transform.localScale = tempVector;
+                // adjusts size of health rectangle with health percentage as variable
+                SetBarAmount(P2_HealthBarTransform, P2_healthPct);
                 // updates most recently recored health value
                 P2_previousHealth = Player2.GetComponent<PlayerStats>().currentHealth;
             }
@@ -209,10 +208,8 @@ public class UI_Manager : MonoBehaviour
             {
                 // calculated based on current/max mana
                 P2_manaPct = (Player2.GetComponent<PlayerStats>().currentMana) / (Player2.GetComponent<PlayerStats>().maxMana);
-                // uses temp Vector3 to update x value of bar scale (width?)
-                tempVector = P2_manaBarFG.transform.localScale;
-                tempVector.x = P2_manaPct * P2_barMaxSize.x;
-                P2_manaBarFG.transform.localScale = tempVector;
+                // adjusts size of mana rectangle with health percentage as variable
+                SetBarAmount(P2_ManaBarTransform, P2_manaPct);
                 // updates most recently recored mana value
                 P2_previousMana = Player2.GetComponent<PlayerStats>().currentMana;
             } */
@@ -223,10 +220,8 @@ public class UI_Manager : MonoBehaviour
             {
                 // calculated based on current/max health
                 P3_healthPct = (Player3.GetComponent<PlayerStats>().currentHealth) / (Player3.GetComponent<PlayerStats>().maxHealth);
-                // uses temp Vector3 to update x value of bar scale
-                tempVector = P3_healthBarFG.transform.localScale;
-                tempVector.x = P3_healthPct * P3_barMaxSize.x;
-                P3_healthBarFG.transform.localScale = tempVector;
+                // adjusts size of health rectangle with health percentage as variable
+                SetBarAmount(P3_HealthBarTransform, P3_healthPct);
                 // updates most recently recored health value
                 P3_previousHealth = Player1.GetComponent<PlayerStats>().currentHealth;
             }
@@ -235,10 +230,8 @@ public class UI_Manager : MonoBehaviour
             {
                 // calculated based on current/max mana
                 P3_manaPct = (Player3.GetComponent<PlayerStats>().currentMana) / (Player3.GetComponent<PlayerStats>().maxMana);
-                // uses temp Vector3 to update x value of bar scale (width?)
-                tempVector = P3_manaBarFG.transform.localScale;
-                tempVector.x = P3_manaPct * P3_barMaxSize.x;
-                P3_manaBarFG.transform.localScale = tempVector;
+                // adjusts size of mana rectangle with health percentage as variable
+                SetBarAmount(P3_ManaBarTransform, P3_manaPct);
                 // updates most recently recored mana value
                 P3_previousMana = Player3.GetComponent<PlayerStats>().currentMana;
             } */
@@ -249,10 +242,8 @@ public class UI_Manager : MonoBehaviour
             {
                 // calculated based on current/max health
                 P4_healthPct = (Player4.GetComponent<PlayerStats>().currentHealth) / (Player4.GetComponent<PlayerStats>().maxHealth);
-                // uses temp Vector3 to update x value of bar scale
-                tempVector = P4_healthBarFG.transform.localScale;
-                tempVector.x = P4_healthPct * P4_barMaxSize.x;
-                P4_healthBarFG.transform.localScale = tempVector;
+                // adjusts size of health rectangle with health percentage as variable
+                SetBarAmount(P4_HealthBarTransform, P4_healthPct);
                 // updates most recently recored health value
                 P4_previousHealth = Player1.GetComponent<PlayerStats>().currentHealth;
             }
@@ -261,15 +252,21 @@ public class UI_Manager : MonoBehaviour
                 {
                 // calculated based on current/max mana
                 P4_manaPct = (Player4.GetComponent<PlayerStats>().currentMana) / (Player4.GetComponent<PlayerStats>().maxMana);
-                // uses temp Vector3 to update x value of bar scale (width?)
-                tempVector = P4_manaBarFG.transform.localScale;
-                tempVector.x = P4_manaPct * P4_barMaxSize.x;
-                P4_manaBarFG.transform.localScale = tempVector;
+                // adjusts size of mana rectangle with health percentage as variable
+                SetBarAmount(P4_ManaBarTransform, P4_manaPct);
                 // updates most recently recored mana value
                 P4_previousMana = Player4.GetComponent<PlayerStats>().currentMana;
                 }*/
         }
 
         #endregion
+    }
+
+    // Method that takes in a rect transform and a percentage amount to rescale health/mana bar accordingly
+    void SetBarAmount (RectTransform rect, float _amount)
+    {
+        tempVector = rect.localScale;
+        tempVector.x = tempVector.x * _amount;
+        rect.localScale = tempVector;
     }
 }

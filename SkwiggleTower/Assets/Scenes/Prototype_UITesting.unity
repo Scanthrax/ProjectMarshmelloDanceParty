@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 104715930}
   - component: {fileID: 104715931}
   m_Layer: 0
-  m_Name: Rogue_Face (7)
+  m_Name: Rogue_Secondary_FG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -145,11 +145,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 104715929}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -556.4099, y: 347, z: -10799.999}
-  m_LocalScale: {x: 350.04242, y: 350.04242, z: 350.04242}
+  m_LocalPosition: {x: 0.6444932, y: -0.24054231, z: 0}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children: []
-  m_Father: {fileID: 1469088601}
-  m_RootOrder: 9
+  m_Father: {fileID: 1712897506}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &104715931
 SpriteRenderer:
@@ -200,6 +200,156 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &212775872
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 212775873}
+  - component: {fileID: 212775875}
+  - component: {fileID: 212775874}
+  m_Layer: 0
+  m_Name: P1_HealthBar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &212775873
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 212775872}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1712897506}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.49114, y: 0.03535}
+  m_SizeDelta: {x: 0.66717, y: 0.03576}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &212775874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 212775872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 6434d17dd2851c34d8cc055c2518f1ee, type: 3}
+  m_Type: 3
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 0
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &212775875
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 212775872}
+  m_CullTransparentMesh: 0
+--- !u!1 &255928191
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 255928192}
+  - component: {fileID: 255928194}
+  - component: {fileID: 255928193}
+  m_Layer: 5
+  m_Name: Frame_P1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &255928192
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 255928191}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 18.512043}
+  m_LocalScale: {x: 0.005713593, y: 0.005713593, z: 0.0017140781}
+  m_Children: []
+  m_Father: {fileID: 1712897506}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.2593717, y: -0.131814}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &255928193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 255928191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: d97030c984144c64d8a41660b857544e, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &255928194
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 255928191}
+  m_CullTransparentMesh: 0
 --- !u!1 &277410757
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,7 +845,7 @@ GameObject:
   - component: {fileID: 439605158}
   - component: {fileID: 439605159}
   m_Layer: 0
-  m_Name: Rogue_Face (5)
+  m_Name: Rogue_Primary_FG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -709,11 +859,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 439605157}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -740, y: 347, z: -10799.999}
-  m_LocalScale: {x: 350.04242, y: 350.04242, z: 350.04242}
+  m_LocalPosition: {x: 0.2788233, y: -0.24054231, z: 0}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children: []
-  m_Father: {fileID: 1469088601}
-  m_RootOrder: 7
+  m_Father: {fileID: 1712897506}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &439605159
 SpriteRenderer:
@@ -22269,11 +22419,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 577141332}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -880, y: 478, z: -10799.999}
-  m_LocalScale: {x: 583.404, y: 583.404, z: 583.404}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1469088601}
-  m_RootOrder: 2
+  m_Father: {fileID: 1712897506}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &577141334
 SpriteRenderer:
@@ -22335,7 +22485,7 @@ GameObject:
   - component: {fileID: 667321378}
   - component: {fileID: 667321379}
   m_Layer: 0
-  m_Name: Rogue_Face (1)
+  m_Name: P1_HealthBar_BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22349,11 +22499,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 667321377}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -627, y: 497, z: -10799.999}
-  m_LocalScale: {x: 37355.355, y: 2176.6802, z: 583.404}
+  m_LocalPosition: {x: 0.49114034, y: 0.036738373, z: 0}
+  m_LocalScale: {x: 66.55918, y: 3.4698298, z: 1}
   m_Children: []
-  m_Father: {fileID: 1469088601}
-  m_RootOrder: 3
+  m_Father: {fileID: 1712897506}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &667321379
 SpriteRenderer:
@@ -22545,26 +22695,31 @@ GameObject:
   - component: {fileID: 830038431}
   - component: {fileID: 830038432}
   m_Layer: 0
-  m_Name: Rogue_Face (4)
+  m_Name: P1_ManaBar_FG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &830038431
-Transform:
+--- !u!224 &830038431
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 830038430}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -732.3, y: 457, z: -10799.999}
-  m_LocalScale: {x: 16159.928, y: 2176.6802, z: 583.404}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 64.03, y: 3.7309995, z: 1}
   m_Children: []
-  m_Father: {fileID: 1469088601}
-  m_RootOrder: 6
+  m_Father: {fileID: 1712897506}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.5039388, y: -0.038281098}
+  m_SizeDelta: {x: 0.01, y: 0.01}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &830038432
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -24453,7 +24608,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -3.2601755, y: -0.20003584}
+  m_AnchoredPosition: {x: -2.605, y: 0.966}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1423777663
@@ -24524,7 +24679,7 @@ GameObject:
   - component: {fileID: 1437770667}
   - component: {fileID: 1437770668}
   m_Layer: 0
-  m_Name: Rogue_Face (3)
+  m_Name: P1_ManaBar_BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24538,11 +24693,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1437770666}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -627, y: 457.00003, z: -10799.999}
-  m_LocalScale: {x: 37355.355, y: 2176.6802, z: 583.404}
+  m_LocalPosition: {x: 0.5039388, y: -0.038281098, z: 0}
+  m_LocalScale: {x: 64.03, y: 3.7309995, z: 1}
   m_Children: []
-  m_Father: {fileID: 1469088601}
-  m_RootOrder: 5
+  m_Father: {fileID: 1712897506}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1437770668
 SpriteRenderer:
@@ -24641,7 +24796,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -24685,15 +24840,7 @@ RectTransform:
   m_Children:
   - {fileID: 2172094995223020292}
   - {fileID: 2172094994731580562}
-  - {fileID: 577141333}
-  - {fileID: 667321378}
-  - {fileID: 1891652771}
-  - {fileID: 1437770667}
-  - {fileID: 830038431}
-  - {fileID: 439605158}
-  - {fileID: 1928540721}
-  - {fileID: 104715930}
-  - {fileID: 1607475724}
+  - {fileID: 1712897506}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -24713,7 +24860,7 @@ GameObject:
   - component: {fileID: 1607475724}
   - component: {fileID: 1607475725}
   m_Layer: 0
-  m_Name: Rogue_Face (8)
+  m_Name: Rogue_Secondary_BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24727,11 +24874,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1607475723}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -556.62, y: 346.36, z: -10799.999}
-  m_LocalScale: {x: 11032.905, y: 10898.746, z: 11008.834}
+  m_LocalPosition: {x: 0.6425, y: -0.2393, z: 0}
+  m_LocalScale: {x: 18.91126, y: 18.681301, z: 18.87}
   m_Children: []
-  m_Father: {fileID: 1469088601}
-  m_RootOrder: 10
+  m_Father: {fileID: 1712897506}
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1607475725
 SpriteRenderer:
@@ -34150,6 +34297,115 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!1 &1712897505
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1712897506}
+  - component: {fileID: 1712897507}
+  m_Layer: 0
+  m_Name: Health_Mana_UI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1712897506
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1712897505}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -44.19998, y: 11.700005, z: 0}
+  m_LocalScale: {x: 175.02121, y: 175.02121, z: 583.404}
+  m_Children:
+  - {fileID: 577141333}
+  - {fileID: 667321378}
+  - {fileID: 1891652771}
+  - {fileID: 1437770667}
+  - {fileID: 830038431}
+  - {fileID: 439605158}
+  - {fileID: 1928540721}
+  - {fileID: 212775873}
+  - {fileID: 104715930}
+  - {fileID: 1607475724}
+  - {fileID: 255928192}
+  - {fileID: 2072051290}
+  m_Father: {fileID: 1469088601}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1712897507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1712897505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20e91b069d9e03243b2b1a38dc2a9f98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  P1_HealthBarTransform: {fileID: 1891652771}
+  P2_HealthBarTransform: {fileID: 0}
+  P3_HealthBarTransform: {fileID: 0}
+  P4_HealthBarTransform: {fileID: 0}
+  P1_ManaBarTransform: {fileID: 830038431}
+  P2_ManaBarTransform: {fileID: 0}
+  P3_ManaBarTransform: {fileID: 0}
+  P4_ManaBarTransform: {fileID: 0}
+  Player1: {fileID: 712868867}
+  Player2: {fileID: 0}
+  Player3: {fileID: 0}
+  Player4: {fileID: 0}
+  numPlayers: 1
+  P1_healthPct: 0.5
+  P1_maxHealth: 0
+  P2_maxHealth: 0
+  P3_maxHealth: 0
+  P4_maxHealth: 0
+  P1_maxMana: 0
+  P2_maxMana: 0
+  P3_maxMana: 0
+  P4_maxMana: 0
+  P1_healthBarBG: {fileID: 667321377}
+  P2_healthBarBG: {fileID: 0}
+  P3_healthBarBG: {fileID: 0}
+  P4_healthBarBG: {fileID: 0}
+  P1_healthBarFG: {fileID: 1891652770}
+  P2_healthBarFG: {fileID: 0}
+  P3_healthBarFG: {fileID: 0}
+  P4_healthBarFG: {fileID: 0}
+  P1_manaBarBG: {fileID: 1437770666}
+  P2_manaBarBG: {fileID: 0}
+  P3_manaBarBG: {fileID: 0}
+  P4_manaBarBG: {fileID: 0}
+  P1_manaBarFG: {fileID: 830038430}
+  P2_manaBarFG: {fileID: 0}
+  P3_manaBarFG: {fileID: 0}
+  P4_manaBarFG: {fileID: 0}
+  P1_barMaxSize: {x: 66.55918, y: 3.46983, z: 0}
+  P2_barMaxSize: {x: 0, y: 0, z: 0}
+  P3_barMaxSize: {x: 0, y: 0, z: 0}
+  P4_barMaxSize: {x: 0, y: 0, z: 0}
+  P1_faceIcon: {fileID: 577141332}
+  P1_primaryIcon: {fileID: 439605157}
+  P1_secondaryIcon: {fileID: 104715929}
+  P2_faceIcon: {fileID: 0}
+  P2_primaryIcon: {fileID: 0}
+  P2_secondaryIcon: {fileID: 0}
+  P3_faceIcon: {fileID: 0}
+  P3_primaryIcon: {fileID: 0}
+  P3_secondaryIcon: {fileID: 0}
+  P4_faceIcon: {fileID: 0}
+  P4_primaryIcon: {fileID: 0}
+  P4_secondaryIcon: {fileID: 0}
 --- !u!1001 &1833833999
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34230,26 +34486,31 @@ GameObject:
   - component: {fileID: 1891652771}
   - component: {fileID: 1891652772}
   m_Layer: 0
-  m_Name: Rogue_Face (2)
+  m_Name: P1_HealthBar_FG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1891652771
-Transform:
+--- !u!224 &1891652771
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1891652770}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -664, y: 497, z: -10799.999}
-  m_LocalScale: {x: 30011.293, y: 2176.6802, z: 583.404}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 66.55918, y: 3.46983, z: 1}
   m_Children: []
-  m_Father: {fileID: 1469088601}
-  m_RootOrder: 4
+  m_Father: {fileID: 1712897506}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.4911403, y: 0.03673837}
+  m_SizeDelta: {x: 0.01, y: 0.01}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &1891652772
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -34310,7 +34571,7 @@ GameObject:
   - component: {fileID: 1928540721}
   - component: {fileID: 1928540722}
   m_Layer: 0
-  m_Name: Rogue_Face (6)
+  m_Name: Rogue_Primary_BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34324,11 +34585,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1928540720}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -760.59, y: 346.36, z: -10799.999}
-  m_LocalScale: {x: 6938.934, y: 10898.746, z: 11008.834}
+  m_LocalPosition: {x: 0.23768552, y: -0.2422564, z: 0}
+  m_LocalScale: {x: 11.893875, y: 18.681301, z: 18.87}
   m_Children: []
-  m_Father: {fileID: 1469088601}
-  m_RootOrder: 8
+  m_Father: {fileID: 1712897506}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1928540722
 SpriteRenderer:
@@ -34379,6 +34640,81 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2072051289
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2072051290}
+  - component: {fileID: 2072051292}
+  - component: {fileID: 2072051291}
+  m_Layer: 5
+  m_Name: Frame_P2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2072051290
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2072051289}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 18.512043}
+  m_LocalScale: {x: 0.005713593, y: 0.005713593, z: 0.0017140781}
+  m_Children: []
+  m_Father: {fileID: 1712897506}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.2593717, y: -0.131814}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2072051291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2072051289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0.32156864, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 5f6964a6a5df75940a24a60bd2c8e527, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &2072051292
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2072051289}
+  m_CullTransparentMesh: 0
 --- !u!222 &2172094994015809092
 CanvasRenderer:
   m_ObjectHideFlags: 2
@@ -35007,7 +35343,7 @@ GameObject:
   - component: {fileID: 2172094994246396634}
   - component: {fileID: 2172094994246396635}
   - component: {fileID: 2172094994246396580}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Timer UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35438,7 +35774,7 @@ GameObject:
   - component: {fileID: 2172094994335023385}
   - component: {fileID: 2172094994335023386}
   - component: {fileID: 2172094994335023387}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Trial UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35453,7 +35789,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2172094994731580563}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10260}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 108, y: 108, z: 108}
   m_Children:
   - {fileID: 2172094994285087066}
@@ -36080,7 +36416,7 @@ GameObject:
   - component: {fileID: 2172094994956537047}
   - component: {fileID: 2172094994956537040}
   - component: {fileID: 2172094994956537041}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Round UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36737,7 +37073,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2172094995223020292}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
