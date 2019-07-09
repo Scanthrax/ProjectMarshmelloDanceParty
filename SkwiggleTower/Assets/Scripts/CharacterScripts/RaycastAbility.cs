@@ -7,25 +7,29 @@ using UnityEngine;
 [CreateAssetMenu(menuName ="Abilities")]
 public class RaycastAbility : Ability
 {
-    public int aDamage = 1;
-    public float aRange = 50f;
+    public int damage = 1;
+    public float range = 50f;
     public float hitForce = 100f;
-    public Color aColor = Color.white;
+    public Color laserColor = Color.white;
 
-   // private RayCastShootTriggerable rcShoot;
+    private RaycastShootTriggerable rcShoot;
 
     public override void Initialize(GameObject obj)
     {
-       // rcShoot = obj.GetComponent<RayCastShootTriggerable>();
-       //set damage, range, and hitforce
-       // set new material 
-       //set color of material
+        rcShoot = obj.GetComponent<RaycastShootTriggerable>();
+        rcShoot.Initialize();
 
-        throw new System.NotImplementedException();
+        rcShoot.gunDamage = damage;
+        rcShoot.weaponRange = range;
+        rcShoot.hitForce = hitForce;
+        rcShoot.laserLine.material = new Material(Shader.Find("Unlit/Color"));
+        rcShoot.laserLine.material.color = laserColor;
+
     }
 
     public override void TriggerAbility()
     {
-        //call Fire in Ability object
+        rcShoot.Fire();
     }
+
 }

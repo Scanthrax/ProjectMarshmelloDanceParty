@@ -8,7 +8,7 @@ public class AbilityCoolDown : MonoBehaviour
 {
     public string abilityButtonAxisName = "Fire1";
     public Image darkMask;
-    public TextMeshProUGUI coolDownTextDisplay;
+    public TextMeshProUGUI coolDownTextDisplay; //UI display
 
     [SerializeField]
     private Ability ability;
@@ -28,12 +28,12 @@ public class AbilityCoolDown : MonoBehaviour
 
     public void Initialize(Ability selectedAbility, GameObject player)
     {
-        ability = selectedAbility;
+        ability = selectedAbility; //sets ability in scriptable object
         myButtonImage = GetComponent<Image>();
         abilitySource = GetComponent<AudioSource>();
-        myButtonImage.sprite = ability.aSprite;
+        myButtonImage.sprite = ability.aSprite; //sets sprites in scriptable object
         darkMask.sprite = ability.aSprite;
-        coolDownDuration = ability.aBaseCoolDown;
+        coolDownDuration = ability.aBaseCoolDown; //sets value in scriptable object
 
         ability.Initialize(player);
     }
@@ -42,42 +42,44 @@ public class AbilityCoolDown : MonoBehaviour
     void Update()
     {
         bool coolDownComplete = (Time.time > nextReadyTime);
-        if (coolDownComplete)
+        if (coolDownComplete) //if ability off cooldown
         {
             AbilityReady();
-            if (Input.GetButtonDown(abilityButtonAxisName))
+            if (Input.GetButtonDown(abilityButtonAxisName)) //both ready and ability button is pressed
             {
                 ButtonTriggered();
             }
         }
         else
         {
-            CoolDown();
+            CoolDown(); //increment cooldown if not pressed
         }
     }
     private void AbilityReady()
     {
         coolDownTextDisplay.enabled = false;
-        darkMask.enabled = false;
+        darkMask.enabled = false; //if ready, disable dark mask
     }
 
     private void CoolDown()
     {
-        coolDownTimeLeft -= Time.deltaTime;
-        float roundedCd = Mathf.Round(coolDownTimeLeft);
-        coolDownTextDisplay.text = roundedCd.ToString();
-        darkMask.fillAmount = (coolDownTimeLeft / coolDownDuration);
+        coolDownTimeLeft -= Time.deltaTime; //subtracting time from total time left
+        float roundedCd = Mathf.Round(coolDownTimeLeft); //rounded cooldown time (avoid weird number displays)
+        coolDownTextDisplay.text = roundedCd.ToString(); 
+        darkMask.fillAmount = (coolDownTimeLeft / coolDownDuration); //calculates fill of ability mask
     }
 
-    private void ButtonTriggered()
+   
+
+    private void ButtonTriggered() //when they press the fire button
     {
         nextReadyTime = coolDownDuration + Time.time;
         coolDownTimeLeft = coolDownDuration;
         darkMask.enabled = true;
         coolDownTextDisplay.enabled = true;
 
-        abilitySource.clip = ability.aSound;
-        abilitySource.Play();
-        ability.TriggerAbility();
+        abilitySource.clip = ability.aSound; //sets sound for the ability triggered
+        abilitySource.Play(); 
+        ability.TriggerAbility(); 
     }
 }
