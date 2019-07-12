@@ -415,6 +415,9 @@ MonoBehaviour:
   enemyGFX: {fileID: 277410769}
   inAttackRange: 0
   rangedAttack: {fileID: 277410770}
+  waypointIndex: 0
+  waypoints: {fileID: 798885390}
+  canPathfind: 0
 --- !u!95 &277410762
 Animator:
   serializedVersion: 3
@@ -22217,6 +22220,9 @@ MonoBehaviour:
   enemyGFX: {fileID: 5420769238288300759}
   inAttackRange: 0
   rangedAttack: {fileID: 0}
+  waypointIndex: 0
+  waypoints: {fileID: 0}
+  canPathfind: 0
 --- !u!114 &503410941
 MonoBehaviour:
   m_ObjectHideFlags: 0

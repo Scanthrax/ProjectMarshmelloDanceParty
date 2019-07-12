@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GuardIdle : StateMachineBehaviour
+public class GuardWalking : StateMachineBehaviour
 {
-
-    Animator anim;
 
     float timer;
     public float duration;
@@ -14,12 +12,11 @@ public class GuardIdle : StateMachineBehaviour
     //OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (anim == null) anim = animator;
-
+        animator.GetComponent<EnemyAI>().NextIndex();
         timer = 0f;
 
-        anim.GetComponent<EnemyAI>().canPathfind = false;
 
+        animator.GetComponent<EnemyAI>().canPathfind = true;
     }
 
     //OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -30,7 +27,7 @@ public class GuardIdle : StateMachineBehaviour
 
         if (timer >= duration)
         {
-            anim.SetTrigger("GoToWaypoint");
+            animator.SetTrigger("ReachedWaypoint");
             timer = 0f;
         }
     }
@@ -40,5 +37,6 @@ public class GuardIdle : StateMachineBehaviour
     {
 
     }
+
 
 }

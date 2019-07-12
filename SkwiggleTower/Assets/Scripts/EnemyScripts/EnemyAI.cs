@@ -28,6 +28,12 @@ public class EnemyAI : MonoBehaviour
     Animator anim;
     public Ability rangedAttack;
 
+
+
+    public int waypointIndex;
+    public Transform waypoints;
+    public bool canPathfind;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -89,39 +95,48 @@ public class EnemyAI : MonoBehaviour
 
     void UpdatePath()
     {
+        if (!canPathfind) return;
+        //var players = RoomManager.instance.playerInputs;
 
-        var players = RoomManager.instance.playerInputs;
+        //PlayerInput player = null;
+        //float shortestDist = 0f;
 
-        PlayerInput player = null;
-        float shortestDist = 0f;
+        //for (int i = 0; i < players.Count; i++)
+        //{
+        //    if (i == 0)
+        //    {
+        //        player = players[i];
+        //        shortestDist = Vector2.Distance(transform.position, player.transform.position);
+        //        continue;
+        //    }
 
-        for (int i = 0; i < players.Count; i++)
-        {
-            if (i == 0)
-            {
-                player = players[i];
-                shortestDist = Vector2.Distance(transform.position, player.transform.position);
-                continue;
-            }
+        //    var currentDist = Vector2.Distance(transform.position, players[i].transform.position);
 
-            var currentDist = Vector2.Distance(transform.position, players[i].transform.position);
+        //    if (currentDist < shortestDist)
+        //    {
+        //        shortestDist = currentDist;
+        //        player = players[i];
+        //    }
 
-            if (currentDist < shortestDist)
-            {
-                shortestDist = currentDist;
-                player = players[i];
-            }
+        //}
 
-        }
-
-        inAttackRange = shortestDist < 5f;
-        anim.SetBool("inAttackRange", inAttackRange);
-        if(inAttackRange)
-            rangedAttack.Cast();
+        //inAttackRange = shortestDist < 5f;
+        //anim.SetBool("inAttackRange", inAttackRange);
+        //if(inAttackRange)
+        //    rangedAttack.Cast();
 
 
 
         if (seeker.IsDone()) //if not currently calculating a path it can update its path
-            seeker.StartPath(rb.position, player.transform.position, OnPathComplete);
+            seeker.StartPath(rb.position, waypoints.GetChild(waypointIndex).transform.position, OnPathComplete);
     }
+
+
+    public void NextIndex()
+    {
+        waypointIndex++;
+        if (waypointIndex >= waypoints.childCount)
+            waypointIndex = 0;
+    }
+
 }
