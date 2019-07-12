@@ -24,6 +24,9 @@ public class EnemyAI : MonoBehaviour
     Seeker seeker;
     Rigidbody2D rb;
 
+    public bool inAttackRange;
+    Animator anim;
+    public Ability rangedAttack;
 
     // Start is called before the first frame update
     void Start()
@@ -32,7 +35,7 @@ public class EnemyAI : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         InvokeRepeating("UpdatePath", 0f, .5f);
-        
+        anim = GetComponent<Animator>();
     }
     
     void OnPathComplete(Path _path)
@@ -73,7 +76,7 @@ public class EnemyAI : MonoBehaviour
         Vector2 force = direction * speed * Time.deltaTime;
 
         //Apply force to enemy in direction of player
-        rb.AddForce(force);
+        //rb.AddForce(force);
 
         //calculate distance
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
@@ -86,7 +89,39 @@ public class EnemyAI : MonoBehaviour
 
     void UpdatePath()
     {
-        if(seeker.IsDone()) //if not currently calculating a path it can update its path
-        seeker.StartPath(rb.position, target.position, OnPathComplete);
+
+        var players = RoomManager.instance.playerInputs;
+
+        PlayerInput player = null;
+        float shortestDist = 0f;
+
+        for (int i = 0; i < players.Count; i++)
+        {
+            if (i == 0)
+            {
+                player = players[i];
+                shortestDist = Vector2.Distance(transform.position, player.transform.position);
+                continue;
+            }
+
+            var currentDist = Vector2.Distance(transform.position, players[i].transform.position);
+
+            if (currentDist < shortestDist)
+            {
+                shortestDist = currentDist;
+                player = players[i];
+            }
+
+        }
+
+        inAttackRange = shortestDist < 5f;
+        anim.SetBool("inAttackRange", inAttackRange);
+        if(inAttackRange)
+            rangedAttack.Cast();
+
+
+
+        if (seeker.IsDone()) //if not currently calculating a path it can update its path
+            seeker.StartPath(rb.position, player.transform.position, OnPathComplete);
     }
 }

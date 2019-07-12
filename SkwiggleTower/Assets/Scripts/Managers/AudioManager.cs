@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public enum Sounds { Music, GroundImpact, AsphaltFootsteps, SlingshotStretch, Groans}
+public enum Sounds { Music, GroundImpact, AsphaltFootsteps, SlingshotStretch, Groans, FruitSplat, RockImpact}
 public enum SoundChannels { Music, SFX, Footsteps, GroundImpact}
 
 /// <summary>

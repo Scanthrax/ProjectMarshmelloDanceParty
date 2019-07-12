@@ -21,7 +21,7 @@ public class MeleeGuardAnimCont : MonoBehaviour
         anim.SetBool("isWalking",Mathf.Abs(rb.velocity.x) > 0.12f);
 
 
-        if (Mathf.Abs(rogue.position.x - transform.position.x) < 1f)
-            anim.SetTrigger("attack");
+        //if (Mathf.Abs(rogue.position.x - transform.position.x) < 1f)
+        //    anim.SetTrigger("attack");
     }
 }

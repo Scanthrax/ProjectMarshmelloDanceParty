@@ -18,9 +18,10 @@ public class PlayerInput : MonoBehaviour
     [HideInInspector] public bool jumpPressed;      //Bool that stores jump held
     [HideInInspector] public bool crouchHeld;       //Bool that stores crouch held
     [HideInInspector] public bool crouchPressed;    //Bool that stores crouch pressed
-    [HideInInspector] public bool primaryAttackPressed;         //Bool that stores attack pressed
-    [HideInInspector] public bool primaryAttackHeld;            //Bool that stores attack  held 
-    [HideInInspector] public bool secondaryAttackPressed;      //Bool that stores secondary attack  held 
+    [HideInInspector] public bool primaryPressed;         //Bool that stores attack pressed
+    [HideInInspector] public bool primaryHold;            //Bool that stores attack  held 
+    [HideInInspector] public bool secondaryPressed;      //Bool that stores secondary attack  held
+    [HideInInspector] public bool secondaryHold;            //Bool that stores attack  held 
 
     bool dPadCrouchPrev;                            //Previous values of touch Thumbstick
     bool readyToClear;                              //Bool used to keep input in sync
@@ -31,10 +32,13 @@ public class PlayerInput : MonoBehaviour
 
     bool enabled;
 
+    RogueAnimController RAC;
 
     private void Start()
     {
         enabled = false;
+        RAC = GetComponent<RogueAnimController>();
+
     }
 
     void Update()
@@ -74,9 +78,7 @@ public class PlayerInput : MonoBehaviour
         jumpHeld = false;
         crouchPressed = false;
         crouchHeld = false;
-        primaryAttackPressed = false;
-        primaryAttackHeld = false;
-        secondaryAttackPressed = false;
+
 
         readyToClear = false;
     }
@@ -87,8 +89,44 @@ public class PlayerInput : MonoBehaviour
         horizontal += Input.GetAxis(prefix + "Movement");
 
         //Attack Inputs
-        primaryAttackPressed = Input.GetAxis(prefix + "Primary") > 0.5f || Input.GetButton(prefix + "Primary");
-        secondaryAttackPressed = Input.GetAxis(prefix + "Secondary") > 0.5f || Input.GetButton(prefix + "Secondary");
+        primaryHold = Input.GetAxis(prefix + "Primary") > 0.5f || Input.GetButton(prefix + "Primary");
+        secondaryHold = Input.GetAxis(prefix + "Secondary") > 0.5f || Input.GetButton(prefix + "Secondary");
+
+
+        RAC.anim.SetBool("PrimaryHold", primaryHold);
+        RAC.anim.SetBool("SecondaryHold", secondaryHold);
+
+        //detect trigger
+        if (!primaryPressed && primaryHold && !RAC.anim.GetBool("PrimaryActive") && !RAC.CS.primary.onCooldown)
+        {
+            RAC.anim.SetTrigger("PrimaryTrigger");
+            RAC.anim.SetBool("PrimaryActive", true);
+            primaryPressed = true;
+        }
+        else if(!primaryHold)
+        {
+            if(primaryPressed)
+                primaryPressed = false;
+        }
+
+        //detect trigger
+
+
+
+        if (!secondaryPressed && secondaryHold && !RAC.anim.GetBool("SecondaryActive") && !RAC.CS.secondary.onCooldown)
+        {
+            print("secondary cast");
+            RAC.anim.SetTrigger("SecondaryTrigger");
+            RAC.anim.SetBool("SecondaryActive", true);
+            secondaryPressed = true;
+        }
+        else if (!secondaryHold)
+        {
+            if (secondaryPressed)
+                secondaryPressed = false;
+        }
+
+
 
         //Accumulate button inputs
         jumpPressed = jumpPressed || Input.GetButtonDown(prefix + "Jump") || Input.GetKeyDown(KeyCode.W);

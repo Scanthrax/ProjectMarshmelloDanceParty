@@ -17,10 +17,19 @@ public class CharacterStats : MonoBehaviour
 
     public event System.Action<int, int> OnHealthChanged; //Delegate On Health Changed
 
+
+    // RON
+    public Ability primary;
+    public Ability secondary;
+
+    public int direction;
+
+
     private void Awake()
     {
         currentHealth = maxHealth; //initial value
         xp = 5;
+        direction = 1;
     }
 
     //add passive healing 
@@ -66,4 +75,7 @@ public class CharacterStats : MonoBehaviour
         // Debug.Log(transform.name + " died.");
         RoomManager.instance.OnEnemyDeath();
     }
+
+
+
 }

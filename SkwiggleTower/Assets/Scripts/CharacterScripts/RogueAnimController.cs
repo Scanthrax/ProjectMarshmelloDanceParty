@@ -8,10 +8,13 @@ using UnityEngine;
 public class RogueAnimController : MonoBehaviour
 {
     Rigidbody2D rb;
-    Animator anim;
+    [HideInInspector]
+    public Animator anim;
     PlayerMovement pm;
     RoomManager RM;
     PlayerManager PManager;
+    [HideInInspector]
+    public CharacterStats CS;
 
     public AudioSource footstepSource, impactSource, slingshotStretch, slingshotShoot, secondarySource;
 
@@ -50,6 +53,8 @@ public class RogueAnimController : MonoBehaviour
         RM = RoomManager.instance;
         //PInput.actions = RM.inputMaster;
 
+        CS = GetComponent<CharacterStats>();
+
     }
 
     // Update is called once per frame
@@ -60,23 +65,26 @@ public class RogueAnimController : MonoBehaviour
 
         anim.SetBool("inAir", !pm.isOnGround);
 
-        if (PI.secondaryAttackPressed)
-        {
-            anim.SetTrigger("Secondary");
-        }
+        //if (PI.secondaryAttackPressed)
+        //{
+        //    anim.SetTrigger("Secondary");
+        //}
 
 
-        if (PI.primaryAttackPressed)
-        {
-            print("HELLO");
+        //if (PI.primaryAttackPressed)
+        //{
+        //    anim.SetBool("primaryHold", true);
 
-            anim.SetBool("primaryHold", true);
-            anim.SetTrigger("Primary");
-        }
-        else
-        {
-            anim.SetBool("primaryHold", false);
-        }
+        //    if (!CS.primary.onCooldown)
+        //    {
+        //        anim.SetTrigger("Primary");
+        //        CS.primary.timer = 0f;
+        //    }
+        //}
+        //else
+        //{
+        //    anim.SetBool("primaryHold", false);
+        //}
 
     }
 
@@ -120,12 +128,7 @@ public class RogueAnimController : MonoBehaviour
     }
 
 
-    public void ThrowRock()
-    {
-        var rockRb = Instantiate(rock,this.transform.position + new Vector3(pm.GetDirection() * 0.6f,0.1f),Quaternion.identity);
-        rockRb.AddForce(Vector2.right * pm.GetDirection() * impulse);
-        slingshotShoot.Play();
-    }
+
 
     public void SlingStretch()
     {
@@ -136,5 +139,27 @@ public class RogueAnimController : MonoBehaviour
     public void SecondarySound()
     {
         secondarySource.Play();
+    }
+
+
+
+
+
+
+    public void CastPrimary()
+    {
+        if (CS.primary)
+            CS.primary.Cast();
+    }
+
+    public void CastSecondary()
+    {
+        if (CS.secondary)
+            CS.secondary.Cast();
+    }
+
+    public void FinishPrimary()
+    {
+        anim.SetBool("PrimaryActive", false);
     }
 }

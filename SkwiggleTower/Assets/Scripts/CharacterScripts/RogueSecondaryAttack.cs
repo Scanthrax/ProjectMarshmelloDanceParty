@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RogueSecondaryAttack : MonoBehaviour
+public class RogueSecondaryAttack : Ability
 {
     //Not all of these variables are used yet. Currently working on getting the dash to work correctly.
     public Vector2 attackRange;
@@ -33,6 +33,8 @@ public class RogueSecondaryAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        base.Update();
+
         //if ((Input.GetMouseButtonDown(1) || isClicked))
         if (isClicked)
         {

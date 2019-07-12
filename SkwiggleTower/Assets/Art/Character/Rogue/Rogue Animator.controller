@@ -65,7 +65,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Primary
+    m_ConditionEvent: PrimaryTrigger
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 546299732548013247}
@@ -124,7 +124,7 @@ AnimatorStateMachine:
   m_ChildStateMachines:
   - serializedVersion: 1
     m_StateMachine: {fileID: 407357917676381756}
-    m_Position: {x: 10, y: 710, z: 0}
+    m_Position: {x: 40, y: 700, z: 0}
   - serializedVersion: 1
     m_StateMachine: {fileID: 7842675289871477840}
     m_Position: {x: 330, y: 710, z: 0}
@@ -136,7 +136,7 @@ AnimatorStateMachine:
     second: []
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: -520, y: 290, z: 0}
-  m_EntryPosition: {x: 930, y: 420, z: 0}
+  m_EntryPosition: {x: 910, y: 400, z: 0}
   m_ExitPosition: {x: 800, y: 160, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 4913520975915624918}
@@ -304,8 +304,8 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: secondaryEnd
+  - m_ConditionMode: 2
+    m_ConditionEvent: SecondaryActive
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: isMoving
@@ -332,8 +332,8 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: secondaryEnd
+  - m_ConditionMode: 2
+    m_ConditionEvent: SecondaryActive
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: isMoving
@@ -373,26 +373,38 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: Primary
+  - m_Name: PrimaryTrigger
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: primaryHold
+  - m_Name: PrimaryHold
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: Secondary
+  - m_Name: PrimaryActive
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
+  - m_Name: SecondaryTrigger
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: secondaryEnd
-    m_Type: 9
+  - m_Name: SecondaryHold
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
+  - m_Name: SecondaryActive
+    m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -556,7 +568,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Primary
+    m_ConditionEvent: PrimaryTrigger
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 546299732548013247}
@@ -606,7 +618,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: primaryHold
+    m_ConditionEvent: PrimaryHold
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1250783363062996653}
@@ -631,7 +643,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Secondary
+    m_ConditionEvent: SecondaryTrigger
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -9042421972839452328}
@@ -737,8 +749,8 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: secondaryEnd
+  - m_ConditionMode: 2
+    m_ConditionEvent: SecondaryActive
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: inAir
@@ -766,7 +778,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Primary
+    m_ConditionEvent: PrimaryTrigger
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 546299732548013247}
@@ -805,7 +817,7 @@ AnimatorStateMachine:
   m_AnyStatePosition: {x: -70, y: 140, z: 0}
   m_EntryPosition: {x: -50, y: 240, z: 0}
   m_ExitPosition: {x: 1000, y: 350, z: 0}
-  m_ParentStateMachinePosition: {x: 890, y: 140, z: 0}
+  m_ParentStateMachinePosition: {x: 870, y: 170, z: 0}
   m_DefaultState: {fileID: -9042421972839452328}
 --- !u!1101 &7945504472543418619
 AnimatorStateTransition:
