@@ -4,20 +4,25 @@ using UnityEngine;
 
 public class Ability : MonoBehaviour
 {
-    float timer;
+    [HideInInspector]
+    public float timer;
+
+    [Header("Base Attributes")]
     public float duration;
+
+    public bool activateOnHold;
 
     public bool onCooldown { get { return timer < duration; } }
 
     public float percentage { get { return timer / duration; } }
+    
 
-
-    private void Start()
+    public virtual void Start()
     {
         timer = duration;
     }
 
-    public void Cast()
+    public virtual void Cast()
     {
         if(!onCooldown)
         {
@@ -25,7 +30,7 @@ public class Ability : MonoBehaviour
         }
     }
 
-    public void Update()
+    public virtual void Update()
     {
         if(onCooldown)
         {

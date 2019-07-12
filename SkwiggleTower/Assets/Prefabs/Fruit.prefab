@@ -104,7 +104,7 @@ Rigidbody2D:
   m_GravityScale: 0.1
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!58 &5242721097484711063
@@ -135,6 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a7d13a760a9fe5498d4f22ee9d632aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  category: 5
   rockImpact: {fileID: 7284206876093713158}
 --- !u!82 &1631048381354739426
 AudioSource:

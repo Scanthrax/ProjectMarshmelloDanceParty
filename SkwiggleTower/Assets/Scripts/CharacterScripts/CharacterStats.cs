@@ -71,4 +71,7 @@ public class CharacterStats : MonoBehaviour
         // Debug.Log(transform.name + " died.");
         RoomManager.instance.OnEnemyDeath();
     }
+
+
+
 }

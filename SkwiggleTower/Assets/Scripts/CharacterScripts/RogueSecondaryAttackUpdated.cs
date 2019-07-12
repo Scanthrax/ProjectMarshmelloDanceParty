@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RogueSecondaryAttackUpdated : MonoBehaviour
+public class RogueSecondaryAttackUpdated : Ability
 {
     public int damage;
     private Transform playerPos;
@@ -17,8 +17,10 @@ public class RogueSecondaryAttackUpdated : MonoBehaviour
     public float startDashCooldown;
     public float dashCooldown;
     // Start is called before the first frame update
-    void Start()
+    new void Start()
     {
+        base.Start();
+
         dashCooldown = 0;
         dashTime = startDashTime;
         playerPos = GetComponent<Transform>();
@@ -27,17 +29,19 @@ public class RogueSecondaryAttackUpdated : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    new void Update()
     {
+        base.Update();
         //Executes dash attack when right clicked
         if(isClicked)
         {
+            GetComponent<Animator>().SetBool("SecondaryActive", true);
             dashAttack();
         }
         //Executes end animation and puts back into effect collision between enemy and player
         if (!isClicked)
         {
-            GetComponent<Animator>().SetTrigger("secondaryEnd");
+            GetComponent<Animator>().SetBool("SecondaryActive",false);
             Physics2D.IgnoreLayerCollision(8, 11, false);
         }
         //Cooldown constantly decreases
@@ -100,6 +104,9 @@ public class RogueSecondaryAttackUpdated : MonoBehaviour
         }
         return isClicked;
     }
+
+
+
     public void Click()
     {
         if (dashCooldown <= 0)
@@ -108,9 +115,19 @@ public class RogueSecondaryAttackUpdated : MonoBehaviour
             dashCooldown = startDashCooldown;
         }
     }
+
+    public override void Cast()
+    {
+        
+        Click();
+        timer = 0f;
+        base.Cast();
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
+        if(attackPos)
         Gizmos.DrawWireCube(attackPos.position, attackRange);
     }
 }
