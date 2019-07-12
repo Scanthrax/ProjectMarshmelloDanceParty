@@ -7,7 +7,7 @@ using UnityEngine;
 /// Abstract class that should be overriden
 /// Never exists in the hierachy
 /// </summary>
-public abstract class Ability : ScriptableObject
+public abstract class AbilityV : ScriptableObject
 {
     public string aName = "New Ability";
     public Sprite aSprite;

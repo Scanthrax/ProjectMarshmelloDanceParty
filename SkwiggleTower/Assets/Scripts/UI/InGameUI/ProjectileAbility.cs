@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Abilities/ProjectileAbility")]
-public class ProjectileAbility : Ability
+public class ProjectileAbility : AbilityV
 {
     public float projectileForce = 500f;
     public Rigidbody projectile;

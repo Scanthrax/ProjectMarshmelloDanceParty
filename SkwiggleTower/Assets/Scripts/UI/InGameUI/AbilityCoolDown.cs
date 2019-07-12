@@ -11,7 +11,7 @@ public class AbilityCoolDown : MonoBehaviour
     public TextMeshProUGUI coolDownTextDisplay; //UI display
 
     [SerializeField]
-    private Ability ability;
+    private AbilityV ability;
     [SerializeField]
     private GameObject player;
 
@@ -26,7 +26,7 @@ public class AbilityCoolDown : MonoBehaviour
         Initialize(ability, player);
     }
 
-    public void Initialize(Ability selectedAbility, GameObject player)
+    public void Initialize(AbilityV selectedAbility, GameObject player)
     {
         ability = selectedAbility; //sets ability in scriptable object
         myButtonImage = GetComponent<Image>();

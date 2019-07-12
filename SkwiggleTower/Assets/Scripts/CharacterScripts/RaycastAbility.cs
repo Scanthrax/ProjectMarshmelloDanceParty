@@ -5,7 +5,7 @@ using UnityEngine;
 /// Valarie Script for ability system using scriptable objects
 /// </summary>
 [CreateAssetMenu(menuName ="Abilities")]
-public class RaycastAbility : Ability
+public class RaycastAbility : AbilityV
 {
     public int damage = 1;
     public float range = 50f;
