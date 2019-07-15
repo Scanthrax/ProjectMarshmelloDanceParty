@@ -42,11 +42,18 @@ public class RockAttack : MonoBehaviour
                 temp.TakeDamage(1);
                 print(thisLayer + " hit!");
 
-                var testImpact = collision.gameObject.GetComponent<TestImpactSound>();
+
+                var testImpact = collision.gameObject.GetComponent<CharacterStats>();
                 if (testImpact)
-                    testImpact.PlayImpact();
+                {
+                    var source = testImpact.arrowHitSource;
+                    if (source)
+                        source.Play();
+                }
 
                 Destroy(gameObject);
+
+
             }
             else
                 print("can't be damaged!");

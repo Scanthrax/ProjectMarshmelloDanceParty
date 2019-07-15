@@ -18,7 +18,8 @@ public class EnemyAI : MonoBehaviour
     public Transform enemyGFX;
 
     Path path;
-    int currentWaypoint = 0;
+    int previousWaypointIndex;
+    int currentWaypointIndex;
     bool reachedEndOfPath = false;
 
     Seeker seeker;
@@ -34,6 +35,34 @@ public class EnemyAI : MonoBehaviour
     public Transform waypoints;
     public bool canPathfind;
 
+
+    public float impulse;
+
+
+
+    public List<PlayerStats> playersInRange;
+
+
+    public bool arePlayersInRange { get { return playersInRange.Count > 0; } }
+
+    public int direction;
+
+
+
+    public Vector3 previousWaypoint, currentWaypoint;
+
+    public Vector3 waypointPosition;
+
+    public Collider2D enemyCollider;
+
+
+    public float attackRange;
+
+    public Vector3 destination;
+    public Transform destTransform;
+
+    public bool idle;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +71,9 @@ public class EnemyAI : MonoBehaviour
 
         InvokeRepeating("UpdatePath", 0f, .5f);
         anim = GetComponent<Animator>();
+
+        previousWaypointIndex = 1;
+        currentWaypointIndex = 2;
     }
     
     void OnPathComplete(Path _path)
@@ -49,49 +81,74 @@ public class EnemyAI : MonoBehaviour
         if (!_path.error)
         {
             path = _path;
-            currentWaypoint = 0;
+            currentWaypointIndex = 0;
         }
 
-        //updates direction enemy is facing 
-        if (rb.velocity.x >= 0.01f)
-        {
-            enemyGFX.localScale = new Vector3(-1, 1f, 1f); //travels to the right
-        }
-        else if (rb.velocity.x <= -0.01f)
-        {
-            enemyGFX.localScale = new Vector3(1, 1f, 1f); //flips character to face player on left
-        }
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (path == null)
-            return;
-        if (currentWaypoint >= path.vectorPath.Count)
-        {
-            reachedEndOfPath = true;
-            return;
-        }
-        else
-        {
-            reachedEndOfPath = false;
-        }
-        //Calculated path
-        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
-        Vector2 force = direction * speed * Time.deltaTime;
 
-        //Apply force to enemy in direction of player
-        //rb.AddForce(force);
+
+
+        // Cast a ray straight down.
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right * direction,attackRange);
+
+        // If it hits something...
+        if (hit.collider)
+        {
+            var x = hit.collider.GetComponent<PlayerStats>();
+
+            if (x)
+            {
+                GetComponent<EnemyStats>().primary.Cast();
+            }
+        }
+
+        if (path == null || !canPathfind)
+            return;
+
+        //if (currentWaypointIndex >= path.vectorPath.Count)
+        //{
+        //    reachedEndOfPath = true;
+        //    return;
+        //}
+        //else
+        //{
+        //    reachedEndOfPath = false;
+        //}
+
+        previousWaypoint = path.vectorPath[previousWaypointIndex];
+
+
+
+        //Calculated path
+        var newDirection = destination.x < rb.transform.position.x ? -1 : 1;
+        if (direction != newDirection) ChangeDirection(newDirection);
+
+        
+        Vector2 force = new Vector2(direction * impulse, rb.velocity.y);
+
+        if (!idle)
+            //Apply force to enemy in direction of player
+            rb.velocity = force;
+        else
+            rb.velocity = new Vector2(0, rb.velocity.y);
 
         //calculate distance
-        float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
+        float distance = Vector2.Distance(rb.position, previousWaypoint);
 
-        if(distance < nextWaypointDistance)
-        {
-            currentWaypoint++;
-        }
+
+
+
+
+        
     }
+
+
+
+
 
     void UpdatePath()
     {
@@ -125,10 +182,11 @@ public class EnemyAI : MonoBehaviour
         //if(inAttackRange)
         //    rangedAttack.Cast();
 
-
+        if (destTransform)
+            destination = destTransform.position;
 
         if (seeker.IsDone()) //if not currently calculating a path it can update its path
-            seeker.StartPath(rb.position, waypoints.GetChild(waypointIndex).transform.position, OnPathComplete);
+            seeker.StartPath(rb.position, destination, OnPathComplete);
     }
 
 
@@ -139,4 +197,30 @@ public class EnemyAI : MonoBehaviour
             waypointIndex = 0;
     }
 
+
+
+
+    public void ChangeDirection(int dir)
+    {
+        direction = dir;
+        transform.localScale = new Vector3(direction, 1, 1);
+        GetComponent<CharacterStats>().direction = direction;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(previousWaypoint, 0.1f);
+
+
+        Gizmos.DrawLine(transform.position, transform.position + transform.right * attackRange * direction);
+    }
+
+
+    public void SetWaypoint()
+    {
+        destination = waypoints.GetChild(waypointIndex).transform.position;
+        destTransform = null;
+        path = null;
+    }
 }

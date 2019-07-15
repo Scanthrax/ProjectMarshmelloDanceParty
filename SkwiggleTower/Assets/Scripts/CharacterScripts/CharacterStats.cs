@@ -25,6 +25,10 @@ public class CharacterStats : MonoBehaviour
     public int direction;
 
 
+    public AudioSource arrowHitSource;
+    public AudioClip arrowHit;
+
+
     private void Awake()
     {
         currentHealth = maxHealth; //initial value
