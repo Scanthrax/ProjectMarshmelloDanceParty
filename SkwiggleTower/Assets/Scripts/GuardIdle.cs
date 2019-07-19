@@ -21,6 +21,7 @@ public class GuardIdle : BaseState
         timer = 0f;
 
         enemy.idle = true;
+        anim.SetBool("isWalking", false);
 
     }
 

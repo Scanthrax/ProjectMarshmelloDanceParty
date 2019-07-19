@@ -8,6 +8,7 @@ public class BaseState : StateMachineBehaviour
     protected EnemyAI enemy;
     protected Rigidbody2D rb;
     protected EnemyStats stats;
+    protected MeleeGuardAI enemy2;
 
     private bool initialized;
     protected bool canUpdate;
@@ -19,7 +20,11 @@ public class BaseState : StateMachineBehaviour
         {
             initialized = true;
             this.anim = anim;
+
+            // 
             enemy = anim.GetComponent<EnemyAI>();
+            enemy2 = anim.GetComponent<MeleeGuardAI>();
+
             rb = anim.GetComponent<Rigidbody2D>();
             stats = anim.GetComponent<EnemyStats>();
         }
@@ -30,7 +35,10 @@ public class BaseState : StateMachineBehaviour
 
     public void CheckAggro()
     {
-        anim.SetBool("PlayersInRange", enemy.arePlayersInRange);
+        if(enemy)
+            anim.SetBool("PlayersInRange", enemy.arePlayersInRange);
+        else
+            anim.SetBool("PlayersInRange", enemy2.arePlayersInRange);
     }
 
 }

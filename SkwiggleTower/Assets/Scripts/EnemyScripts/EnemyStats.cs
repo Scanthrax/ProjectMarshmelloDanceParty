@@ -13,10 +13,10 @@ public class EnemyStats : CharacterStats
     public override void Die()
     {
         base.Die();
-
+        RoomManager.instance.OnEnemyDeath();
         //Reward Player
-        PlayerManager.instance.charStats.Heal(healthGained); //references character stats in the Playermanager Health
-        PlayerManager.instance.charStats.gainXP(xpGained); //references character stats in the Playermanager XP;
+        //PlayerManager.instance.charStats.Heal(healthGained); //references character stats in the Playermanager Health
+        //PlayerManager.instance.charStats.gainXP(xpGained); //references character stats in the Playermanager XP;
         Debug.Log("Enemy Died");
         //Play Animation 
         Destroy(gameObject);

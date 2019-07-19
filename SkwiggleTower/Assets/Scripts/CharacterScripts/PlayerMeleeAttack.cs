@@ -2,49 +2,95 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMeleeAttack : MonoBehaviour
+public class PlayerMeleeAttack : Ability
 {
-    private float attackCooldown;
     public float startAttackCooldown;
 
-    public Transform attackPos;
+    public Vector2 attackPos;
     public LayerMask whatAreEnemies;
-    public float attackRange;
-    public int damage;
+    public Vector2 attackRange;
 
-    // Start is called before the first frame update
-    void Start()
+    public List<Collider2D> enemiesHit;
+
+
+    public bool startMelee;
+
+
+    float prevImpulse;
+
+    public override void Start()
     {
-        
+        base.Start();
+        startMelee = false;
     }
 
     // Update is called once per frame
-    void Update()
+    new void Update()
     {
+
+
+
+
+        base.Update();
         //once 0, player can attack
-        if (attackCooldown <= 0)
+
+        if(startMelee)
         {
-            if(Input.GetMouseButtonDown(0))
+            Collider2D[] enemiesInRange = Physics2D.OverlapBoxAll(transform.position + new Vector3(attackPos.x * character.direction,attackPos.y), attackRange, whatAreEnemies);
+            for(int i = 0; i < enemiesInRange.Length; i++)
             {
-                Collider2D[] enemiesInRange = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatAreEnemies);
-                for(int i = 0; i < enemiesInRange.Length; i++)
-                {
-                    //Uses a method in CharacterStats.cs for enemy to take damage
-                    enemiesInRange[i].GetComponent<CharacterStats>().TakeDamage(damage);
-                }
+                var characterStats = enemiesInRange[i].GetComponent<CharacterStats>();
+
+                if (enemiesHit.Contains(enemiesInRange[i]) || !characterStats || enemiesInRange[i] == GetComponent<Collider2D>() || enemiesInRange[i].gameObject.layer == LayerMask.NameToLayer("Enemy")) continue;
+
+
+
+                characterStats.TakeDamage(damage);
+                Debug.Log("Got 'em");
+
+                enemiesHit.Add(enemiesInRange[i]);
             }
-            attackCooldown = startAttackCooldown;
         }
-        else
-        {
-            attackCooldown -= Time.deltaTime;
-        }
+
     }
+
+
+    public override void Cast()
+    {
+        if (onCooldown) return;
+        base.Cast();
+        GetComponent<Animator>().SetTrigger("PrimaryTrigger");
+
+        var enemyAI = GetComponent<EnemyAI>();
+
+        prevImpulse = enemyAI.impulse;
+        enemyAI.impulse = 0f;
+    }
+
+    public void StartMelee()
+    {
+        startMelee = true;
+        enemiesHit.Clear();
+    }
+    public void EndMelee()
+    {
+        startMelee = false;
+    }
+
+
+    public void SetImpulseBack()
+    {
+        var enemyAI = GetComponent<EnemyAI>();
+        enemyAI.impulse = prevImpulse;
+    }
+
+
     //This method shows the attack radius, which can be manipulated in Unity
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(attackPos.position, attackRange);
+        int i = character ? character.direction : 1;
+        Gizmos.DrawWireCube(transform.position + new Vector3(attackPos.x * i, attackPos.y), attackRange);
     }
 
 }

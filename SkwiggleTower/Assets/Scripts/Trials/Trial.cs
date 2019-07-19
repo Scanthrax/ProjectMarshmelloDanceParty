@@ -133,6 +133,8 @@ public class Trial : MonoBehaviour
     /// </summary>
     public virtual void StartTrial()
     {
+        print("Starting Trial now...");
+
         // only start the trial if it has not already been started
         if (!started)
             roomManager.introCutscene.Play();

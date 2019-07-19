@@ -12,14 +12,18 @@ public class Ability : MonoBehaviour
 
     public bool activateOnHold;
 
+    public int damage;
+
     public bool onCooldown { get { return timer < duration; } }
 
     public float percentage { get { return timer / duration; } }
-    
+
+    protected CharacterStats character;
 
     public virtual void Start()
     {
         timer = duration;
+        character = GetComponent<CharacterStats>();
     }
 
     public virtual void Cast()

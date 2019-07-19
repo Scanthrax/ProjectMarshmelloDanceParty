@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class RogueSecondaryAttackUpdated : Ability
 {
-    public int damage;
+    //public int damage;
     private Transform playerPos;
-    public Transform attackPos;
+    public Vector2 attackPos;
     private Rigidbody2D rbody;
     public float dashSpeed;
     public float dashTime;
@@ -16,6 +16,12 @@ public class RogueSecondaryAttackUpdated : Ability
     public Vector2 attackRange;
     public float startDashCooldown;
     public float dashCooldown;
+
+
+
+    public List<Collider2D> enemiesHit;
+
+
     // Start is called before the first frame update
     new void Start()
     {
@@ -84,22 +90,45 @@ public class RogueSecondaryAttackUpdated : Ability
         if (isClicked)
         {
             Physics2D.IgnoreLayerCollision(8, 11, true);
-            Collider2D[] enemiesInRange = Physics2D.OverlapBoxAll(attackPos.position, attackRange, 0, whatAreEnemies);
+            Collider2D[] enemiesInRange = Physics2D.OverlapBoxAll(transform.position + new Vector3(attackPos.x * character.direction,attackPos.y) , attackRange, 0, whatAreEnemies);
             for (int i = 0; i < enemiesInRange.Length; i++)
             {
-                //Uses a method in CharacterStats.cs for enemy to take damage
-                enemiesInRange[i].GetComponent<CharacterStats>().TakeDamage(damage);
-                Debug.Log("Got 'em");
-                if (GetComponent<RogueUltTestActivation>().active && GetComponent<RoguePoisonUlt>() == null)
-                {
-                    //Adds poison script to enemies if Rogue ult is active
-                    enemiesInRange[i].gameObject.AddComponent<RoguePoisonUlt>();
-                    Debug.Log("This will activate");
-                }
-                else if (!GetComponent<RogueUltTestActivation>().active && GetComponent<RogueUltTestActivation>() != null)
-                {
-                    Debug.Log("This will not activate");
-                }
+                var characterStats = enemiesInRange[i].GetComponent<CharacterStats>();
+
+                if (enemiesHit.Contains(enemiesInRange[i]) || !characterStats) continue;
+
+                
+
+                    //Uses a method in CharacterStats.cs for enemy to take damage
+
+                    if (this.character.direction == characterStats.direction)
+                    {
+                        damage = Mathf.RoundToInt(damage * 1.5f);
+
+                        // FOR NOW, reset the rogue's dash on a backstab
+                        timer = duration;
+                        dashCooldown = 0f;
+                    }
+
+                    print(damage);
+
+                    characterStats.TakeDamage(damage);
+                    Debug.Log("Got 'em");
+
+                    enemiesHit.Add(enemiesInRange[i]);
+
+                    //if (GetComponent<RogueUltTestActivation>().active && GetComponent<RoguePoisonUlt>() == null)
+                    //{
+                    //    //Adds poison script to enemies if Rogue ult is active
+                    //    enemiesInRange[i].gameObject.AddComponent<RoguePoisonUlt>();
+                    //    Debug.Log("This will activate");
+                    //}
+                    //else if (!GetComponent<RogueUltTestActivation>().active && GetComponent<RogueUltTestActivation>() != null)
+                    //{
+                    //    Debug.Log("This will not activate");
+                    //}
+
+
             }
         }
         return isClicked;
@@ -113,6 +142,7 @@ public class RogueSecondaryAttackUpdated : Ability
         {
             isClicked = true;
             dashCooldown = startDashCooldown;
+            enemiesHit.Clear();
         }
     }
 
@@ -127,7 +157,8 @@ public class RogueSecondaryAttackUpdated : Ability
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        if(attackPos)
-        Gizmos.DrawWireCube(attackPos.position, attackRange);
+
+        int i = character ? character.direction : 1;
+        Gizmos.DrawWireCube(transform.position + new Vector3(attackPos.x * i, attackPos.y), attackRange);
     }
 }

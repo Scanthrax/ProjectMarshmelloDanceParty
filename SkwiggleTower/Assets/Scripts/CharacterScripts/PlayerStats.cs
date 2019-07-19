@@ -36,6 +36,7 @@ public class PlayerStats : CharacterStats
         //Kill Player
         //Play Death Animation
         //Restart Scene 
-        PlayerManager.instance.KillPlayer();
+        //PlayerManager.instance.KillPlayer();
+        GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
     }
 }

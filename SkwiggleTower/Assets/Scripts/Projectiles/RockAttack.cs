@@ -15,16 +15,24 @@ public class RockAttack : MonoBehaviour
 
     Rigidbody2D rb;
 
+    public AudioClip whooshSound, impactSound, armorHitSound; 
+
+
+    public int damage;
+
     private void Start()
     {
         Destroy(gameObject,3f);
 
-        rockImpact.clip = AudioManager.instance.soundDictionary[category][0];
-
+        impactSound = AudioManager.instance.soundDictionary[category][0];
 
         opposingLayer = thisLayer == "Player" ? "Enemy" : "Player";
 
-        Physics2D.IgnoreCollision(ignoreCollider, GetComponent<Collider2D>());
+
+        rockImpact.clip = whooshSound;
+        rockImpact.Play();
+
+        //Physics2D.IgnoreCollision(ignoreCollider, GetComponent<Collider2D>());
 
         rb = GetComponent<Rigidbody2D>();
     }
@@ -39,18 +47,13 @@ public class RockAttack : MonoBehaviour
             var temp = collision.gameObject.GetComponent<CharacterStats>();
             if (temp)
             {
-                temp.TakeDamage(1);
-                print(thisLayer + " hit!");
+                temp.TakeDamage(damage);
+                print(opposingLayer + " hit!");
 
 
-                var testImpact = collision.gameObject.GetComponent<CharacterStats>();
-                if (testImpact)
-                {
-                    var source = testImpact.arrowHitSource;
-                    if (source)
-                        source.Play();
-                }
-
+                rockImpact.clip = impactSound;
+                rockImpact.Play();
+                temp.PlayImpactSound("rock");
                 Destroy(gameObject);
 
 
@@ -60,24 +63,23 @@ public class RockAttack : MonoBehaviour
         }
         else
         {
-            //print("rock impact: " + collision.relativeVelocity.magnitude);
+                if (collision.relativeVelocity.magnitude > 10f)
+                {
+                    var x = AudioManager.instance.soundDictionary[category];
 
 
-            if (collision.relativeVelocity.magnitude > 10f)
-            {
-                var x = AudioManager.instance.soundDictionary[category];
+                    if (x.Count > 1)
+                        rockImpact.clip = x[Random.Range(0, x.Count)];
 
-
-                if (x.Count > 1)
-                    rockImpact.clip = x[Random.Range(0, x.Count)];
-
+                rockImpact.clip = impactSound;
                 rockImpact.Play();
 
+                }
+
+
+                gameObject.layer = LayerMask.NameToLayer("Debris");
+                if(rb)rb.gravityScale = 1f;
             }
-
-
-            gameObject.layer = LayerMask.NameToLayer("Debris");
-        }
     }
 
     public void SetLayer(string layer, Collider2D col)

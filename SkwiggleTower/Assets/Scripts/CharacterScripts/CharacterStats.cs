@@ -8,7 +8,8 @@ using UnityEngine;
 public class CharacterStats : MonoBehaviour
 {
     public int maxHealth = 100;
-    public int currentHealth { get; private set; } //any class can get the value only change it in this class
+    [SerializeField]
+    public int currentHealth;
     public int xp { get; private set; }
 
     public Stat damage;
@@ -25,8 +26,8 @@ public class CharacterStats : MonoBehaviour
     public int direction;
 
 
-    public AudioSource arrowHitSource;
-    public AudioClip arrowHit;
+    public AudioSource projectileHitSource;
+    public AudioClip arrowHit, rockHit, fruitHit;
 
 
     private void Awake()
@@ -42,8 +43,8 @@ public class CharacterStats : MonoBehaviour
     {
         if (this != null)
         {
-            damage -= armor.GetValue();
-            damage = Mathf.Clamp(damage, 0, int.MaxValue); //prevents negative damage values 
+            //damage -= armor.GetValue();
+            //damage = Mathf.Clamp(damage, 0, int.MaxValue); //prevents negative damage values 
 
             currentHealth -= damage;
             Debug.Log(transform.name + " takes " + damage + " damage.");
@@ -73,9 +74,15 @@ public class CharacterStats : MonoBehaviour
     {
         //Die in some way, should be overriden
         // Debug.Log(transform.name + " died.");
-        RoomManager.instance.OnEnemyDeath();
+        
     }
 
+
+    public void PlayImpactSound(string projectile)
+    {
+        projectileHitSource.clip = projectile == "arrow" ? arrowHit : projectile == "rock" ? rockHit : fruitHit;
+        projectileHitSource.Play();
+    }
 
 
 }

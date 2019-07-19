@@ -79,6 +79,10 @@ public class RoomManager : MonoBehaviour
     public List<PlayerInput> playerInputs;
     public int amtOfCurrentPlayers;
 
+
+    public TextMeshPro primaryCtr, secondaryCtr;
+
+
     public void Awake()
     {
         instance = this;
@@ -125,8 +129,6 @@ public class RoomManager : MonoBehaviour
         print("W to jump");
         print("Q to start trial");
         print("O & P to spawn objects");
-
-
     }
 
 
@@ -186,6 +188,9 @@ public class RoomManager : MonoBehaviour
             #endregion
         }
 
+
+        primaryCtr.text = (playerInputs[0].GetComponent<CharacterStats>().primary.duration - playerInputs[0].GetComponent<CharacterStats>().primary.timer).ToString("F1");
+        secondaryCtr.text = (playerInputs[0].GetComponent<CharacterStats>().secondary.duration - playerInputs[0].GetComponent<CharacterStats>().secondary.timer).ToString("F1");
     }
 
     public void SpawnEnemy()

@@ -7,7 +7,7 @@ public class RogueSecondaryAttack : Ability
 {
     //Not all of these variables are used yet. Currently working on getting the dash to work correctly.
     public Vector2 attackRange;
-    public int damage;
+    //public int damage;
     public float distanceFromPlayer;
     public float startDashCooldown;
     public float dashDist;

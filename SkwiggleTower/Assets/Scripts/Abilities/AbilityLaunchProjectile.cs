@@ -39,6 +39,8 @@ public class AbilityLaunchProjectile : Ability
         var projRb = Instantiate(projectile, new Vector2(transform.position.x, transform.position.y) + (offset * new Vector2(direction, 1)), Quaternion.Euler(0, characterStats.direction == 1 ? 0 : 180,0));
         projRb.GetComponent<RockAttack>().SetLayer(LayerMask.LayerToName(gameObject.layer),GetComponent<Collider2D>());
         projRb.AddForce(Vector2.right * direction * impulse);
+        projRb.gameObject.layer = LayerMask.NameToLayer(gameObject.layer == LayerMask.NameToLayer("Player") ? "Player Projectile" : "Enemy Projectile");
+        projRb.GetComponent<RockAttack>().damage = damage;
     }
 
     private void OnDrawGizmos()

@@ -25,6 +25,8 @@ public class GuardWalking : BaseState
 
         waypointPos = enemy.waypointPosition;
 
+        anim.SetBool("isWalking", true);
+
     }
 
     //OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -32,12 +34,23 @@ public class GuardWalking : BaseState
     {
         if (!canUpdate) return;
 
-
-        if (Vector2.Distance(enemy.transform.position,enemy.destination) < 1.25f)
+        if (enemy)
         {
-            anim.SetTrigger("ReachedWaypoint");
-            canUpdate = false;
+            if (Vector2.Distance(enemy.transform.position, enemy.destination) < 1.25f)
+            {
+                anim.SetTrigger("ReachedWaypoint");
+                canUpdate = false;
+            }
         }
+        else
+        {
+            if (Vector2.Distance(enemy2.transform.position, enemy2.destination) < 1.25f)
+            {
+                anim.SetTrigger("ReachedWaypoint");
+                canUpdate = false;
+            }
+        }
+
 
 
         CheckAggro();

@@ -17,9 +17,9 @@ TagManager:
   - Platforms
   - PostProcessing
   - Enemy
-  - Projectile
+  - Player Projectile
   - Debris
-  - 
+  - Enemy Projectile
   - 
   - 
   - 
