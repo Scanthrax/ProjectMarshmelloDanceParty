@@ -7,6 +7,14 @@ using UnityEngine;
 /// </summary>
 public class CameraFollow : MonoBehaviour
 {
+
+    public static CameraFollow instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     //Follow Camera  
     public float dampTime = 0.15f;
     private Vector3 velocity = Vector3.zero;
@@ -21,6 +29,9 @@ public class CameraFollow : MonoBehaviour
     public float minZoom = 3f;
     public float maxZoom = 7f;
 
+
+    public Transform cameraBounds;
+    public List<RectTransform> currentBounds;
 
     public void Start()
     {
@@ -68,9 +79,48 @@ public class CameraFollow : MonoBehaviour
 
             foreach (var item in target)
             {
-                item.position = new Vector3(Mathf.Clamp(item.position.x,transform.position.x - (cam.orthographicSize * (16f/9f)), transform.position.x + (cam.orthographicSize * (16f / 9f))),item.position.y,item.position.z);
+                item.position = new Vector3(Mathf.Clamp(item.position.x, transform.position.x - (cam.orthographicSize * (16f / 9f)), transform.position.x + (cam.orthographicSize * (16f / 9f))), item.position.y, item.position.z);
+            }
+
+
+            //ClampCamera();
+
+            transform.position.Set(transform.position.x, transform.position.y, -10f);
+        }
+    }
+
+
+
+
+    public void ClampCamera()
+    {
+        Vector2 pos = target[0].transform.position;
+
+        float orthoOffset = cam.orthographicSize;
+        float aspect = 16f/9f;
+
+        float leftBound, rightBound, topBound, botBound;
+
+        foreach (RectTransform item in cameraBounds)
+        {
+            leftBound = item.transform.position.x + item.rect.xMin;
+            rightBound = item.transform.position.x + item.rect.xMax;
+            botBound = item.transform.position.y + item.rect.yMin;
+            topBound = item.transform.position.y + item.rect.yMax;
+
+            if (pos.x > leftBound &&
+                pos.x < rightBound &&
+                pos.y > botBound &&
+                pos.y < topBound)
+            {
+                transform.position = new Vector3(Mathf.Clamp(transform.position.x, leftBound + orthoOffset * aspect, rightBound - orthoOffset * aspect), Mathf.Clamp(transform.position.y, botBound + orthoOffset, topBound - orthoOffset), -10f);
+                
             }
         }
+
+
+
+
     }
 
 }

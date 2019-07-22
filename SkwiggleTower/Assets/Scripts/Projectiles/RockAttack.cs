@@ -5,7 +5,7 @@ using UnityEngine;
 public class RockAttack : MonoBehaviour
 {
 
-    public Sounds category;
+    //public Sounds category;
 
     public AudioSource rockImpact;
 
@@ -15,16 +15,17 @@ public class RockAttack : MonoBehaviour
 
     Rigidbody2D rb;
 
-    public AudioClip whooshSound, impactSound, armorHitSound; 
+    public AudioClip whooshSound; 
 
 
     public int damage;
+
+    public string projectile;
 
     private void Start()
     {
         Destroy(gameObject,3f);
 
-        impactSound = AudioManager.instance.soundDictionary[category][0];
 
         opposingLayer = thisLayer == "Player" ? "Enemy" : "Player";
 
@@ -42,6 +43,8 @@ public class RockAttack : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        var impact = collision.gameObject.GetComponent<ImpactSound>();
+
         if (LayerMask.LayerToName(collision.gameObject.layer) == opposingLayer)
         {
             var temp = collision.gameObject.GetComponent<CharacterStats>();
@@ -49,37 +52,20 @@ public class RockAttack : MonoBehaviour
             {
                 temp.TakeDamage(damage);
                 print(opposingLayer + " hit!");
+                
 
-
-                rockImpact.clip = impactSound;
-                rockImpact.Play();
-                temp.PlayImpactSound("rock");
-                Destroy(gameObject);
 
 
             }
             else
                 print("can't be damaged!");
         }
-        else
-        {
-                if (collision.relativeVelocity.magnitude > 10f)
-                {
-                    var x = AudioManager.instance.soundDictionary[category];
 
+        rockImpact.clip = impact ? impact.GetSound(projectile) : null;
+        rockImpact.Play();
 
-                    if (x.Count > 1)
-                        rockImpact.clip = x[Random.Range(0, x.Count)];
-
-                rockImpact.clip = impactSound;
-                rockImpact.Play();
-
-                }
-
-
-                gameObject.layer = LayerMask.NameToLayer("Debris");
-                if(rb)rb.gravityScale = 1f;
-            }
+        gameObject.layer = LayerMask.NameToLayer("Debris");
+        if (rb) rb.gravityScale = 1f;
     }
 
     public void SetLayer(string layer, Collider2D col)
@@ -87,5 +73,7 @@ public class RockAttack : MonoBehaviour
         thisLayer = layer;
         ignoreCollider = col;
     }
+
+
 
 }

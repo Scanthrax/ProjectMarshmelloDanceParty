@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.LWRP;
 
 /// <summary>
 /// Valarie Script: UML created 
@@ -10,6 +11,12 @@ public class PlayerStats : CharacterStats
     //Inherits from generic CharacterStats 
 
     // Start is called before the first frame update
+
+
+    public int poisonStacks;
+
+    public Light2D poisonBlade;
+
     void Start()
     {
         AttackManager.instance.onAttackChanged += onAttackChanged; //for multiple types of attacks

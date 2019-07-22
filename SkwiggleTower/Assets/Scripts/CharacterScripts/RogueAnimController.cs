@@ -86,6 +86,10 @@ public class RogueAnimController : MonoBehaviour
         //    anim.SetBool("primaryHold", false);
         //}
 
+        if(PI.ultPressed)
+        {
+            CS.ultimate.Cast();
+        }
     }
 
     private void FixedUpdate()

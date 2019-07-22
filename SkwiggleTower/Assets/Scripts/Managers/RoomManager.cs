@@ -80,7 +80,8 @@ public class RoomManager : MonoBehaviour
     public int amtOfCurrentPlayers;
 
 
-    public TextMeshPro primaryCtr, secondaryCtr;
+    public TextMeshPro primaryCtr, secondaryCtr, ultCtr;
+    public TextMeshPro poisonCharges;
 
 
     public void Awake()
@@ -123,6 +124,9 @@ public class RoomManager : MonoBehaviour
 
             ///Debug.LogWarning("There is no trial set for this room!");
         }
+
+
+        poisonCharges.text = 0.ToString();
 
 
         print("A & D to move cube");
@@ -191,6 +195,7 @@ public class RoomManager : MonoBehaviour
 
         primaryCtr.text = (playerInputs[0].GetComponent<CharacterStats>().primary.duration - playerInputs[0].GetComponent<CharacterStats>().primary.timer).ToString("F1");
         secondaryCtr.text = (playerInputs[0].GetComponent<CharacterStats>().secondary.duration - playerInputs[0].GetComponent<CharacterStats>().secondary.timer).ToString("F1");
+        ultCtr.text = Mathf.RoundToInt(playerInputs[0].GetComponent<CharacterStats>().ultimate.duration - playerInputs[0].GetComponent<CharacterStats>().ultimate.timer).ToString();
     }
 
     public void SpawnEnemy()

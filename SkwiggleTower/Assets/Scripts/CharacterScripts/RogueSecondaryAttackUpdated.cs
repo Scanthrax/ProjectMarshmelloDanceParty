@@ -99,34 +99,46 @@ public class RogueSecondaryAttackUpdated : Ability
 
                 
 
-                    //Uses a method in CharacterStats.cs for enemy to take damage
+                //Uses a method in CharacterStats.cs for enemy to take damage
 
-                    if (this.character.direction == characterStats.direction)
-                    {
-                        damage = Mathf.RoundToInt(damage * 1.5f);
+                if (this.character.direction == characterStats.direction)
+                {
+                    damage = Mathf.RoundToInt(damage * 1.5f);
 
-                        // FOR NOW, reset the rogue's dash on a backstab
-                        timer = duration;
-                        dashCooldown = 0f;
-                    }
+                    // FOR NOW, reset the rogue's dash on a backstab
+                    timer = duration;
+                    dashCooldown = 0f;
+                }
 
-                    print(damage);
+                print(damage);
 
-                    characterStats.TakeDamage(damage);
-                    Debug.Log("Got 'em");
+                characterStats.TakeDamage(damage);
+                Debug.Log("Got 'em");
 
-                    enemiesHit.Add(enemiesInRange[i]);
+                enemiesHit.Add(enemiesInRange[i]);
 
-                    //if (GetComponent<RogueUltTestActivation>().active && GetComponent<RoguePoisonUlt>() == null)
-                    //{
-                    //    //Adds poison script to enemies if Rogue ult is active
-                    //    enemiesInRange[i].gameObject.AddComponent<RoguePoisonUlt>();
-                    //    Debug.Log("This will activate");
-                    //}
-                    //else if (!GetComponent<RogueUltTestActivation>().active && GetComponent<RogueUltTestActivation>() != null)
-                    //{
-                    //    Debug.Log("This will not activate");
-                    //}
+
+                if((character as PlayerStats).poisonStacks > 0)
+                {
+                    characterStats.gameObject.AddComponent<RoguePoisonUlt>();
+                    (character as PlayerStats).poisonStacks--;
+
+                    if ((character as PlayerStats).poisonStacks <= 0)
+                        (character as PlayerStats).poisonBlade.gameObject.SetActive(false);
+
+                    RoomManager.instance.poisonCharges.text = (character as PlayerStats).poisonStacks.ToString();
+                }
+
+                //if (GetComponent<RogueUltTestActivation>().active && GetComponent<RoguePoisonUlt>() == null)
+                //{
+                //    //Adds poison script to enemies if Rogue ult is active
+                //    enemiesInRange[i].gameObject.AddComponent<RoguePoisonUlt>();
+                //    Debug.Log("This will activate");
+                //}
+                //else if (!GetComponent<RogueUltTestActivation>().active && GetComponent<RogueUltTestActivation>() != null)
+                //{
+                //    Debug.Log("This will not activate");
+                //}
 
 
             }

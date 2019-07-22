@@ -471,15 +471,15 @@ InputManager:
     joyNum: 0
   - serializedVersion: 3
     m_Name: KBUlt
-    descriptiveName: 
+    descriptiveName: r
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: left alt
+    positiveButton: r
     altNegativeButton: 
-    altPositiveButton: mouse 1
-    gravity: 1000
-    dead: 0.001
-    sensitivity: 1000
+    altPositiveButton: r
+    gravity: 0
+    dead: 0
+    sensitivity: 0
     snap: 0
     invert: 0
     type: 0

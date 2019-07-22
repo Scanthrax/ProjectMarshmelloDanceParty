@@ -5,6 +5,8 @@ using UnityEngine;
 public class ChangeFruit : MonoBehaviour
 {
     public SpriteRenderer spriteRenderer;
+    public RockAttack ra;
+
 
     public List<Sprite> fruits;
 

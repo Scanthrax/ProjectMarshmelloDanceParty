@@ -22,12 +22,13 @@ public class CharacterStats : MonoBehaviour
     // RON
     public Ability primary;
     public Ability secondary;
+    public Ability ultimate;
 
     public int direction;
 
 
     public AudioSource projectileHitSource;
-    public AudioClip arrowHit, rockHit, fruitHit;
+
 
 
     private void Awake()
@@ -77,12 +78,6 @@ public class CharacterStats : MonoBehaviour
         
     }
 
-
-    public void PlayImpactSound(string projectile)
-    {
-        projectileHitSource.clip = projectile == "arrow" ? arrowHit : projectile == "rock" ? rockHit : fruitHit;
-        projectileHitSource.Play();
-    }
 
 
 }

@@ -18,10 +18,13 @@ public class PlayerInput : MonoBehaviour
     [HideInInspector] public bool jumpPressed;      //Bool that stores jump held
     [HideInInspector] public bool crouchHeld;       //Bool that stores crouch held
     [HideInInspector] public bool crouchPressed;    //Bool that stores crouch pressed
+
     [HideInInspector] public bool primaryPressed;         //Bool that stores attack pressed
     [HideInInspector] public bool primaryHold;            //Bool that stores attack  held 
     [HideInInspector] public bool secondaryPressed;      //Bool that stores secondary attack  held
     [HideInInspector] public bool secondaryHold;            //Bool that stores attack  held 
+    [HideInInspector] public bool ultPressed;      //Bool that stores secondary attack  held
+    [HideInInspector] public bool ultHold;            //Bool that stores attack  held 
 
     bool dPadCrouchPrev;                            //Previous values of touch Thumbstick
     bool readyToClear;                              //Bool used to keep input in sync
@@ -91,10 +94,12 @@ public class PlayerInput : MonoBehaviour
         //Attack Inputs
         primaryHold = Input.GetAxis(prefix + "Primary") > 0.5f || Input.GetButton(prefix + "Primary");
         secondaryHold = Input.GetAxis(prefix + "Secondary") > 0.5f || Input.GetButton(prefix + "Secondary");
+        ultHold = Input.GetAxis(prefix + "Ult") > 0.5f || Input.GetButton(prefix + "Ult");
 
 
         RAC.anim.SetBool("PrimaryHold", primaryHold);
         RAC.anim.SetBool("SecondaryHold", secondaryHold);
+        RAC.anim.SetBool("UltHold", ultHold);
 
         //detect trigger
         if (!primaryPressed && primaryHold && !RAC.anim.GetBool("PrimaryActive") && !RAC.CS.primary.onCooldown)
@@ -110,9 +115,6 @@ public class PlayerInput : MonoBehaviour
         }
 
         //detect trigger
-
-
-
         if (!secondaryPressed && secondaryHold && !RAC.anim.GetBool("SecondaryActive") && !RAC.CS.secondary.onCooldown)
         {
             print("secondary cast");
@@ -124,6 +126,21 @@ public class PlayerInput : MonoBehaviour
         {
             if (secondaryPressed)
                 secondaryPressed = false;
+        }
+
+
+        //detect trigger
+        if (!ultPressed && ultHold && !RAC.anim.GetBool("UltActive") && !RAC.CS.ultimate.onCooldown)
+        {
+            print("ult cast");
+            RAC.anim.SetTrigger("UltTrigger");
+            RAC.anim.SetBool("UltActive", true);
+            ultPressed = true;
+        }
+        else if (!ultHold)
+        {
+            if (ultPressed)
+                ultPressed = false;
         }
 
 
