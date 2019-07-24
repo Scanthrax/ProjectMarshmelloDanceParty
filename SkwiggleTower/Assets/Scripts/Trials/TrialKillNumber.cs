@@ -26,7 +26,15 @@ public class TrialKillNumber : Trial
 
         // resets kill counter and all enemies killed flag on start (so as to not carry progress to other trials)
         enemiesKilled = 0;
-        base.trialName = ("KILL " + killsNeeded.ToString() + " ENEMIES!");
+        if (killsNeeded == 1)
+        {
+            base.trialName = ("KILL " + killsNeeded.ToString() + " ENEMY!");
+        }
+        else
+        {
+            base.trialName = ("KILL " + killsNeeded.ToString() + " ENEMIES!");
+        }
+        
     }
 
     // Method one of checking if all enemies defeated, essentially just checks if the number of enemies killed 
