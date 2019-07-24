@@ -61,6 +61,10 @@ public class CharacterStats : MonoBehaviour
 
     public void Heal(int healing)
     {
+        if(currentHealth == maxHealth)
+        {
+            return;
+        }
         currentHealth += Mathf.Clamp(healing, 1, maxHealth); //prevents excessive Health
 
         OnHealthChanged?.Invoke(maxHealth, currentHealth);
