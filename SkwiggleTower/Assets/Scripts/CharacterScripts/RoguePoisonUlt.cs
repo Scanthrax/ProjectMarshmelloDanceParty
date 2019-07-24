@@ -10,7 +10,8 @@ public class RoguePoisonUlt : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        GetComponent<SpriteRenderer>().color = Color.green;
+
     }
 
     // Update is called once per frame

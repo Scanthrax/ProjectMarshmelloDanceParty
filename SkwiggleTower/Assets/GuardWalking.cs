@@ -15,16 +15,22 @@ public class GuardWalking : BaseState
     {
         Initialize(animator);
 
+        if (enemy.waypoints)
+        {
+            enemy.NextIndex();
+            enemy.SetWaypoint();
 
-        enemy.NextIndex();
-        enemy.SetWaypoint();
+            waypointPos = enemy.waypointPosition;
+            enemy.canPathfind = true;
+        }
+        else
+        {
+            enemy.ChangeDirection();
+            enemy.canPathfind = false;
+        }
 
 
-        enemy.canPathfind = true;
         canUpdate = true;
-
-        waypointPos = enemy.waypointPosition;
-
         anim.SetBool("isWalking", true);
 
     }
@@ -34,23 +40,36 @@ public class GuardWalking : BaseState
     {
         if (!canUpdate) return;
 
-        if (enemy)
+        if (enemy.waypoints)
         {
-            if (Vector2.Distance(enemy.transform.position, enemy.destination) < 1.25f)
+            if (enemy)
             {
-                anim.SetTrigger("ReachedWaypoint");
-                canUpdate = false;
+                if (Vector2.Distance(enemy.transform.position, enemy.destination) < 1.25f)
+                {
+                    anim.SetTrigger("ReachedWaypoint");
+                    canUpdate = false;
+                }
+            }
+            else
+            {
+                if (Vector2.Distance(enemy2.transform.position, enemy2.destination) < 1.25f)
+                {
+                    anim.SetTrigger("ReachedWaypoint");
+                    canUpdate = false;
+                }
             }
         }
         else
         {
-            if (Vector2.Distance(enemy2.transform.position, enemy2.destination) < 1.25f)
+            rb.velocity = new Vector2(impulse * enemy.direction, rb.velocity.y);
+
+            RaycastHit2D hit = Physics2D.Raycast(anim.transform.position, anim.transform.right * enemy.direction, enemy.collisionRange);
+            if(hit && hit.collider.gameObject.layer == LayerMask.NameToLayer("Platforms"))
             {
                 anim.SetTrigger("ReachedWaypoint");
                 canUpdate = false;
             }
         }
-
 
 
         CheckAggro();
@@ -59,6 +78,7 @@ public class GuardWalking : BaseState
     //OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        rb.velocity = Vector2.zero;
     }
 
 

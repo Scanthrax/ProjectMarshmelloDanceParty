@@ -14,44 +14,62 @@ public class AggroTrigger : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-
-
-
+        // get PlayerStats component to check if it is a pleyer
         var player = collision.GetComponent<PlayerStats>();
+
+        // if the component is valid...
         if (player)
         {
+            // the agent hasn't seen the player yet
             if (!enemy.playersInRange.Contains(player))
             {
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, -transform.position + player.transform.position);
+                RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, -transform.position + player.transform.position, Vector2.Distance(transform.position, player.transform.position));
 
-                // If it hits something...
-                if (hit.collider)
+                foreach (var hit in hits)
                 {
-                    var x = hit.collider.GetComponent<PlayerStats>();
+                    // we can see through enemies
+                    if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Enemy")) continue;
 
+
+                    var x = hit.collider.GetComponent<PlayerStats>();
                     if (x == player)
                     {
                         print("I see a player!");
                         enemy.playersInRange.Add(player);
                     }
+                    else
+                        break;
+
+
                 }
 
             }
             else
             {
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, -transform.position + player.transform.position);
+                RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, -transform.position + player.transform.position, Vector2.Distance(transform.position, player.transform.position));
 
-                // If it hits something...
-                if (hit.collider)
+                bool obstruction = false;
+
+                foreach (var hit in hits)
                 {
-                    var x = hit.collider.GetComponent<PlayerStats>();
+                    // we can see through enemies
+                    if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Enemy")) continue;
 
-                    if (x != player)
+
+                    var x = hit.collider.GetComponent<PlayerStats>();
+                    if (!x)
                     {
-                        print("the player is out of my sight!");
-                        enemy.playersInRange.Remove(player);
+                        obstruction = true;
                     }
+
                 }
+
+                if (obstruction)
+                {
+                    print("the player is out of my sight!");
+                    enemy.playersInRange.Remove(player);
+                }
+
             }
             
         }

@@ -33,9 +33,12 @@ public class CameraFollow : MonoBehaviour
     public Transform cameraBounds;
     public List<RectTransform> currentBounds;
 
+    Rigidbody2D rigidbody;
+
     public void Start()
     {
         cam = this.GetComponent<Camera>();
+        rigidbody = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -43,11 +46,8 @@ public class CameraFollow : MonoBehaviour
         //Gets input from scroll wheel
         currentZoom -= Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
         currentZoom = Mathf.Clamp(currentZoom, minZoom, maxZoom);
-    }
 
-    // Update is called once per frame
-    void LateUpdate()
-    {
+
 
         if (target.Count != 0)
         {
@@ -59,7 +59,7 @@ public class CameraFollow : MonoBehaviour
 
                 if (character.position.x < minX)
                     minX = character.position.x;
-                else if(character.position.x > maxX)
+                else if (character.position.x > maxX)
                     maxX = character.position.x;
             }
 
@@ -69,7 +69,7 @@ public class CameraFollow : MonoBehaviour
             Vector3 point = GetComponent<Camera>().WorldToViewportPoint(averagePos);
             Vector3 delta = averagePos - GetComponent<Camera>().ViewportToWorldPoint(new Vector3(0.5f, 0.5f, point.z));
             Vector3 destination = transform.position + delta;
-            transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, dampTime);
+            rigidbody.MovePosition(Vector3.SmoothDamp(transform.position, destination, ref velocity, dampTime));
             //Zoom update
             //cam.orthographicSize = offset + currentZoom;
 
@@ -84,10 +84,11 @@ public class CameraFollow : MonoBehaviour
 
 
             //ClampCamera();
-
-            transform.position.Set(transform.position.x, transform.position.y, -10f);
         }
+
+
     }
+
 
 
 

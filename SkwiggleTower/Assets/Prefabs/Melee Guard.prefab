@@ -160,11 +160,9 @@ MonoBehaviour:
     baseValue: 0
   primary: {fileID: 5356170734519771392}
   secondary: {fileID: 0}
+  ultimate: {fileID: 0}
   direction: 1
   projectileHitSource: {fileID: 5356170734519771406}
-  arrowHit: {fileID: 0}
-  rockHit: {fileID: 8300000, guid: 445c2ef018726024d957f312e6ee2906, type: 3}
-  fruitHit: {fileID: 0}
 --- !u!114 &5356170734519771401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -322,10 +320,12 @@ MonoBehaviour:
   currentWaypoint: {x: 0, y: 0, z: 0}
   waypointPosition: {x: 0, y: 0, z: 0}
   enemyCollider: {fileID: 5356170734519771403}
-  attackRange: 1.47
+  attackRange: 1.29
   destination: {x: 0, y: 0, z: 0}
   destTransform: {fileID: 0}
   idle: 0
+  collisionRange: 0.85
+  collisionOffset: -0.05
 --- !u!114 &5356170734519771405
 MonoBehaviour:
   m_ObjectHideFlags: 0

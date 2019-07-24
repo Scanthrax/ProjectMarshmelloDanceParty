@@ -63,6 +63,9 @@ public class EnemyAI : MonoBehaviour
 
     public bool idle;
 
+    public float collisionRange;
+    public float collisionOffset;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -93,12 +96,13 @@ public class EnemyAI : MonoBehaviour
 
 
         // Cast a ray straight down.
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right * direction,attackRange);
+        RaycastHit2D[] hit = Physics2D.RaycastAll(transform.position, transform.right * direction,attackRange);
+        
 
         // If it hits something...
-        if (hit.collider)
+        if (hit.Length > 0 && hit[0].collider)
         {
-            var x = hit.collider.GetComponent<PlayerStats>();
+            var x = hit[0].collider.GetComponent<PlayerStats>();
 
             if (x)
             {
@@ -207,13 +211,25 @@ public class EnemyAI : MonoBehaviour
         GetComponent<CharacterStats>().direction = direction;
     }
 
+    public void ChangeDirection()
+    {
+        direction = -direction;
+        transform.localScale = new Vector3(direction, 1, 1);
+        GetComponent<CharacterStats>().direction = direction;
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(previousWaypoint, 0.1f);
 
-
+        // attack range
         Gizmos.DrawLine(transform.position, transform.position + transform.right * attackRange * direction);
+
+
+        // collision check for wall in front
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(transform.position + new Vector3(0,collisionOffset), transform.position + new Vector3(0, collisionOffset) + transform.right * collisionRange * direction);
     }
 
 

@@ -45,5 +45,6 @@ public class PlayerStats : CharacterStats
         //Restart Scene 
         //PlayerManager.instance.KillPlayer();
         GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
+        RoomManager.instance.trial.NotifyTrialComplete(false);
     }
 }

@@ -90,9 +90,19 @@ public class PlayerMovement : MonoBehaviour
         //Check the environment to determine status
         PhysicsCheck();
 
+        if (input.jumpPressed && !isOnGround)
+        {
+            print("double jump");
+            rigidBody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+        }
+
+
         //Process ground and air movements
         GroundMovement();
         MidAirMovement();
+
+
+
 
         PS.direction = direction;
     }
@@ -241,6 +251,9 @@ public class PlayerMovement : MonoBehaviour
             //...and the jump button is held, apply an incremental force to the rigidbody...
             if (input.jumpHeld)
                 rigidBody.AddForce(new Vector2(0f, jumpHoldForce), ForceMode2D.Impulse);
+
+
+
 
             //...and if jump time is past, set isJumping to false
             if (jumpTime <= Time.time)
