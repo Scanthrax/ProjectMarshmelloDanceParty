@@ -41,11 +41,19 @@ public class AbilityLaunchProjectile : Ability
         projRb.AddForce(Vector2.right * direction * impulse);
         projRb.gameObject.layer = LayerMask.NameToLayer(gameObject.layer == LayerMask.NameToLayer("Player") ? "Player Projectile" : "Enemy Projectile");
         projRb.GetComponent<RockAttack>().damage = damage;
+        projRb.GetComponent<RockAttack>().notifyPlayer = UltCharge;
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(new Vector2(transform.position.x, transform.position.y) + (offset * new Vector2(direction,1)), 0.1f);
+    }
+
+
+    public void UltCharge()
+    {
+        if (characterStats is PlayerStats)
+            (characterStats as PlayerStats).currentUlt += 5;
     }
 
 }

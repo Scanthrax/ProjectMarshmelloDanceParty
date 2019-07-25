@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using System;
 
 /// <summary>
 /// 
@@ -238,5 +239,11 @@ public class EnemyAI : MonoBehaviour
         destination = waypoints.GetChild(waypointIndex).transform.position;
         destTransform = null;
         path = null;
+    }
+
+
+    public void TestEvent()
+    {
+        print("I should notify the spawner!");
     }
 }

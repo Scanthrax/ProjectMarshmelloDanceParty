@@ -12,10 +12,16 @@ public class PlayerStats : CharacterStats
 
     // Start is called before the first frame update
 
+    public int currentUlt, maxUlt;
+
+    public float percentUlt { get { return (float)currentUlt / maxUlt; } }
 
     public int poisonStacks;
 
     public Light2D poisonBlade;
+
+
+
 
     void Start()
     {

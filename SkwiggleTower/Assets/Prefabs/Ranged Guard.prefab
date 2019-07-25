@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 7833417324069667184}
   - component: {fileID: 7833417324069667185}
   - component: {fileID: 7833417324069667173}
+  - component: {fileID: 277410771}
   m_Layer: 11
   m_Name: Ranged Guard
   m_TagString: Player
@@ -161,11 +162,9 @@ MonoBehaviour:
     baseValue: 0
   primary: {fileID: 7833417324069667173}
   secondary: {fileID: 0}
+  ultimate: {fileID: 0}
   direction: 0
   projectileHitSource: {fileID: 7833417324069667196}
-  arrowHit: {fileID: 0}
-  rockHit: {fileID: 8300000, guid: 445c2ef018726024d957f312e6ee2906, type: 3}
-  fruitHit: {fileID: 0}
 --- !u!114 &7833417324069667195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,6 +326,8 @@ MonoBehaviour:
   destination: {x: 0, y: 0, z: 0}
   destTransform: {fileID: 0}
   idle: 0
+  collisionRange: 0.83
+  collisionOffset: -0.1
 --- !u!114 &7833417324069667199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -480,10 +481,26 @@ MonoBehaviour:
   duration: 3
   activateOnHold: 0
   damage: 4
-  projectile: {fileID: 7729152762026024449, guid: c8633083d9336ff458aae89fa62f6e9b,
+  projectile: {fileID: 156866228743263256, guid: c8633083d9336ff458aae89fa62f6e9b,
     type: 3}
   impulse: 10
   offset: {x: 0.42, y: 0.15}
+--- !u!114 &277410771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7833417324069667186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 959b9231bb89cb748b0b7a9fd21e9341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultSound: {fileID: 8300000, guid: 445c2ef018726024d957f312e6ee2906, type: 3}
+  rockSound: {fileID: 0}
+  arrowtSound: {fileID: 0}
+  fruitSound: {fileID: 8300000, guid: 35b17ef067fd71c4385a00d96059c97e, type: 3}
 --- !u!1 &7833417324432478864
 GameObject:
   m_ObjectHideFlags: 0

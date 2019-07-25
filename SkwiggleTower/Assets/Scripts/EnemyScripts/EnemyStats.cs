@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 /// <summary>
@@ -10,6 +11,9 @@ public class EnemyStats : CharacterStats
     int healthGained = 20;
     int xpGained = 100;
 
+
+    public Action notifySpawner;
+
     public override void Die()
     {
         base.Die();
@@ -20,5 +24,8 @@ public class EnemyStats : CharacterStats
         Debug.Log("Enemy Died");
         //Play Animation 
         Destroy(gameObject);
+
+        if(notifySpawner != null)
+            notifySpawner.Invoke();
     }
 }

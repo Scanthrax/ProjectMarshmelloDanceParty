@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,6 +22,9 @@ public class RockAttack : MonoBehaviour
     public int damage;
 
     public string projectile;
+
+
+    public Action notifyPlayer;
 
     private void Start()
     {
@@ -52,9 +56,9 @@ public class RockAttack : MonoBehaviour
             {
                 temp.TakeDamage(damage);
                 print(opposingLayer + " hit!");
-                
 
 
+                notifyPlayer.Invoke();
 
             }
             else

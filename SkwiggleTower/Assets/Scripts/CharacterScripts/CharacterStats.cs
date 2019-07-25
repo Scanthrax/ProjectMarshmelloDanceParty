@@ -29,7 +29,7 @@ public class CharacterStats : MonoBehaviour
 
     public AudioSource projectileHitSource;
 
-
+    public float percentHealth { get { return (float) currentHealth / maxHealth; } }
 
     private void Awake()
     {
@@ -50,7 +50,8 @@ public class CharacterStats : MonoBehaviour
             currentHealth -= damage;
             Debug.Log(transform.name + " takes " + damage + " damage.");
 
-            OnHealthChanged?.Invoke(maxHealth, currentHealth);
+            currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+            //OnHealthChanged?.Invoke(maxHealth, currentHealth);
 
             if (currentHealth <= 0)
             {

@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 5356170734519771405}
   - component: {fileID: 5356170734519771392}
   - component: {fileID: 5356170734519771395}
+  - component: {fileID: 1402065399}
   m_Layer: 11
   m_Name: Melee Guard
   m_TagString: Player
@@ -474,6 +475,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1402065399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5356170734519771393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 959b9231bb89cb748b0b7a9fd21e9341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultSound: {fileID: 8300000, guid: 445c2ef018726024d957f312e6ee2906, type: 3}
+  rockSound: {fileID: 0}
+  arrowtSound: {fileID: 0}
+  fruitSound: {fileID: 8300000, guid: 35b17ef067fd71c4385a00d96059c97e, type: 3}
 --- !u!1 &5356170735922271200
 GameObject:
   m_ObjectHideFlags: 0
