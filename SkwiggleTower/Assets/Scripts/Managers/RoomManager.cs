@@ -8,6 +8,7 @@ using UnityEngine;
 using System;
 using TMPro;
 using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
 
 public class RoomManager : MonoBehaviour
 {
@@ -105,34 +106,38 @@ public class RoomManager : MonoBehaviour
         
         amtOfPlayers = 0;
 
-        // the trial component will be dragged onto this gameobject through the inspector
-        trial = GetComponent<Trial>();
+        //// the trial component will be dragged onto this gameobject through the inspector
+        //trial = GetComponent<Trial>();
 
-        // if a trial exists, set the UI
-        if (trial)
-        {
-            trialTextIntro.text = trial.trialName;
-            trialTextUI.text = trial.trialName;
+        //// if a trial exists, set the UI
+        //if (trial)
+        //{
+        //    trialTextIntro.text = trial.trialName;
+        //    trialTextUI.text = trial.trialName;
 
-            trial.StartTrial();
+        //    trial.StartTrial();
 
-        }
-        else
-        {
+        //}
+        //else
+        //{
             var listOfTrials = trials.GetComponents<Trial>();
             trial = listOfTrials[UnityEngine.Random.Range(0, listOfTrials.Length)];
 
             ///Debug.LogWarning("There is no trial set for this room!");
-        }
+        //}
 
 
         poisonCharges.text = 0.ToString();
 
+        trialTextIntro.text = trial.trialName;
+        trialTextUI.text = trial.trialName;
+        trial.StartTrial();
 
         print("A & D to move cube");
         print("W to jump");
         print("Q to start trial");
         print("O & P to spawn objects");
+        print("Trial: " + trial.trialName);
     }
 
 
@@ -232,5 +237,8 @@ public class RoomManager : MonoBehaviour
         amountOfEnemies--;
     }
 
-
+    public void RestartScene()
+    {
+        SceneManager.LoadScene("PrototypeLevel_v1.1");
+    }
 }

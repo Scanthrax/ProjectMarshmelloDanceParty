@@ -166,4 +166,8 @@ public class RogueAnimController : MonoBehaviour
     {
         anim.SetBool("PrimaryActive", false);
     }
+
+
+
+
 }
