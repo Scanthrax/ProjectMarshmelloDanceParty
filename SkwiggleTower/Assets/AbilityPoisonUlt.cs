@@ -10,7 +10,8 @@ public class AbilityPoisonUlt : Ability
     [Tooltip("How many applications of the poison?")]
     public int charges;
 
-    public float ticksPerSecond ;
+    public int amtOfTicks;
+    public float tickDuration;
 
 
     CharacterStats characterStats;
@@ -26,9 +27,14 @@ public class AbilityPoisonUlt : Ability
 
     public override void Cast()
     {
+        GetComponent<Animator>().SetBool("UltActive", false);
         if (onCooldown) return;
+        if (!GetComponent<PlayerStats>().fullUltCharge) return;
         base.Cast();
         ApplyPoison();
+        (characterStats as PlayerStats).PlayUltSound();
+        
+        GetComponent<PlayerStats>().currentUlt = 0;
         timer = 0f;
 
     }

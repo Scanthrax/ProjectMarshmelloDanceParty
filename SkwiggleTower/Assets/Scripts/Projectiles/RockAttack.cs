@@ -60,6 +60,13 @@ public class RockAttack : MonoBehaviour
 
                 notifyPlayer.Invoke();
 
+                if((temp.transform.position.x - transform.position.x) * temp.direction  > 0)
+                {
+                    var enemyAI = temp.GetComponent<EnemyAI>();
+                    if(enemyAI)
+                        enemyAI.ChangeDirection();
+                }
+
             }
             else
                 print("can't be damaged!");

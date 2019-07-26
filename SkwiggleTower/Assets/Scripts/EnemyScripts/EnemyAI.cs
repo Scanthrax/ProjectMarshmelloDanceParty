@@ -67,6 +67,9 @@ public class EnemyAI : MonoBehaviour
     public float collisionRange;
     public float collisionOffset;
 
+
+    public AudioSource swordWhoosh;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -242,8 +245,8 @@ public class EnemyAI : MonoBehaviour
     }
 
 
-    public void TestEvent()
+    public void PlayWhoosh()
     {
-        print("I should notify the spawner!");
+        swordWhoosh.Play();
     }
 }

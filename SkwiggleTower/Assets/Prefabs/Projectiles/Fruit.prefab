@@ -31,6 +31,32 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fruit
       objectReference: {fileID: 0}
+    - target: {fileID: 1339205034641145824, guid: 48742648789c4894e9243a876283d927,
+        type: 3}
+      propertyPath: projectile
+      value: fruit
+      objectReference: {fileID: 0}
+    - target: {fileID: 1339205034641145824, guid: 48742648789c4894e9243a876283d927,
+        type: 3}
+      propertyPath: damage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3602669967722040864, guid: 48742648789c4894e9243a876283d927,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: fb77f9b959986ec468355d394c0ab191,
+        type: 3}
+    - target: {fileID: 3602669967722040864, guid: 48742648789c4894e9243a876283d927,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242721097484711063, guid: 48742648789c4894e9243a876283d927,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.08
+      objectReference: {fileID: 0}
     - target: {fileID: 8761909047713325810, guid: 48742648789c4894e9243a876283d927,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -85,27 +111,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3602669967722040864, guid: 48742648789c4894e9243a876283d927,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: fb77f9b959986ec468355d394c0ab191,
-        type: 3}
-    - target: {fileID: 3602669967722040864, guid: 48742648789c4894e9243a876283d927,
-        type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5242721097484711063, guid: 48742648789c4894e9243a876283d927,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.08
-      objectReference: {fileID: 0}
-    - target: {fileID: 1339205034641145824, guid: 48742648789c4894e9243a876283d927,
-        type: 3}
-      propertyPath: projectile
-      value: fruit
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48742648789c4894e9243a876283d927, type: 3}

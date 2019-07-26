@@ -97,22 +97,23 @@ public class RogueSecondaryAttackUpdated : Ability
 
                 if (enemiesHit.Contains(enemiesInRange[i]) || !characterStats) continue;
 
-                
+
 
                 //Uses a method in CharacterStats.cs for enemy to take damage
+                var tempDamage = damage;
 
                 if (this.character.direction == characterStats.direction)
                 {
-                    damage = Mathf.RoundToInt(damage * 1.5f);
+                    tempDamage = Mathf.RoundToInt(tempDamage * 1.5f);
 
                     // FOR NOW, reset the rogue's dash on a backstab
                     timer = duration;
                     dashCooldown = 0f;
                 }
 
-                print(damage);
+                print(tempDamage);
 
-                characterStats.TakeDamage(damage);
+                characterStats.TakeDamage(tempDamage);
                 Debug.Log("Got 'em");
 
                 enemiesHit.Add(enemiesInRange[i]);
@@ -120,13 +121,22 @@ public class RogueSecondaryAttackUpdated : Ability
 
                 if((character as PlayerStats).poisonStacks > 0)
                 {
-                    characterStats.gameObject.AddComponent<RoguePoisonUlt>();
+                    var component = characterStats.gameObject.AddComponent<RoguePoisonUlt>();
+                    var ulti = GetComponent<AbilityPoisonUlt>();
+                    component.Init(ulti.damage,ulti.amtOfTicks, ulti.tickDuration);
                     (character as PlayerStats).poisonStacks--;
 
                     if ((character as PlayerStats).poisonStacks <= 0)
                         (character as PlayerStats).poisonBlade.gameObject.SetActive(false);
 
                     RoomManager.instance.poisonCharges.text = (character as PlayerStats).poisonStacks.ToString();
+                }
+
+                if(character is PlayerStats)
+
+                {
+                    (character as PlayerStats).currentUlt += 5;
+                    (character as PlayerStats).currentUlt = Mathf.Clamp((character as PlayerStats).currentUlt, 0, (character as PlayerStats).maxUlt);
                 }
 
                 //if (GetComponent<RogueUltTestActivation>().active && GetComponent<RoguePoisonUlt>() == null)

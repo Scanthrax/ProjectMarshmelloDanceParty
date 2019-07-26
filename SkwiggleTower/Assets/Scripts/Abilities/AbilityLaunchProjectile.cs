@@ -53,7 +53,10 @@ public class AbilityLaunchProjectile : Ability
     public void UltCharge()
     {
         if (characterStats is PlayerStats)
+        {
             (characterStats as PlayerStats).currentUlt += 5;
+            (characterStats as PlayerStats).currentUlt = Mathf.Clamp((characterStats as PlayerStats).currentUlt, 0, (characterStats as PlayerStats).maxUlt);
+        }
     }
 
 }

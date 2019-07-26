@@ -5,35 +5,55 @@ using UnityEngine;
 
 public class RoguePoisonUlt : MonoBehaviour
 {
-    public int damage = 1;
-    public int timer = 180;
+    public int damage;
+    public float tickInterval;
+
+    public int tick, maxTicks;
+    float timer;
+
+    CharacterStats agent;
+
     // Start is called before the first frame update
     void Start()
     {
+        agent = GetComponent<CharacterStats>();
         GetComponent<SpriteRenderer>().color = Color.green;
-
+        timer = 0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        timer--;
-        if (timer > 0 && timer % 15 == 0)
+        timer += Time.deltaTime;
+        if (timer >= tickInterval)
         {
             //Changes sprite color to green
-            GetComponent<CharacterStats>().TakeDamage(damage);
-            GetComponent<SpriteRenderer>().color = Color.green;
+            agent.TakeDamage(damage);
             Debug.Log("Taking damage" + damage);
-        }
-        else if(timer <= 0)
-        {
-            //Changes sprite color back to original color
-            GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
-            DestroyScriptInstance();
+            timer = 0f;
+            tick++;
+
+            if(tick >= maxTicks)
+            {
+                GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+                DestroyScriptInstance();
+            }
+
+
         }
     }
     void DestroyScriptInstance()
     {
         Destroy(this);
     }
+
+    public void Init(int damage, int amtOfTicks, float tickDuration)
+    {
+        this.damage = damage;
+
+        maxTicks = amtOfTicks;
+
+        tickInterval = tickDuration;
+    }
+
 }

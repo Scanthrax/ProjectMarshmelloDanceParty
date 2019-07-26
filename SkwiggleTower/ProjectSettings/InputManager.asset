@@ -71,12 +71,12 @@ InputManager:
     joyNum: 1
   - serializedVersion: 3
     m_Name: P1Ult
-    descriptiveName: r
+    descriptiveName: left shift
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: r
+    positiveButton: left shift
     altNegativeButton: 
-    altPositiveButton: r
+    altPositiveButton: left shift
     gravity: 0
     dead: 0
     sensitivity: 0
@@ -471,12 +471,12 @@ InputManager:
     joyNum: 0
   - serializedVersion: 3
     m_Name: KBUlt
-    descriptiveName: r
+    descriptiveName: left shift
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: r
+    positiveButton: left shift
     altNegativeButton: 
-    altPositiveButton: r
+    altPositiveButton: left shift
     gravity: 0
     dead: 0
     sensitivity: 0

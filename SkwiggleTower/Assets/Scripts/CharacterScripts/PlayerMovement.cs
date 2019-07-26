@@ -59,6 +59,7 @@ public class PlayerMovement : MonoBehaviour
 
     //RON
     PlayerStats PS;
+    bool doubleJumped;
 
     void Start()
     {
@@ -90,10 +91,13 @@ public class PlayerMovement : MonoBehaviour
         //Check the environment to determine status
         PhysicsCheck();
 
-        if (input.jumpPressed && !isOnGround)
+        if (input.jumpPressed && !isOnGround && !doubleJumped)
         {
             print("double jump");
-            rigidBody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+            doubleJumped = true;
+            rigidBody.velocity = new Vector2(rigidBody.velocity.x, 0);
+            rigidBody.bodyType = RigidbodyType2D.Dynamic;
+            rigidBody.AddForce(new Vector2(0f, jumpForce * 10f), ForceMode2D.Impulse);
         }
 
 
@@ -188,7 +192,10 @@ public class PlayerMovement : MonoBehaviour
 
         //If the player is on the ground, extend the coyote time window
         if (isOnGround)
+        {
             coyoteTime = Time.time + coyoteDuration;
+            doubleJumped = false;
+        }
     }
 
     void MidAirMovement()

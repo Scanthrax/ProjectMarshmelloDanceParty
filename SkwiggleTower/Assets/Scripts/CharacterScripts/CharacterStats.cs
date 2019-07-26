@@ -31,6 +31,9 @@ public class CharacterStats : MonoBehaviour
 
     public float percentHealth { get { return (float) currentHealth / maxHealth; } }
 
+
+    public AudioSource gruntSource;
+
     private void Awake()
     {
         currentHealth = maxHealth; //initial value
@@ -52,6 +55,8 @@ public class CharacterStats : MonoBehaviour
 
             currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
             //OnHealthChanged?.Invoke(maxHealth, currentHealth);
+
+            gruntSource.Play();
 
             if (currentHealth <= 0)
             {

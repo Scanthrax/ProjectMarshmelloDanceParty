@@ -20,8 +20,9 @@ public class PlayerStats : CharacterStats
 
     public Light2D poisonBlade;
 
+    public AudioSource UltSound;
 
-
+    public bool fullUltCharge { get { return currentUlt >= maxUlt; } }
 
     void Start()
     {
@@ -52,5 +53,11 @@ public class PlayerStats : CharacterStats
         //PlayerManager.instance.KillPlayer();
         GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
         RoomManager.instance.trial.NotifyTrialComplete(false);
+    }
+
+
+    public void PlayUltSound()
+    {
+        UltSound.Play();
     }
 }
