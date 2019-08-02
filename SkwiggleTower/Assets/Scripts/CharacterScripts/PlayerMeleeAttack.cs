@@ -25,18 +25,13 @@ public class PlayerMeleeAttack : Ability
     }
 
     // Update is called once per frame
-    new void Update()
+    void Update()
     {
-
-
-
-
-        base.Update();
         //once 0, player can attack
 
         if(startMelee)
         {
-            Collider2D[] enemiesInRange = Physics2D.OverlapBoxAll(transform.position + new Vector3(attackPos.x * character.direction,attackPos.y), attackRange, whatAreEnemies);
+            Collider2D[] enemiesInRange = Physics2D.OverlapBoxAll(transform.position + new Vector3(attackPos.x * characterMovement.faceDirection,attackPos.y), attackRange, whatAreEnemies);
             for(int i = 0; i < enemiesInRange.Length; i++)
             {
                 var characterStats = enemiesInRange[i].GetComponent<CharacterStats>();
@@ -45,7 +40,7 @@ public class PlayerMeleeAttack : Ability
 
 
 
-                characterStats.TakeDamage(damage);
+                characterStats.TakeDamage(baseDamage);
                 Debug.Log("Got 'em");
 
                 enemiesHit.Add(enemiesInRange[i]);
@@ -89,7 +84,7 @@ public class PlayerMeleeAttack : Ability
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        int i = character ? character.direction : 1;
+        int i = characterMovement.faceDirection == 1 ? characterMovement.faceDirection : 1;
         Gizmos.DrawWireCube(transform.position + new Vector3(attackPos.x * i, attackPos.y), attackRange);
     }
 

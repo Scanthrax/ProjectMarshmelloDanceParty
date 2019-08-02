@@ -1,48 +1,48 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿//using System.Collections;
+//using System.Collections.Generic;
+//using UnityEngine;
 
-public class AbilityPoisonUlt : Ability
-{
-    [Space(30)]
-
-
-    [Tooltip("How many applications of the poison?")]
-    public int charges;
-
-    public int amtOfTicks;
-    public float tickDuration;
+//public class AbilityPoisonUlt : Ability
+//{
+//    [Space(30)]
 
 
-    CharacterStats characterStats;
+//    [Tooltip("How many applications of the poison?")]
+//    public int charges;
+
+//    public int amtOfTicks;
+//    public float tickDuration;
 
 
-    new void Start()
-    {
-        base.Start();
-
-        characterStats = GetComponent<CharacterStats>();
-    }
+//    CharacterStats characterStats;
 
 
-    public override void Cast()
-    {
-        GetComponent<Animator>().SetBool("UltActive", false);
-        if (onCooldown) return;
-        if (!GetComponent<PlayerStats>().fullUltCharge) return;
-        base.Cast();
-        ApplyPoison();
-        (characterStats as PlayerStats).PlayUltSound();
+//    new void Start()
+//    {
+//        base.Start();
+
+//        characterStats = GetComponent<CharacterStats>();
+//    }
+
+
+//    public override void Cast()
+//    {
+//        GetComponent<Animator>().SetBool("UltActive", false);
+//        if (onCooldown) return;
+//        if (!GetComponent<PlayerStats>().fullUltCharge) return;
+//        base.Cast();
+//        ApplyPoison();
+//        (characterStats as PlayerStats).PlayUltSound();
         
-        GetComponent<PlayerStats>().currentUlt = 0;
-        timer = 0f;
+//        GetComponent<PlayerStats>().currentUlt = 0;
+//        timer = 0f;
 
-    }
+//    }
 
-    public void ApplyPoison()
-    {
-        (characterStats as PlayerStats).poisonStacks = charges;
-        RoomManager.instance.poisonCharges.text = (character as PlayerStats).poisonStacks.ToString();
-        (characterStats as PlayerStats).poisonBlade.gameObject.SetActive(true);
-    }
-}
+//    public void ApplyPoison()
+//    {
+//        (characterStats as PlayerStats).poisonStacks = charges;
+//        RoomManager.instance.poisonCharges.text = (character as PlayerStats).poisonStacks.ToString();
+//        (characterStats as PlayerStats).poisonBlade.gameObject.SetActive(true);
+//    }
+//}

@@ -86,7 +86,7 @@ public class UI_Manager : MonoBehaviour
 
     // icons for player face, primary and secondary attacks
     [Header("Player Icons")]
-    public GameObject P1_faceIcon;
+    public GameObject P1faceRenderer;
     public GameObject P1_primaryIcon;
     public GameObject P1_secondaryIcon;
 
@@ -103,6 +103,16 @@ public class UI_Manager : MonoBehaviour
     public GameObject P4_secondaryIcon;
 
     #endregion
+
+    public static UI_Manager instance;
+
+    public List<PlayerHUD> HUDs;
+
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -155,6 +165,8 @@ public class UI_Manager : MonoBehaviour
         // * } etc.
         //*/
 
+
+
         
 
     }
@@ -162,19 +174,19 @@ public class UI_Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var p1 = RoomManager.instance.playerInputs[0];
+        //var p1 = RoomManager.instance.playerInputs[0];
 
-        var health = p1.GetComponent<CharacterStats>().percentHealth;
-        P1_healthBarFG.transform.localScale = new Vector3(health, 1, 1);
+        //var health = p1.GetComponent<CharacterStats>().percentHealth;
+        //P1_healthBarFG.transform.localScale = new Vector3(health, 1, 1);
 
-        var ult = p1.GetComponent<PlayerStats>().percentUlt;
-        P1_manaBarFG.transform.localScale = new Vector3(ult, 1, 1);
+        //var ult = p1.GetComponent<PlayerStats>().percentUlt;
+        //P1_manaBarFG.transform.localScale = new Vector3(ult, 1, 1);
 
-        var primary = p1.GetComponent<PlayerStats>().primary.percentage;
-        P1_primaryIcon.transform.localScale = new Vector3(32f - (primary * 32f), 32, 1);
+        //var primary = p1.GetComponent<PlayerStats>().primary.percentage;
+        //P1_primaryIcon.transform.localScale = new Vector3(32f - (primary * 32f), 32, 1);
 
-        var secondary = p1.GetComponent<PlayerStats>().secondary.percentage;
-        P1_secondaryIcon.transform.localScale = new Vector3(32f - (secondary * 32f), 32, 1);
+        //var secondary = p1.GetComponent<PlayerStats>().secondary.percentage;
+        //P1_secondaryIcon.transform.localScale = new Vector3(32f - (secondary * 32f), 32, 1);
 
         //// testing code, deals one damage to player
         //if (Input.GetKeyDown(KeyCode.M))

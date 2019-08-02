@@ -5,9 +5,6 @@ using UnityEngine;
 
 public class RockAttack : MonoBehaviour
 {
-
-    //public Sounds category;
-
     public AudioSource rockImpact;
 
     string thisLayer, opposingLayer;
@@ -33,6 +30,8 @@ public class RockAttack : MonoBehaviour
 
         opposingLayer = thisLayer == "Player" ? "Enemy" : "Player";
 
+        // determine which layer this projectile will reside on; based on whether an enemy is firing or a player
+        gameObject.layer = LayerMask.NameToLayer(thisLayer + " Projectile");
 
         rockImpact.clip = whooshSound;
         rockImpact.Play();
@@ -51,25 +50,23 @@ public class RockAttack : MonoBehaviour
 
         if (LayerMask.LayerToName(collision.gameObject.layer) == opposingLayer)
         {
-            var temp = collision.gameObject.GetComponent<CharacterStats>();
+            var temp = collision.gameObject.GetComponent<BaseCharacter>();
             if (temp)
             {
-                temp.TakeDamage(damage);
+                temp.RecieveDamage(damage);
                 print(opposingLayer + " hit!");
 
 
-                notifyPlayer.Invoke();
+                //notifyPlayer.Invoke();
 
-                if((temp.transform.position.x - transform.position.x) * temp.direction  > 0)
-                {
-                    var enemyAI = temp.GetComponent<EnemyAI>();
-                    if(enemyAI)
-                        enemyAI.ChangeDirection();
-                }
+                //if((temp.transform.position.x - transform.position.x) * temp.direction  > 0)
+                //{
+                //    var enemyAI = temp.GetComponent<EnemyAI>();
+                //    if(enemyAI)
+                //        enemyAI.ChangeDirection();
+                //}
 
             }
-            else
-                print("can't be damaged!");
         }
 
         rockImpact.clip = impact ? impact.GetSound(projectile) : null;

@@ -127,7 +127,7 @@ public class RoomManager : MonoBehaviour
         //}
 
 
-        poisonCharges.text = 0.ToString();
+        //poisonCharges.text = 0.ToString();
 
         trialTextIntro.text = trial.trialName;
         trialTextUI.text = trial.trialName;
@@ -138,6 +138,9 @@ public class RoomManager : MonoBehaviour
         print("Q to start trial");
         print("O & P to spawn objects");
         print("Trial: " + trial.trialName);
+
+
+
     }
 
 
@@ -198,9 +201,9 @@ public class RoomManager : MonoBehaviour
         }
 
 
-        primaryCtr.text = (playerInputs[0].GetComponent<CharacterStats>().primary.duration - playerInputs[0].GetComponent<CharacterStats>().primary.timer).ToString("F1");
-        secondaryCtr.text = (playerInputs[0].GetComponent<CharacterStats>().secondary.duration - playerInputs[0].GetComponent<CharacterStats>().secondary.timer).ToString("F1");
-        ultCtr.text = Mathf.RoundToInt(playerInputs[0].GetComponent<CharacterStats>().ultimate.duration - playerInputs[0].GetComponent<CharacterStats>().ultimate.timer).ToString();
+        //primaryCtr.text = (playerInputs[0].GetComponent<CharacterStats>().primary.duration - playerInputs[0].GetComponent<CharacterStats>().primary.timer).ToString("F1");
+        //secondaryCtr.text = (playerInputs[0].GetComponent<CharacterStats>().secondary.duration - playerInputs[0].GetComponent<CharacterStats>().secondary.timer).ToString("F1");
+        //ultCtr.text = Mathf.RoundToInt(playerInputs[0].GetComponent<CharacterStats>().ultimate.duration - playerInputs[0].GetComponent<CharacterStats>().ultimate.timer).ToString();
     }
 
     public void SpawnEnemy()
@@ -241,4 +244,7 @@ public class RoomManager : MonoBehaviour
     {
         SceneManager.LoadScene("PrototypeLevel_v1.1");
     }
+
+
+
 }

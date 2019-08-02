@@ -6,9 +6,9 @@ using UnityEngine;
 public class BaseMovement : MonoBehaviour
 {
     /// <summary>
-    /// 0 means standstill; 1 means right; -1 means left
+    /// 1 means right; -1 means left
     /// </summary>
-    int movementDirection;
+    public int faceDirection;
 
     /// <summary>
     /// The character's movement speed
@@ -23,6 +23,7 @@ public class BaseMovement : MonoBehaviour
     public float eyeHeight;          //Height of wall check
     public float groundDistance;      //Distance player is considered to be on the ground
     public float groundDistOffset;
+    public float wallDist;
     public float wallOffset;
     public LayerMask groundLayer;           //Layer of the ground
 
@@ -51,33 +52,11 @@ public class BaseMovement : MonoBehaviour
     [HideInInspector]
     public float horizontalAxis;
 
-    float prevHorizontal;
-
-    /// <summary>
-    /// Is the character facing right or left?
-    /// </summary>
-    public bool faceRight;
-
-    /// <summary>
-    /// returns 1 when the character is facing right; -1 when facing left
-    /// </summary>
-    public int faceDirection { get { return faceRight ? 1 : -1; } }
 
 
-    /// <summary>
-    /// Changes the direction that this character is facing
-    /// </summary>
-    public void ChangeDirection() { faceRight = !faceRight; FlipCharacter(); }
 
-    /// <summary>
-    /// Changes the direction that this character is facing
-    /// </summary>
-    public void ChangeDirection(bool right) { faceRight = right; FlipCharacter(); }
 
-    public void FlipCharacter()
-    {
-        transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x) * faceDirection, transform.localScale.y, transform.localScale.z);
-    }
+
 
     void Start()
     {
@@ -95,6 +74,7 @@ public class BaseMovement : MonoBehaviour
 
 
         animator.SetFloat("moveSpeed", Mathf.Abs(rigidBody.velocity.x));
+
 
 
     }
@@ -119,16 +99,19 @@ public class BaseMovement : MonoBehaviour
             groundDistance + groundDistOffset);
 
         var leftWallRay = Physics2D.RaycastNonAlloc(
-            (Vector2)transform.position + new Vector2(size.x * 0.5f, 0f),
-            Vector2.right,
+            (Vector2)transform.position + new Vector2(-size.x * 0.5f, wallOffset),
+            Vector2.left,
             hits,
-            wallOffset);
+            wallDist);
         var rightWallRay = Physics2D.RaycastNonAlloc(
-            (Vector2)transform.position + new Vector2(size.x * 0.5f, 0f),
+            (Vector2)transform.position + new Vector2(size.x * 0.5f, wallOffset),
             Vector2.right,
             hits,
-            wallOffset);
+            wallDist);
 
+
+        
+        horizontalAxis = Mathf.Clamp(horizontalAxis, leftWallRay == 1 ? 0 : horizontalAxis, rightWallRay == 1 ? 0 : horizontalAxis);
 
 
         // there is ground beneath the character if one of the raycasts returns 1
@@ -147,6 +130,9 @@ public class BaseMovement : MonoBehaviour
                 // reset jump values when we land
                 jumped = false;
                 doubleJumped = false;
+
+                character.footstepSource.clip = character.landingClip;
+                character.footstepSource.Play();
             }
             // OFF THE GROUND
             else
@@ -197,8 +183,9 @@ public class BaseMovement : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawLine((Vector2)transform.position + new Vector2(-size.x*0.5f,-size.y * 0.5f + groundDistOffset), (Vector2)transform.position + new Vector2(-size.x * 0.5f, -size.y * 0.5f - groundDistance));
         Gizmos.DrawLine((Vector2)transform.position + new Vector2(size.x * 0.5f, -size.y * 0.5f + groundDistOffset), (Vector2)transform.position + new Vector2(size.x * 0.5f, -size.y * 0.5f - groundDistance));
-        Gizmos.DrawLine((Vector2)transform.position + new Vector2(size.x * 0.5f,0f), (Vector2)transform.position + new Vector2(size.x * 0.5f + wallOffset, 0f));
-        Gizmos.DrawLine((Vector2)transform.position + new Vector2(-size.x * 0.5f, 0f), (Vector2)transform.position + new Vector2(-size.x * 0.5f - wallOffset, 0f));
+
+        Gizmos.DrawLine((Vector2)transform.position + new Vector2(size.x * 0.5f,wallOffset), (Vector2)transform.position + new Vector2(size.x * 0.5f + wallDist, wallOffset));
+        Gizmos.DrawLine((Vector2)transform.position + new Vector2(-size.x * 0.5f, wallOffset), (Vector2)transform.position + new Vector2(-size.x * 0.5f - wallDist, wallOffset));
     }
 
     private void OnValidate()
