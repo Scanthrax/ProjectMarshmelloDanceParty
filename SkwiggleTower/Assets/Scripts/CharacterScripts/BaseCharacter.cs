@@ -21,13 +21,7 @@ public class BaseCharacter : MonoBehaviour
     public float percentHealth { get { return (float)currentHealth / maxHealth; } }
 
 
-    public Stat damage;
-    public Stat armor;
-    public event System.Action<int, int> OnHealthChanged; //Delegate On Health Changed
-    public Action onHeathChanged; 
-
-
-
+    public Ability melee;
     public Ability primary;
     public Ability secondary;
     public Ability ultimate;
@@ -59,38 +53,12 @@ public class BaseCharacter : MonoBehaviour
 
     public SpriteRenderer characterRenderer;
 
-    #region Invincibility flashing
-    [Header("Invincibility flashing")]
-    [Range(5f,20f)]
-    public float flashSpeed;
-    [Range(0f,1f)]
-    public float minAlpha, maxAplha;
-    #endregion
 
 
 
-    public PlayerHUD hud;
 
 
-    private void Start()
-    {
-    }
 
-    private void Update()
-    {
-
-    }
-
-    void FlashCharacter()
-    {
-        var diff = maxAplha - minAlpha;
-        var topDiff = 1 - maxAplha;
-
-        characterRenderer.color = new Color(characterRenderer.color.r, characterRenderer.color.g, characterRenderer.color.b,
-            (Mathf.Sin(Time.time * flashSpeed)
-            * 0.5f * diff)
-            + (1 - diff * 0.5f) - topDiff);
-    }
 
 
     public void PlayFootstep()
@@ -101,7 +69,6 @@ public class BaseCharacter : MonoBehaviour
 
     public void SlingStretch()
     {
-
     }
 
     public void RecieveDamage(int damage)

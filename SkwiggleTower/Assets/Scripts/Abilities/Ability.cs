@@ -64,6 +64,9 @@ public class Ability : MonoBehaviour
     /// </summary>
     AudioSource abilitySoundSource;
 
+    public bool performInAir;
+
+
     public virtual void Start()
     {
         timer = cooldownDuration;

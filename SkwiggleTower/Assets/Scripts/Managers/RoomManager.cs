@@ -85,6 +85,8 @@ public class RoomManager : MonoBehaviour
     public TextMeshPro poisonCharges;
 
 
+    public bool checkForPlayers;
+
     public void Awake()
     {
         instance = this;
@@ -123,20 +125,16 @@ public class RoomManager : MonoBehaviour
             var listOfTrials = trials.GetComponents<Trial>();
             trial = listOfTrials[UnityEngine.Random.Range(0, listOfTrials.Length)];
 
-            ///Debug.LogWarning("There is no trial set for this room!");
+        ///Debug.LogWarning("There is no trial set for this room!");
         //}
 
 
         //poisonCharges.text = 0.ToString();
 
-        trialTextIntro.text = trial.trialName;
-        trialTextUI.text = trial.trialName;
-        trial.StartTrial();
+        //trialTextIntro.text = trial.trialName;
+        //trialTextUI.text = trial.trialName;
+        //trial.StartTrial();
 
-        print("A & D to move cube");
-        print("W to jump");
-        print("Q to start trial");
-        print("O & P to spawn objects");
         print("Trial: " + trial.trialName);
 
 
@@ -146,60 +144,49 @@ public class RoomManager : MonoBehaviour
 
     private void Update()
     {
-        // Spawn one type of object with O
-        if (Input.GetKeyDown(KeyCode.K))
-            SpawnEnemy();
 
-        // Spawn another type of object with P
-        if (Input.GetKeyDown(KeyCode.L))
-            SpawnEnemy();
-
-        if (trial && Input.GetKeyDown(KeyCode.Q))
+        if (checkForPlayers)
         {
-            trial.StartTrial();
-        }
-
-
-        if (amtOfCurrentPlayers <= 4)
-        {
-            #region Check for Keyboard player
-            // if we haven't detected a keyboard
-            if (!isKeyboardDetected)
+            if (amtOfCurrentPlayers <= 4)
             {
-                // check for an action button
-                if (Input.GetKeyDown(KeyCode.Space))
+                #region Check for Keyboard player
+                // if we haven't detected a keyboard
+                if (!isKeyboardDetected)
                 {
-                    // we have now detected a keyboard
-                    isKeyboardDetected = true;
-                    // set the mappings of the player
-                    playerInputs[amtOfCurrentPlayers].SetMappings(amtOfCurrentPlayers, false);
-                    // we now have one more player
-                    amtOfCurrentPlayers++;
+                    // check for an action button
+                    if (Input.GetKeyDown(KeyCode.Space))
+                    {
+                        // we have now detected a keyboard
+                        isKeyboardDetected = true;
+                        // set the mappings of the player
+                        playerInputs[amtOfCurrentPlayers].SetMappings(amtOfCurrentPlayers, false);
+                        // we now have one more player
+                        amtOfCurrentPlayers++;
+                    }
                 }
-            }
-            #endregion
-            #region Check for Gamepad Players
-            // check for 4 gamepads
-            for (int i = 0; i < isGamepadDetected.Length; i++)
-            {
-                // if the gamepad is detected, continue through the loop
-                if (isGamepadDetected[i]) continue;
-
-                // check for the gamepad's action button
-                if (Input.GetKeyDown("joystick " + (i + 1) + " button 0"))
+                #endregion
+                #region Check for Gamepad Players
+                // check for 4 gamepads
+                for (int i = 0; i < isGamepadDetected.Length; i++)
                 {
-                    print("HERE I AM: " + (i + 1));
-                    // set the mappings of the player
-                    playerInputs[amtOfCurrentPlayers].SetMappings(i, true);
-                    // we now have one more player
-                    amtOfCurrentPlayers++;
-                    isGamepadDetected[i] = true;
-                }
+                    // if the gamepad is detected, continue through the loop
+                    if (isGamepadDetected[i]) continue;
 
+                    // check for the gamepad's action button
+                    if (Input.GetKeyDown("joystick " + (i + 1) + " button 0"))
+                    {
+                        print("HERE I AM: " + (i + 1));
+                        // set the mappings of the player
+                        playerInputs[amtOfCurrentPlayers].SetMappings(i, true);
+                        // we now have one more player
+                        amtOfCurrentPlayers++;
+                        isGamepadDetected[i] = true;
+                    }
+
+                }
+                #endregion
             }
-            #endregion
         }
-
 
         //primaryCtr.text = (playerInputs[0].GetComponent<CharacterStats>().primary.duration - playerInputs[0].GetComponent<CharacterStats>().primary.timer).ToString("F1");
         //secondaryCtr.text = (playerInputs[0].GetComponent<CharacterStats>().secondary.duration - playerInputs[0].GetComponent<CharacterStats>().secondary.timer).ToString("F1");

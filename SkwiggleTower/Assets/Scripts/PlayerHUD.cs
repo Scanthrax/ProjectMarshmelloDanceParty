@@ -8,7 +8,7 @@ public class PlayerHUD : MonoBehaviour
 
     public ProgressBar hpBar, ultBar, primaryBar, secondaryBar, ultimateBar;
 
-    public BaseCharacter character;
+    public PlayableCharacter character;
 
     bool primary;
 
@@ -16,12 +16,6 @@ public class PlayerHUD : MonoBehaviour
     {
         character.hud = this;
     }
-
-    //private void Update()
-    //{
-        
-    //    //secondaryBar.SetProgress(1 - character.secondary.percentage);
-    //}
 
 
     public IEnumerator StartCooldownPrimary()

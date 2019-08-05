@@ -22,7 +22,6 @@ public class AbilityLaunchProjectile : Ability
 
     public override void Cast()
     {
-        if (onCooldown) return;
         base.Cast();
         LaunchProjectile();
 

@@ -859,6 +859,7 @@ GameObject:
   - component: {fileID: 427520817}
   - component: {fileID: 427520816}
   - component: {fileID: 427520820}
+  - component: {fileID: 427520825}
   - component: {fileID: 427520823}
   - component: {fileID: 427520824}
   m_Layer: 8
@@ -867,7 +868,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!70 &427520815
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -896,7 +897,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a265cf04afa7cd40a4affc2c256015a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  faceDirection: 0
+  faceDirection: 1
   movementSpeed: 6
   jumpForce: 17.6
   footOffset: 0.2
@@ -934,6 +935,7 @@ MonoBehaviour:
     baseValue: 0
   armor:
     baseValue: 0
+  melee: {fileID: 427520825}
   primary: {fileID: 427520823}
   secondary: {fileID: 427520824}
   ultimate: {fileID: 0}
@@ -955,7 +957,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 427520814}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.818, y: -1.876, z: -1.1455985}
+  m_LocalPosition: {x: -3.737, y: -2.171, z: -1.1455985}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1498512445}
@@ -997,6 +999,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontal: 0
   jumpHold: 0
+  meleeHold: 0
   primaryHold: 0
   secondaryHold: 0
   ultHold: 0
@@ -1089,7 +1092,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 0
-  cooldownDuration: 0
+  cooldownDuration: 1.2
   activateOnHold: 1
   baseDamage: 0
   characterMovement: {fileID: 427520816}
@@ -1113,8 +1116,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 0
-  cooldownDuration: 0
-  activateOnHold: 1
+  cooldownDuration: 3
+  activateOnHold: 0
   baseDamage: 0
   characterMovement: {fileID: 427520816}
   abilityIcon: {fileID: 0}
@@ -1127,6 +1130,31 @@ MonoBehaviour:
     m_Bits: 2048
   dashDist: 6
   dashDuration: 0.2
+--- !u!114 &427520825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 427520814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90a164b26acb9b54eb97119176118dc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: 0
+  cooldownDuration: 0
+  activateOnHold: 1
+  baseDamage: 4
+  characterMovement: {fileID: 427520816}
+  abilityIcon: {fileID: 0}
+  abilitySoundClip: {fileID: 0}
+  playSoundOnCast: 0
+  attackPos: {x: 0.255, y: 0}
+  attackRange: {x: 1, y: 0.85}
+  whatAreEnemies:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!1001 &436005183
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25912,7 +25940,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.5
+  m_Intensity: 1
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000bdab00d1f144ac0a378f82d3bd5a8c40bf083f718d5b7ae5
   m_LightCookieSprite: {fileID: 0}
@@ -26791,6 +26819,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontal: 0
   jumpHold: 0
+  meleeHold: 0
   primaryHold: 0
   secondaryHold: 0
   ultHold: 0
@@ -26851,6 +26880,7 @@ MonoBehaviour:
     baseValue: 0
   armor:
     baseValue: 0
+  melee: {fileID: 0}
   primary: {fileID: 1144546096}
   secondary: {fileID: 1144546095}
   ultimate: {fileID: 0}
@@ -27779,7 +27809,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1469088598
 MonoBehaviour:
   m_ObjectHideFlags: 0

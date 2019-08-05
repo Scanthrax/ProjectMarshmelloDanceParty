@@ -56,13 +56,6 @@ public class BaseMovement : MonoBehaviour
 
 
 
-
-
-    void Start()
-    {
-        
-    }
-
     void FixedUpdate()
     {
         //Check the environment to determine status
@@ -98,20 +91,31 @@ public class BaseMovement : MonoBehaviour
             hits,
             groundDistance + groundDistOffset);
 
+
+
+        var lwall = false;
+        var rwall = false;
+
         var leftWallRay = Physics2D.RaycastNonAlloc(
             (Vector2)transform.position + new Vector2(-size.x * 0.5f, wallOffset),
             Vector2.left,
             hits,
             wallDist);
+
+        if(leftWallRay == 1)
+            lwall = hits[0].collider.gameObject.layer == LayerMask.NameToLayer("Platforms");
+
         var rightWallRay = Physics2D.RaycastNonAlloc(
             (Vector2)transform.position + new Vector2(size.x * 0.5f, wallOffset),
             Vector2.right,
             hits,
             wallDist);
 
+        if (rightWallRay == 1)
+            rwall = hits[0].collider.gameObject.layer == LayerMask.NameToLayer("Platforms");
 
-        
-        horizontalAxis = Mathf.Clamp(horizontalAxis, leftWallRay == 1 ? 0 : horizontalAxis, rightWallRay == 1 ? 0 : horizontalAxis);
+
+        horizontalAxis = Mathf.Clamp(horizontalAxis, lwall ? 0 : horizontalAxis, rwall ? 0 : horizontalAxis);
 
 
         // there is ground beneath the character if one of the raycasts returns 1
@@ -168,7 +172,7 @@ public class BaseMovement : MonoBehaviour
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, 0f);
             }
 
-            rigidBody.AddForce(Vector2.up * jumpForce,ForceMode2D.Impulse);
+            rigidBody.AddForce(Vector2.up * jumpForce * (!doubleJumped ? 1 : 0.66f), ForceMode2D.Impulse);
 
         }
     }

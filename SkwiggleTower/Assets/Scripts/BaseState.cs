@@ -1,44 +1,27 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseState : StateMachineBehaviour
+public class BaseState : MonoBehaviour
 {
-    protected Animator anim;
-    protected EnemyAI enemy;
-    protected Rigidbody2D rb;
-    protected EnemyStats stats;
-    protected MeleeGuardAI enemy2;
-
-    private bool initialized;
-    protected bool canUpdate;
+    public EnemyInput input;
 
 
-    public void Initialize(Animator anim)
+    public virtual void StateStart()
     {
-        if (!initialized)
-        {
-            initialized = true;
-            this.anim = anim;
 
-            // 
-            enemy = anim.GetComponent<EnemyAI>();
-            enemy2 = anim.GetComponent<MeleeGuardAI>();
-
-            rb = anim.GetComponent<Rigidbody2D>();
-            stats = anim.GetComponent<EnemyStats>();
-        }
-
-        canUpdate = true;
     }
 
-
-    public void CheckAggro()
+    public virtual void StateUpdate()
     {
-        if(enemy)
-            anim.SetBool("PlayersInRange", enemy.arePlayersInRange);
-        else
-            anim.SetBool("PlayersInRange", enemy2.arePlayersInRange);
+
     }
+
+    public virtual void StateExit()
+    {
+
+    }
+
 
 }

@@ -8,40 +8,34 @@ using TMPro;
 /// </summary>
 public class PlayerManager : MonoBehaviour
 {
-    #region Singleton
+    //#region Singleton
 
-    public static PlayerManager instance;
+    //public static PlayerManager instance;
 
-    void Awake()
-    {
-        instance = this;
-    }
+    //void Awake()
+    //{
+    //    instance = this;
+    //}
 
-    #endregion
+    //#endregion
 
-    public GameObject player;
-    public CharacterStats charStats;
-    private int xpPM;
+    //public GameObject player;
+    //public CharacterStats charStats;
+    //private int xpPM;
 
-    void Start()
-    {
-        charStats = player.GetComponent<CharacterStats>();        
-    }
+    //void Start()
+    //{
+    //    charStats = player.GetComponent<CharacterStats>();        
+    //}
 
-    void Update()
-    {
-       xpPM = charStats.xp; //Adds xp to the player
-       LevelUp();
-    }
+    //void Update()
+    //{
 
-    public void KillPlayer()
-    {
-        // SceneManager.LoadScene("");
-    }
+    //}
 
-    public void LevelUp()
-    {
-        charStats.armor.AddModifier(2);
-        charStats.damage.AddModifier(2);
-    }
+    //public void KillPlayer()
+    //{
+    //    // SceneManager.LoadScene("");
+    //}
+
 }

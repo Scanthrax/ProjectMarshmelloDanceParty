@@ -125,7 +125,7 @@ public class Trial : MonoBehaviour
         // set timer to the duration of the trial
         timer = duration;
         // display timer in UI
-        roomManager.timerText.text = Mathf.CeilToInt(timer).ToString();
+        //roomManager.timerText.text = Mathf.CeilToInt(timer).ToString();
     }
 
     /// <summary>
