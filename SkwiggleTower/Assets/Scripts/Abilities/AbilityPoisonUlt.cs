@@ -41,6 +41,11 @@ public class AbilityPoisonUlt : Ability
 
     public void ApplyPoison()
     {
+        foreach (var ability in poisonAbilities)
+        {
+            print("APPLY POISON");
+            ability.buffs.Add(new BuffStruct(typeof(PoisonDebuff),this));
+        }
         totalCharges += chargesToApply;
     }
 }

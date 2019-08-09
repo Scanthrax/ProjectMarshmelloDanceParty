@@ -75,10 +75,13 @@ public class Ability : MonoBehaviour
 
     public bool passive;
 
+    public List<BuffStruct> buffs;
+
     public virtual void Start()
     {
         timer = cooldownDuration;
         abilitySoundSource = characterMovement.character.abilitySource;
+        buffs = new List<BuffStruct>();
     }
 
     public virtual void ImmediateCast()
@@ -130,7 +133,13 @@ public class Ability : MonoBehaviour
 
     public void DealDamage(BaseCharacter character)
     {
-        character.RecieveDamage(baseDamage);
+        foreach (var debuff in buffs)
+        {
+            print("SHOULD APPLY POISON");
+            var debuffVar = character.gameObject.AddComponent(debuff.buffType) as BaseBuff;
+            debuffVar.affector = debuff.caller;
+        }
+
 
         var playableChar = characterMovement.character as PlayableCharacter;
         if (playableChar)
@@ -142,6 +151,18 @@ public class Ability : MonoBehaviour
     public void CooldownFinished()
     {
 
+    }
+
+    public struct BuffStruct
+    {
+        public Type buffType;
+        public Ability caller;
+
+        public BuffStruct(Type type, Ability abilty)
+        {
+            buffType = type;
+            caller = abilty;
+        }
     }
 
 }

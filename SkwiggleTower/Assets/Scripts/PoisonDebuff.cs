@@ -5,13 +5,14 @@ using UnityEngine;
 public class PoisonDebuff : BaseBuff
 {
     public int damage;
-    public float tickInterval;
+    public float tickInterval = 1f;
 
-    public int tick, maxTicks;
+    public int tick;
+    public int maxTicks = 3;
     float timer;
 
 
-    private new void Start()
+    public new void Start()
     {
         base.Start();
         StartCoroutine(Poison());

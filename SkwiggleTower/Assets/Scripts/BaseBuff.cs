@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class BaseBuff : MonoBehaviour
 {
-    protected BaseCharacter character;
+    public BaseCharacter character;
+    public Ability affector;
 
     public void Start()
     {

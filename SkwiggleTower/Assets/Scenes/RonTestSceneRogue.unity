@@ -741,7 +741,8 @@ MonoBehaviour:
   amtOfTicks: 5
   tickDuration: 0.75
   totalCharges: 0
-  poisonAbilities: []
+  poisonAbilities:
+  - {fileID: 127565734}
 --- !u!1 &186093098
 GameObject:
   m_ObjectHideFlags: 0
@@ -2305,6 +2306,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f82a45a3a494b644a410763b0afba52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  character: {fileID: 0}
+  affector: {fileID: 0}
   damage: 1
   tickInterval: 1
   tick: 0
@@ -2628,7 +2631,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &937159488
 Transform:
   m_ObjectHideFlags: 0
