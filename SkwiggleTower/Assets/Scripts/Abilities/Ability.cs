@@ -123,7 +123,7 @@ public class Ability : MonoBehaviour
         // call the cooldown finished method
         CooldownFinished();
 
-        print("cooldown is done!");
+        //print("cooldown is done!");
     }
 
 

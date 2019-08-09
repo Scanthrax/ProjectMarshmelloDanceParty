@@ -22,7 +22,7 @@ public class WalkState : BaseState
         input.ChangeDirection();
 
         input.horizontal = 1f * input.faceDirection;
-        print("starting walk!");
+        //print("starting walk!");
 
         input.movement.movementSpeed = moveSpeed;
 
@@ -53,7 +53,7 @@ public class WalkState : BaseState
     {
         base.StateExit();
         StopCoroutine(coroutine);
-        Debug.Log("Exiting Walk!");
+        //Debug.Log("Exiting Walk!");
     }
 
     private void OnDrawGizmos()

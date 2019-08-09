@@ -115,18 +115,18 @@ public class BaseInput : MonoBehaviour
 
     public void StartAbility()
     {
-        print("starting ability");
+        //print("starting ability");
         animator.SetBool("AbilityActive", true);
     }
     public void EndAbility()
     {
-        print("ending ability");
+        //print("ending ability");
         animator.SetBool("AbilityActive", false);
     }
 
     public void StartMelee()
     {
-        print("start melee");
+        //print("start melee");
         character.melee.Cast();
     }
     public void StartPrimary()
@@ -145,7 +145,7 @@ public class BaseInput : MonoBehaviour
     }
     public void DisableControls()
     {
-        print("Disable Controls");
+        //print("Disable Controls");
 
         controllerEnabled = false;
         horizontal = 0f;

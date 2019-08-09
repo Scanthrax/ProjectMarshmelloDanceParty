@@ -84,7 +84,7 @@ public class EnemyInput : BaseInput
 
     public IEnumerator VisionCheck()
     {
-        Debug.Log("Start detecting!");
+        //Debug.Log("Start detecting!");
         while (true)
         {
             var amt = Physics2D.OverlapBoxNonAlloc((Vector2)transform.position + visionBoxPos * faceDirection, visionBoxSize, 0, visionColliders,LayerMask.GetMask("Player"));
@@ -113,7 +113,7 @@ public class EnemyInput : BaseInput
 
     public void StartAggro()
     {
-        Debug.Log("Start Aggro detection!");
+        //Debug.Log("Start Aggro detection!");
         StartCoroutine(CheckAggro);
     }
     //public void EndAggro()

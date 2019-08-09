@@ -56,7 +56,7 @@ public class TrialKillNumber : Trial
         }
 
         // If number of enemies killed is greater than / equal to max number of enemies (i.e. all enemies have been defeated.
-        if (roomManager.amtOfEnemiesKilled >= killsNeeded)
+        if (RoomManagerinstance.amtOfEnemiesKilled >= killsNeeded)
         {
             NotifyTrialComplete(true);
         }

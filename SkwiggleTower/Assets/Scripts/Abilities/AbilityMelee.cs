@@ -62,7 +62,7 @@ public class AbilityMelee : Ability
         //    yield break;
         //}
         //isRunning = true;
-        print("doing melee");
+        //print("doing melee");
         attackBoxActive = true;
         var dir = characterMovement.faceDirection;
         enemiesHit.Clear();

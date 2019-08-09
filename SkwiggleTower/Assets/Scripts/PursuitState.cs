@@ -17,7 +17,7 @@ public class PursuitState : BaseState
     public override void StateStart()
     {
         base.StateStart();
-        print("starting pursuit!");
+        //print("starting pursuit!");
         input.movement.movementSpeed = moveSpeed;
         input.horizontal = 1f * input.faceDirection;
         target = input.visionColliders[0].transform;

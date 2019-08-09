@@ -131,9 +131,12 @@ public class RoomManager : MonoBehaviour
 
         //poisonCharges.text = 0.ToString();
 
-        //trialTextIntro.text = trial.trialName;
-        //trialTextUI.text = trial.trialName;
-        //trial.StartTrial();
+        if (trial)
+        {
+            trialTextIntro.text = trial.trialName;
+            if(trialTextUI) trialTextUI.text = trial.trialName;
+            trial.StartTrial();
+        }
 
         print("Trial: " + trial.trialName);
 

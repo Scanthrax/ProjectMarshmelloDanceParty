@@ -43,7 +43,7 @@ public class Trial : MonoBehaviour
     /// Reference to the room manager
     /// </summary>
     [HideInInspector]
-    public RoomManager roomManager;
+    public RoomManager RoomManagerinstance;
 
 
 
@@ -63,7 +63,7 @@ public class Trial : MonoBehaviour
 
             // determine which cutscene to play based on whether the trial was a success
             // there is not yet a Failure cutscene, so use the Success cutscene for now
-            var cutscene = success ? roomManager.successCutscene : roomManager.failureCutscene;
+            var cutscene = success ? RoomManagerinstance.successCutscene : RoomManagerinstance.failureCutscene;
             cutscene.Play();
 
             // we have completed the trial
@@ -98,7 +98,7 @@ public class Trial : MonoBehaviour
         // decrease the timer
         timer -= Time.deltaTime;
         // display timer in UI
-        roomManager.timerText.text = Mathf.CeilToInt(timer).ToString();
+        RoomManagerinstance.timerText.text = Mathf.CeilToInt(timer).ToString();
 
         // if the timer reaches 0, the trial is a failure
         if (timer <= 0f)
@@ -120,7 +120,7 @@ public class Trial : MonoBehaviour
     {
         Debug.Log("Trial name: " + trialName);
 
-        roomManager = RoomManager.instance;
+        RoomManager.instance = RoomManager.instance;
 
         // set timer to the duration of the trial
         timer = duration;
@@ -134,10 +134,10 @@ public class Trial : MonoBehaviour
     public virtual void StartTrial()
     {
         print("Starting Trial now...");
-
+        print(RoomManager.instance == null);
         // only start the trial if it has not already been started
         if (!started)
-            roomManager.introCutscene.Play();
+            RoomManager.instance.introCutscene.Play();
         else
             Debug.Log("Attempting to start the trial when it has already started");
     }
