@@ -58,6 +58,11 @@ public class AbilityDash : AbilityMelee
 
     public IEnumerator Dash()
     {
+        var playableCharacter = characterMovement.character as PlayableCharacter;
+        if (playableCharacter)
+            playableCharacter.invincible = true;
+
+
         var dir = characterMovement.faceDirection;
         var time = Time.fixedDeltaTime;
         rigidBody.gravityScale = 0f;
@@ -72,7 +77,12 @@ public class AbilityDash : AbilityMelee
         EndMelee();
         rigidBody.gravityScale = prevGravity;
         gameObject.layer = prevLayer;
+        characterMovement.input.EndAbility();
         print("end of dash!");
+
+        if (playableCharacter)
+            playableCharacter.invincible = false;
+
         yield break;
     }
 

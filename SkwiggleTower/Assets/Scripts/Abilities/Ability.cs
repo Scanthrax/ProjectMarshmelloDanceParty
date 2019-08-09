@@ -40,6 +40,9 @@ public class Ability : MonoBehaviour
     /// </summary>
     public float percentage { get { return timer / cooldownDuration; } }
 
+    public float remainingTime { get { return cooldownDuration - timer;} }
+
+
     /// <summary>
     /// The movement component of the character
     /// </summary>
@@ -48,6 +51,7 @@ public class Ability : MonoBehaviour
 
     public Sprite abilityIcon;
 
+    public Action cooldownHUD;
 
     /// <summary>
     /// The audio clip that will play on cast
@@ -67,11 +71,21 @@ public class Ability : MonoBehaviour
     public bool performInAir;
 
 
+    public int ultGain;
+
+    public bool passive;
+
     public virtual void Start()
     {
         timer = cooldownDuration;
         abilitySoundSource = characterMovement.character.abilitySource;
     }
+
+    public virtual void ImmediateCast()
+    {
+
+    }
+
 
     public virtual void Cast()
     {
@@ -85,6 +99,8 @@ public class Ability : MonoBehaviour
             abilitySoundSource.clip = abilitySoundClip;
             abilitySoundSource.Play();
         }
+
+        if (cooldownHUD != null) cooldownHUD.Invoke();
     }
 
 
@@ -110,6 +126,18 @@ public class Ability : MonoBehaviour
         print("cooldown is done!");
     }
 
+
+
+    public void DealDamage(BaseCharacter character)
+    {
+        character.RecieveDamage(baseDamage);
+
+        var playableChar = characterMovement.character as PlayableCharacter;
+        if (playableChar)
+            playableChar.RecieveUltCharge(ultGain);
+
+        character.RecieveDamage(baseDamage);
+    }
 
     public void CooldownFinished()
     {

@@ -23,20 +23,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7609071303117880731, guid: 48742648789c4894e9243a876283d927,
+        type: 3}
+      propertyPath: projectile
+      value: arrow
+      objectReference: {fileID: 0}
     - target: {fileID: 7078690826283477000, guid: 48742648789c4894e9243a876283d927,
         type: 3}
       propertyPath: m_Name
       value: Arrow
-      objectReference: {fileID: 0}
-    - target: {fileID: 1339205034641145824, guid: 48742648789c4894e9243a876283d927,
-        type: 3}
-      propertyPath: damage
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1339205034641145824, guid: 48742648789c4894e9243a876283d927,
-        type: 3}
-      propertyPath: projectile
-      value: arrow
       objectReference: {fileID: 0}
     - target: {fileID: 3602669967722040864, guid: 48742648789c4894e9243a876283d927,
         type: 3}
@@ -103,6 +98,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1339205034641145824, guid: 48742648789c4894e9243a876283d927,
+        type: 3}
+      propertyPath: damage
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1339205034641145824, guid: 48742648789c4894e9243a876283d927,
+        type: 3}
+      propertyPath: projectile
+      value: arrow
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5242721097484711063, guid: 48742648789c4894e9243a876283d927, type: 3}

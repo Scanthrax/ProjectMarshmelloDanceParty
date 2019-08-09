@@ -34,7 +34,8 @@ public class PlayerInput : BaseInput
 
     public new void Update()
     {
-        base.Update();
+        // do not progress if the controller is disabled
+        if (!controllerEnabled) return;
 
 
         ProcessInputs();
@@ -111,97 +112,7 @@ public class PlayerInput : BaseInput
 
 
 
-    public void StartAbility()
-    {
-        animator.SetBool("AbilityActive", true);
-    }
-    public void EndAbility()
-    {
-        animator.SetBool("AbilityActive", false);
-    }
 
-    public void StartMelee()
-    {
-        character.melee.Cast();
-    }
-    public void StartPrimary()
-    {
-        character.primary.Cast();
-    }
-    public void StartSecondary()
-    {
-        character.secondary.Cast();
-    }
-
-
-    public void SetAnimatorValues(Ability ability, string abilityType, bool hold, bool press, bool release)
-    {
-        if (!animator)
-        {
-            Debug.LogWarning("The player input has not detected an animator!", this);
-            return;
-        }
-
-
-        if (!hold && !release)
-            return;
-
-        if (!ability)
-        {
-            Debug.LogWarning("An attempt was made to set animator values of a null " + abilityType + " ability", this);
-            return;
-        }
-
-
-
-
-        if (ability.activateOnHold)
-        {
-            if (hold)
-            {
-                if (!ability.onCooldown && !animator.GetBool("AbilityActive"))
-                {
-                    animator.SetTrigger(abilityType + "Trigger");
-                    animator.SetBool("AbilityActive", true);
-                }
-            }
-            else if (release)
-            {
-                if (animator.GetBool("AbilityActive"))
-                {
-                    animator.SetTrigger(abilityType + "Release");
-                }
-            }
-        }
-        else
-        {
-            if (press)
-            {
-                if (!ability.onCooldown && !animator.GetBool("AbilityActive"))
-                {
-                    animator.SetTrigger(abilityType + "Trigger");
-                    animator.SetBool("AbilityActive", true);
-                }
-            }
-            else if (release)
-            {
-                if (animator.GetBool("AbilityActive"))
-                    animator.SetTrigger(abilityType + "Release");
-            }
-        }
-
-    }
-
-
-    public void EnableControls()
-    {
-        controllerEnabled = true;
-    }
-    public void DisableControls()
-    {
-        movement.horizontalAxis = 0f;
-        controllerEnabled = false;
-    }
 
 
 

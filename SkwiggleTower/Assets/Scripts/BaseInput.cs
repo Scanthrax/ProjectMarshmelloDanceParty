@@ -96,11 +96,7 @@ public class BaseInput : MonoBehaviour
         transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x) * faceDirection, transform.localScale.y, transform.localScale.z);
     }
 
-    public void Update()
-    {
-        // do not progress if the controller is disabled
-        if (!controllerEnabled) return;
-    }
+
 
 
     public void RelayInfo()
@@ -115,5 +111,126 @@ public class BaseInput : MonoBehaviour
 
         movement.faceDirection = faceDirection;
     }
+
+
+    public void StartAbility()
+    {
+        print("starting ability");
+        animator.SetBool("AbilityActive", true);
+    }
+    public void EndAbility()
+    {
+        print("ending ability");
+        animator.SetBool("AbilityActive", false);
+    }
+
+    public void StartMelee()
+    {
+        print("start melee");
+        character.melee.Cast();
+    }
+    public void StartPrimary()
+    {
+        character.primary.Cast();
+    }
+    public void StartSecondary()
+    {
+        character.secondary.Cast();
+    }
+
+
+    public void EnableControls()
+    {
+        controllerEnabled = true;
+    }
+    public void DisableControls()
+    {
+        print("Disable Controls");
+
+        controllerEnabled = false;
+        horizontal = 0f;
+        movement.horizontalAxis = horizontal;
+    }
+
+
+    public void SetAnimatorValues(Ability ability, string abilityType, bool hold, bool press, bool release)
+    {
+        if (!animator)
+        {
+            Debug.LogWarning("The input has not detected an animator!", this);
+            return;
+        }
+
+
+        if (!hold && !release)
+            return;
+
+        if (!ability)
+        {
+            Debug.LogWarning("An attempt was made to set animator values of a null " + abilityType + " ability", this);
+            return;
+        }
+
+
+
+
+        if (ability.activateOnHold)
+        {
+            if (hold)
+            {
+                if (!ability.onCooldown && !animator.GetBool("AbilityActive"))
+                {
+                    SetTrigger(ability, abilityType);
+                }
+            }
+            else if (release)
+            {
+                if (animator.GetBool("AbilityActive"))
+                {
+                    animator.SetTrigger(abilityType + "Release");
+                }
+            }
+        }
+        else
+        {
+            if (press)
+            {
+                if (!ability.onCooldown && !animator.GetBool("AbilityActive"))
+                {
+                    SetTrigger(ability, abilityType);
+                }
+            }
+            else if (release)
+            {
+                if (animator.GetBool("AbilityActive"))
+                    animator.SetTrigger(abilityType + "Release");
+            }
+        }
+
+    }
+
+
+    public void SetTrigger(Ability ability, string abilityStr)
+    {
+        if (abilityStr == "Ult")
+        {
+            var player = character as PlayableCharacter;
+            if (player)
+            {
+                if (!player.fullUltCharge)
+                    return;
+                else
+                    player.ResetUltCharge();
+            }
+        }
+
+        animator.SetTrigger(abilityStr + "Trigger");
+        ability.ImmediateCast();
+        if(!ability.passive)
+            StartAbility();
+
+
+    }
+
 
 }

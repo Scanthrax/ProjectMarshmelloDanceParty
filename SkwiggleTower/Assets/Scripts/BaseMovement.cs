@@ -30,7 +30,7 @@ public class BaseMovement : MonoBehaviour
     [Header("Status Flags")]
     public bool isOnGround;                 //Is the player on the ground?
 
-    public PlayerInput input;                      //The current inputs for the player
+    public BaseInput input;                      //The current inputs for the player
     public Collider2D bodyCollider;             //The collider component
     public Rigidbody2D rigidBody;                  //The rigidbody component
     public Animator animator;

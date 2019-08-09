@@ -7,10 +7,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7609071303117880731, guid: 48742648789c4894e9243a876283d927,
+        type: 3}
+      propertyPath: projectile
+      value: rock
+      objectReference: {fileID: 0}
     - target: {fileID: 7078690826283477000, guid: 48742648789c4894e9243a876283d927,
         type: 3}
       propertyPath: m_Name
       value: Rock
+      objectReference: {fileID: 0}
+    - target: {fileID: 3602669967722040864, guid: 48742648789c4894e9243a876283d927,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e0f694f2c4ed1ef42bfb3cf702cbb0f3,
+        type: 3}
+    - target: {fileID: 3602669967722040864, guid: 48742648789c4894e9243a876283d927,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.28125
+      objectReference: {fileID: 0}
+    - target: {fileID: 3602669967722040864, guid: 48742648789c4894e9243a876283d927,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.28125
+      objectReference: {fileID: 0}
+    - target: {fileID: 3602669967722040864, guid: 48742648789c4894e9243a876283d927,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8761909047713325810, guid: 48742648789c4894e9243a876283d927,
         type: 3}
@@ -66,27 +92,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3602669967722040864, guid: 48742648789c4894e9243a876283d927,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: e0f694f2c4ed1ef42bfb3cf702cbb0f3,
-        type: 3}
-    - target: {fileID: 3602669967722040864, guid: 48742648789c4894e9243a876283d927,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 0.28125
-      objectReference: {fileID: 0}
-    - target: {fileID: 3602669967722040864, guid: 48742648789c4894e9243a876283d927,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 0.28125
-      objectReference: {fileID: 0}
-    - target: {fileID: 3602669967722040864, guid: 48742648789c4894e9243a876283d927,
-        type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1339205034641145824, guid: 48742648789c4894e9243a876283d927,
         type: 3}

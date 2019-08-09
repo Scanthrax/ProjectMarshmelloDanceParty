@@ -19,7 +19,7 @@ public class ProgressBar : MonoBehaviour
 
     public void SetProgress(float unitInterval)
     {
-        foregroundBar.transform.localScale = foregroundScale * new Vector2(unitInterval,1);
+        foregroundBar.transform.localScale = foregroundScale * new Vector2(unitInterval > 0f? unitInterval : 0f,1);
     }
 
 

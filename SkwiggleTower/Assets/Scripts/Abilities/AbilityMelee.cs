@@ -31,6 +31,9 @@ public class AbilityMelee : Ability
 
     protected bool attackBoxActive;
 
+
+    //bool isRunning;
+
     public override void Start()
     {
         base.Start();
@@ -38,13 +41,14 @@ public class AbilityMelee : Ability
         enemiesInRange = new Collider2D[10];
 
         enemiesHit = new List<BaseCharacter>();
+
+        //isRunning = false;
     }
 
 
     public override void Cast()
     {
         base.Cast();
-
         StartCoroutine(Melee());
     }
 
@@ -52,20 +56,29 @@ public class AbilityMelee : Ability
 
     public IEnumerator Melee()
     {
+        //if(isRunning)
+        //{
+        //    print("This is already running?");
+        //    yield break;
+        //}
+        //isRunning = true;
+        print("doing melee");
         attackBoxActive = true;
-
         var dir = characterMovement.faceDirection;
         enemiesHit.Clear();
+
         while (attackBoxActive)
         {
-            var amtOfEnemies = Physics2D.OverlapBoxNonAlloc(transform.position + new Vector3(attackPos.x * dir, attackPos.y), attackRange, 0, enemiesInRange);
+            var amtOfEnemies = Physics2D.OverlapBoxNonAlloc(transform.position + new Vector3(attackPos.x * dir, attackPos.y), attackRange, 0, enemiesInRange,whatAreEnemies);
             for (int j = 0; j < amtOfEnemies; j++)
             {
                 var enemy = enemiesInRange[j].GetComponent<BaseCharacter>();
                 if (!enemy || enemy == characterMovement.character || enemiesHit.Contains(enemy)) continue;
                 Debug.Log("Hit enemy!");
-                enemy.RecieveDamage(0);
+                
                 enemiesHit.Add(enemy);
+
+                DealDamage(enemy);
 
                 //var hitSound = enemy.GetComponent<ImpactSound>();
                 //if(hitSound)
@@ -75,14 +88,19 @@ public class AbilityMelee : Ability
         }
         characterMovement.input.EnableControls();
 
-
+        //isRunning = false;
     }
 
     public void EndMelee()
     {
-        attackBoxActive = false;
-        characterMovement.animator.SetBool("AbilityActive", false);
+        if (attackBoxActive)
+        {
+            attackBoxActive = false;
+        }
     }
+
+
+
 
     private void OnDrawGizmosSelected()
     {

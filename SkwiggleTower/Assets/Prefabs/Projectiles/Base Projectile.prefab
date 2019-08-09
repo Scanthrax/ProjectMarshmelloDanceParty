@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 3602669967722040864}
   - component: {fileID: 7729152762026024449}
   - component: {fileID: 5242721097484711063}
-  - component: {fileID: 1339205034641145824}
   - component: {fileID: 7284206876093713158}
+  - component: {fileID: 7609071303117880731}
   m_Layer: 12
   m_Name: Base Projectile
   m_TagString: Untagged
@@ -121,22 +121,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.0625
---- !u!114 &1339205034641145824
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7078690826283477000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a7d13a760a9fe5498d4f22ee9d632aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rockImpact: {fileID: 7284206876093713158}
-  whooshSound: {fileID: 8300000, guid: 11e1a5f22bffcfc4abffcdf3e59943fa, type: 3}
-  impactSound: {fileID: 8300000, guid: 66b624e0e4118b84fbd9947b25f6fcb5, type: 3}
-  damage: 3
 --- !u!82 &7284206876093713158
 AudioSource:
   m_ObjectHideFlags: 0
@@ -234,3 +218,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7609071303117880731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7078690826283477000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cdc85d18dcbded458c82a22ca0fff8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rockImpact: {fileID: 7284206876093713158}
+  rb: {fileID: 7729152762026024449}
+  whooshSound: {fileID: 8300000, guid: 11e1a5f22bffcfc4abffcdf3e59943fa, type: 3}
+  projectile: 
+  ability: {fileID: 0}

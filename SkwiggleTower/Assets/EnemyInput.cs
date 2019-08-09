@@ -12,8 +12,15 @@ public class EnemyInput : BaseInput
     public Vector2 visionBoxPos, visionBoxSize;
 
 
-    Collider2D[] visionColliders;
+    public Collider2D[] visionColliders;
     int visionResult;
+
+    public bool checkAggroEntry;
+
+    IEnumerator CheckAggro;
+
+
+    public bool meleeAttack;
 
     private void Start()
     {
@@ -28,11 +35,23 @@ public class EnemyInput : BaseInput
         }
 
         GoToState(typeof(IdleState));
+
+        CheckAggro = VisionCheck();
+
+        checkAggroEntry = true;
+        StartAggro();
     }
 
-    public new void Update()
+    public void Update()
     {
-        base.Update();
+        // do not progress if the controller is disabled
+        if (!controllerEnabled) return;
+
+        currentState.StateUpdate();
+
+
+        SetAnimatorValues(character.melee, "Melee", meleeAttack, false, false);
+
 
         RelayInfo();
     }
@@ -65,18 +84,54 @@ public class EnemyInput : BaseInput
 
     public IEnumerator VisionCheck()
     {
+        Debug.Log("Start detecting!");
         while (true)
         {
-            Physics2D.OverlapBoxNonAlloc((Vector2)transform.position + visionBoxPos, visionBoxSize, 0, visionColliders);
+            var amt = Physics2D.OverlapBoxNonAlloc((Vector2)transform.position + visionBoxPos * faceDirection, visionBoxSize, 0, visionColliders,LayerMask.GetMask("Player"));
 
+            if(checkAggroEntry)
+            {
+                if (amt > 0)
+                {
+                    Debug.Log("I detect someone");
+                    GoToState(typeof(PursuitState));
+                }
+            }
+            else
+            {
+                if (amt <= 0)
+                {
+                    Debug.Log("I can no longer see anyone!");
+                    checkAggroEntry = true;
+                    GoToState(typeof(IdleState));
+                }
+            }
             yield return null;
         }
+
+    }
+
+    public void StartAggro()
+    {
+        Debug.Log("Start Aggro detection!");
+        StartCoroutine(CheckAggro);
+    }
+    //public void EndAggro()
+    //{
+    //    Debug.Log("Stopping Aggro detection!");
+    //    StartCoroutine(CheckAggro);
+    //}
+
+
+    public void SetHorizontalAxis()
+    {
+        horizontal = 1f * faceDirection;
     }
 
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireCube((Vector2)transform.position + visionBoxPos, visionBoxSize);
+        Gizmos.DrawWireCube((Vector2)transform.position + visionBoxPos * faceDirection, visionBoxSize);
     }
 
 }

@@ -49,6 +49,13 @@ public class WalkState : BaseState
     }
 
 
+    public override void StateExit()
+    {
+        base.StateExit();
+        StopCoroutine(coroutine);
+        Debug.Log("Exiting Walk!");
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.DrawLine(transform.position + transform.up * raycastInfo.y, transform.position + transform.right * raycastInfo.x * (input ? input.faceDirection : 1) + transform.up * raycastInfo.y);

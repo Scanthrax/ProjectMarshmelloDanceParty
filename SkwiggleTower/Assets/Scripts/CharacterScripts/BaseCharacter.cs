@@ -71,9 +71,11 @@ public class BaseCharacter : MonoBehaviour
     {
     }
 
-    public void RecieveDamage(int damage)
+    public virtual void RecieveDamage(int damage)
     {
         gruntSource.Play();
+        hitSource.Play();
+        currentHealth -= damage;
     }
 
 }

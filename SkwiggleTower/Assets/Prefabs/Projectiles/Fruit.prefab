@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 720375867542932253}
-  ra: {fileID: 3068575143175420637}
+  ra: {fileID: 0}
   fruits:
   - {fileID: 21300000, guid: e0b465d1dded0f84a840b24686c343fc, type: 3}
   - {fileID: 21300000, guid: fb77f9b959986ec468355d394c0ab191, type: 3}
@@ -26,20 +26,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7078690826283477000, guid: 48742648789c4894e9243a876283d927,
-        type: 3}
-      propertyPath: m_Name
-      value: Fruit
-      objectReference: {fileID: 0}
-    - target: {fileID: 1339205034641145824, guid: 48742648789c4894e9243a876283d927,
+    - target: {fileID: 7609071303117880731, guid: 48742648789c4894e9243a876283d927,
         type: 3}
       propertyPath: projectile
       value: fruit
       objectReference: {fileID: 0}
-    - target: {fileID: 1339205034641145824, guid: 48742648789c4894e9243a876283d927,
+    - target: {fileID: 7078690826283477000, guid: 48742648789c4894e9243a876283d927,
         type: 3}
-      propertyPath: damage
-      value: 2
+      propertyPath: m_Name
+      value: Fruit
       objectReference: {fileID: 0}
     - target: {fileID: 3602669967722040864, guid: 48742648789c4894e9243a876283d927,
         type: 3}
@@ -112,6 +107,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1339205034641145824, guid: 48742648789c4894e9243a876283d927,
+        type: 3}
+      propertyPath: projectile
+      value: fruit
+      objectReference: {fileID: 0}
+    - target: {fileID: 1339205034641145824, guid: 48742648789c4894e9243a876283d927,
+        type: 3}
+      propertyPath: damage
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48742648789c4894e9243a876283d927, type: 3}
 --- !u!1 &6502218174846610741 stripped
@@ -126,15 +131,3 @@ SpriteRenderer:
     type: 3}
   m_PrefabInstance: {fileID: 4035237599603017021}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3068575143175420637 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1339205034641145824, guid: 48742648789c4894e9243a876283d927,
-    type: 3}
-  m_PrefabInstance: {fileID: 4035237599603017021}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6502218174846610741}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a7d13a760a9fe5498d4f22ee9d632aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

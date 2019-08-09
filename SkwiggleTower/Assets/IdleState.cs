@@ -11,6 +11,8 @@ public class IdleState : BaseState
     public override void StateStart()
     {
         base.StateStart();
+        print("starting idle!");
+
         input.horizontal = 0f;
 
         coroutine = Idle();
@@ -30,5 +32,7 @@ public class IdleState : BaseState
     public override void StateExit()
     {
         StopCoroutine(coroutine);
+
+        Debug.Log("Exiting Idle!");
     }
 }
