@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class BaseCharacter : MonoBehaviour
+
+
+
+public class BaseCharacter : MonoBehaviour, IPooledObject
 {
     /// <summary>
     /// The maximum amount of health this character has
@@ -54,12 +57,30 @@ public class BaseCharacter : MonoBehaviour
     public SpriteRenderer characterRenderer;
 
 
+    public Transform audioSources;
+
+
+    public Transform root;
+    public Transform properties;
+
+    public BaseMovement characterMovement;
+
+    public delegate void DeathHandler(BaseCharacter character);
+    public event DeathHandler DeathEvent;
+
+    public delegate void StartHandler(BaseCharacter character);
+    public event StartHandler StartEvent;
+    
 
 
 
+    public void Start()
+    {
 
+        OnObjectSpawn();
 
-
+        DeathEvent += ObjectPoolManager.instance.KillEnemy;
+    }
 
     public void PlayFootstep()
     {
@@ -75,7 +96,67 @@ public class BaseCharacter : MonoBehaviour
     {
         gruntSource.Play();
         hitSource.Play();
+
         currentHealth -= damage;
+
+        if (currentHealth <= 0)
+            OnDeath();
+
     }
 
+    [ContextMenu("Death")]
+    public virtual void OnDeath()
+    {
+        print("I DIED");
+        DeathEvent?.Invoke(this);
+    }
+
+    public virtual void OnDeath(bool b)
+    {
+        if(b)
+            DeathEvent?.Invoke(this);
+    }
+
+
+    public int RecursiveDamage(int damage, ref int source)
+    {
+        source -= damage;
+        return source;
+    }
+
+
+
+    public void OnObjectSpawn()
+    {
+        StartEvent?.Invoke(this);
+
+        print("FULL HEALTH");
+        currentHealth = maxHealth;
+
+        melee.timer = melee.cooldownDuration;
+        
+    }
+
+    public void OnObjectDespawn()
+    {
+        
+    }
+
+
+
+
+    //public void MoveGameObjects()
+    //{
+    //    StartCoroutine(AttachGameObjects());
+    //}
+
+    public IEnumerator AttachGameObjects()
+    {
+        ObjectPoolManager.instance.SpawnFromPool("DeathParticles", transform.position).GetComponent<ParticleSystem>().Play();
+        properties.gameObject.SetActive(false);
+        yield return new WaitForSeconds(1f);
+        print("THIS SHOULD BE GETTING CALLED");
+
+        properties.gameObject.SetActive(true);
+    }
 }

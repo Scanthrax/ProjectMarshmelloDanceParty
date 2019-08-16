@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 4823405246061854510, guid: 8893b091233d2ec41a5d70aaf6a19fd4,
         type: 3}
       propertyPath: m_Name
-      value: Player HUD
+      value: Rogue HUD
       objectReference: {fileID: 0}
     - target: {fileID: 4823405246061854509, guid: 8893b091233d2ec41a5d70aaf6a19fd4,
         type: 3}

@@ -77,6 +77,22 @@ public class Ability : MonoBehaviour
 
     public List<BuffStruct> buffs;
 
+
+
+
+
+    public delegate void AbilityDamageEvent();
+    public event AbilityDamageEvent abilityDamageEvent;
+
+    public delegate void AbilityCastEvent();
+    public event AbilityCastEvent abilityCastEvent;
+
+    public delegate void AbilityEndEvent();
+    public event AbilityCastEvent abilityEndEvent;
+
+
+
+
     public virtual void Start()
     {
         timer = cooldownDuration;
@@ -86,7 +102,7 @@ public class Ability : MonoBehaviour
 
     public virtual void ImmediateCast()
     {
-
+        Cast();
     }
 
 
@@ -103,7 +119,9 @@ public class Ability : MonoBehaviour
             abilitySoundSource.Play();
         }
 
-        if (cooldownHUD != null) cooldownHUD.Invoke();
+        cooldownHUD?.Invoke();
+
+        abilityCastEvent?.Invoke();
     }
 
 
@@ -138,20 +156,46 @@ public class Ability : MonoBehaviour
             print("SHOULD APPLY POISON");
             var debuffVar = character.gameObject.AddComponent(debuff.buffType) as BaseBuff;
             debuffVar.affector = debuff.caller;
+            debuffVar.Init();
+            debuffVar.StartBuff();
+            (debuff.caller as AbilityPoisonUlt).RemoveCharge();
+
+            if ((debuff.caller as AbilityPoisonUlt).outOfCharges)
+                (debuff.caller as AbilityPoisonUlt).RemovePoison();
+
         }
 
-
-        var playableChar = characterMovement.character as PlayableCharacter;
-        if (playableChar)
-            playableChar.RecieveUltCharge(ultGain);
-
         character.RecieveDamage(baseDamage);
+
+        if (abilityDamageEvent != null)
+            abilityDamageEvent();
     }
 
     public void CooldownFinished()
     {
 
     }
+
+
+
+
+
+    public void UltGain()
+    {
+        (characterMovement.character as PlayableCharacter).RecieveUltCharge(ultGain);
+    }
+
+    public void UltGain(BaseCharacter character)
+    {
+        (characterMovement.character as PlayableCharacter).RecieveUltCharge(ultGain);
+    }
+
+
+    public void End()
+    {
+        abilityEndEvent?.Invoke();
+    }
+
 
     public struct BuffStruct
     {

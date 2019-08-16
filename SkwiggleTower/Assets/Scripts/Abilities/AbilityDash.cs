@@ -74,7 +74,7 @@ public class AbilityDash : AbilityMelee
             rigidBody.MovePosition((Vector2)transform.position + new Vector2((dashDist/dashDuration) * time * dir, 0));
             yield return null;
         }
-        EndMelee();
+        DisableAttackBox();
         rigidBody.gravityScale = prevGravity;
         gameObject.layer = prevLayer;
         characterMovement.input.EndAbility();

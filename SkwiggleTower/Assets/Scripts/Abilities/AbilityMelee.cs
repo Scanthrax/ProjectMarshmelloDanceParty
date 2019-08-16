@@ -42,7 +42,10 @@ public class AbilityMelee : Ability
 
         enemiesHit = new List<BaseCharacter>();
 
+
+        abilityEndEvent += DisableAttackBox;
         //isRunning = false;
+
     }
 
 
@@ -91,7 +94,7 @@ public class AbilityMelee : Ability
         //isRunning = false;
     }
 
-    public void EndMelee()
+    public void DisableAttackBox()
     {
         if (attackBoxActive)
         {
