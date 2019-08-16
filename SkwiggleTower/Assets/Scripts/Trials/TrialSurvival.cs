@@ -29,7 +29,7 @@ public class TrialSurvival : Trial
         // decrease the timer
         timer -= Time.deltaTime;
         // display timer in UI
-        roomManager.timerText.text = Mathf.CeilToInt(timer).ToString();
+        RoomManager.instance.timerText.text = Mathf.CeilToInt(timer).ToString();
 
         // if the player survives until time runs out the trial is succesful, should not occur if player(s) is/are dead
         if (timer <= 0f)

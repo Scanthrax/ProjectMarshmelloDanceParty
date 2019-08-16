@@ -18,18 +18,26 @@ public class AbilityPoisonUlt : Ability
 
     public List<Ability> poisonAbilities;
 
+    public bool outOfCharges { get { return totalCharges <= 0; } }
+
+
+    BuffStruct buffStruct;
+
+    Dictionary<Ability, BuffStruct> dict;
+
+    List<Ability> tempList;
+
     new void Start()
     {
         base.Start();
 
         totalCharges = 0;
+
+        dict = new Dictionary<Ability, BuffStruct>();
+
+        buffStruct = new BuffStruct(typeof(PoisonDebuff),this);
     }
 
-    public override void ImmediateCast()
-    {
-        base.ImmediateCast();
-        Cast();
-    }
 
     public override void Cast()
     {
@@ -41,6 +49,23 @@ public class AbilityPoisonUlt : Ability
 
     public void ApplyPoison()
     {
+        //foreach (var ability in poisonAbilities)
+        //{
+        //    ability.buffs.Add(buffStruct);
+        //}
         totalCharges += chargesToApply;
+    }
+
+    public void RemovePoison()
+    {
+        foreach (var ability in poisonAbilities)
+        {
+            ability.buffs.Clear();
+        }
+    }
+
+    public void RemoveCharge()
+    {
+        totalCharges--;
     }
 }

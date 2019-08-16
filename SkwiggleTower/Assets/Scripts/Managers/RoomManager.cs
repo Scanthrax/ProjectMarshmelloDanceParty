@@ -23,12 +23,8 @@ public class RoomManager : MonoBehaviour
     /// <summary>
     /// Contains all of the spawners located in the room
     /// </summary>
-    GameObject[] listOfSpawners;
+    public Spawner[] listOfSpawners;
 
-    /// <summary>
-    /// test objects to spawn
-    /// </summary>
-    public GameObject testEnemyPrefab;
 
     /// <summary>
     /// Current amount of enemies in the room
@@ -38,7 +34,7 @@ public class RoomManager : MonoBehaviour
     /// <summary>
     /// Maximum amount of enemies allowed to be in the room at a given time
     /// </summary>
-    public int maxAmount;
+    public int maxAmountOfEnemies;
 
     /// <summary>
     /// The trial for the current room
@@ -53,7 +49,7 @@ public class RoomManager : MonoBehaviour
 
 
     public int amtOfEnemiesKilled;
-
+    public int cumulativeKills;
 
 
 
@@ -67,46 +63,37 @@ public class RoomManager : MonoBehaviour
     public TextMeshPro roundTextCompleted, trialTextCompleted;
 
 
-    public GameObject trials;
 
 
-
-    public int amtOfPlayers;
-
-
-    bool isKeyboardDetected;
-    bool[] isGamepadDetected;
-
-    public List<PlayerInput> playerInputs;
-    public int amtOfCurrentPlayers;
 
 
     public TextMeshPro primaryCtr, secondaryCtr, ultCtr;
     public TextMeshPro poisonCharges;
 
+    public GameObject trials;
 
-    public bool checkForPlayers;
+
+    public BaseCharacter enemyPrefab;
+
+
+
+    public ParticleSystem deathParticles;
 
     public void Awake()
     {
         instance = this;
-
-
-        isKeyboardDetected = false;
     }
 
     private void Start()
     {
-        isKeyboardDetected = false;
-        isGamepadDetected = new bool[4];
-        amtOfCurrentPlayers = 0;
+
 
         // find all spawn gameobjects with the Respawn label & store them
-        listOfSpawners = GameObject.FindGameObjectsWithTag("Respawn");
+        listOfSpawners = FindObjectsOfType<Spawner>();
 
 
         
-        amtOfPlayers = 0;
+        
 
         //// the trial component will be dragged onto this gameobject through the inspector
         //trial = GetComponent<Trial>();
@@ -131,11 +118,12 @@ public class RoomManager : MonoBehaviour
 
         //poisonCharges.text = 0.ToString();
 
-        //trialTextIntro.text = trial.trialName;
-        //trialTextUI.text = trial.trialName;
-        //trial.StartTrial();
-
-        print("Trial: " + trial.trialName);
+        if (trial)
+        {
+            trialTextIntro.text = trial.trialName;
+            if(trialTextUI) trialTextUI.text = trial.trialName;
+            trial.StartTrial();
+        }
 
 
 
@@ -145,48 +133,6 @@ public class RoomManager : MonoBehaviour
     private void Update()
     {
 
-        if (checkForPlayers)
-        {
-            if (amtOfCurrentPlayers <= 4)
-            {
-                #region Check for Keyboard player
-                // if we haven't detected a keyboard
-                if (!isKeyboardDetected)
-                {
-                    // check for an action button
-                    if (Input.GetKeyDown(KeyCode.Space))
-                    {
-                        // we have now detected a keyboard
-                        isKeyboardDetected = true;
-                        // set the mappings of the player
-                        playerInputs[amtOfCurrentPlayers].SetMappings(amtOfCurrentPlayers, false);
-                        // we now have one more player
-                        amtOfCurrentPlayers++;
-                    }
-                }
-                #endregion
-                #region Check for Gamepad Players
-                // check for 4 gamepads
-                for (int i = 0; i < isGamepadDetected.Length; i++)
-                {
-                    // if the gamepad is detected, continue through the loop
-                    if (isGamepadDetected[i]) continue;
-
-                    // check for the gamepad's action button
-                    if (Input.GetKeyDown("joystick " + (i + 1) + " button 0"))
-                    {
-                        print("HERE I AM: " + (i + 1));
-                        // set the mappings of the player
-                        playerInputs[amtOfCurrentPlayers].SetMappings(i, true);
-                        // we now have one more player
-                        amtOfCurrentPlayers++;
-                        isGamepadDetected[i] = true;
-                    }
-
-                }
-                #endregion
-            }
-        }
 
         //primaryCtr.text = (playerInputs[0].GetComponent<CharacterStats>().primary.duration - playerInputs[0].GetComponent<CharacterStats>().primary.timer).ToString("F1");
         //secondaryCtr.text = (playerInputs[0].GetComponent<CharacterStats>().secondary.duration - playerInputs[0].GetComponent<CharacterStats>().secondary.timer).ToString("F1");
@@ -196,7 +142,7 @@ public class RoomManager : MonoBehaviour
     public void SpawnEnemy()
     {
         // if we cannot spawn anymore enemies, exit the method
-        if (amountOfEnemies >= maxAmount)
+        if (amountOfEnemies >= maxAmountOfEnemies)
             return;
 
 
@@ -205,7 +151,7 @@ public class RoomManager : MonoBehaviour
         Vector3 position = listOfSpawners[UnityEngine.Random.Range(0, listOfSpawners.Length)].transform.position;
 
         // instantiate the gameobject at the position
-        Instantiate(testEnemyPrefab, position, Quaternion.identity);
+        Instantiate(enemyPrefab, position, Quaternion.identity);
 
         // increase the count of enemies in the room
         amountOfEnemies++;

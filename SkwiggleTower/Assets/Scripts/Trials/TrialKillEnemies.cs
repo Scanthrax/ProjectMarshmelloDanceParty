@@ -35,14 +35,14 @@ public class TrialKillEnemies : Trial
         base.UpdateLogic();
 
         // Increase enemies killed with K (For testing), only if enemies killed is fewer than / equal to max amount of enemies 
-        if (Input.GetKeyDown(KeyCode.K) && enemiesKilled <= RoomManager.instance.maxAmount)
+        if (Input.GetKeyDown(KeyCode.K) && enemiesKilled <= RoomManager.instance.maxAmountOfEnemies)
         {
             enemiesKilled++;
             Debug.Log("Enemies Killed: " + enemiesKilled.ToString());
         }
 
         // If number of enemies killed is greater than / equal to max number of enemies (i.e. all enemies have been defeated.
-        if (enemiesKilled >= RoomManager.instance.maxAmount)
+        if (enemiesKilled >= RoomManager.instance.maxAmountOfEnemies)
         {
             allEnemiesKilled = true;
             NotifyTrialComplete(allEnemiesKilled);

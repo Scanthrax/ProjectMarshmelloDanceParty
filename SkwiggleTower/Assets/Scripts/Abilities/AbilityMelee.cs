@@ -42,7 +42,10 @@ public class AbilityMelee : Ability
 
         enemiesHit = new List<BaseCharacter>();
 
+
+        abilityEndEvent += DisableAttackBox;
         //isRunning = false;
+
     }
 
 
@@ -62,7 +65,7 @@ public class AbilityMelee : Ability
         //    yield break;
         //}
         //isRunning = true;
-        print("doing melee");
+        //print("doing melee");
         attackBoxActive = true;
         var dir = characterMovement.faceDirection;
         enemiesHit.Clear();
@@ -74,7 +77,6 @@ public class AbilityMelee : Ability
             {
                 var enemy = enemiesInRange[j].GetComponent<BaseCharacter>();
                 if (!enemy || enemy == characterMovement.character || enemiesHit.Contains(enemy)) continue;
-                Debug.Log("Hit enemy!");
                 
                 enemiesHit.Add(enemy);
 
@@ -91,7 +93,7 @@ public class AbilityMelee : Ability
         //isRunning = false;
     }
 
-    public void EndMelee()
+    public void DisableAttackBox()
     {
         if (attackBoxActive)
         {
