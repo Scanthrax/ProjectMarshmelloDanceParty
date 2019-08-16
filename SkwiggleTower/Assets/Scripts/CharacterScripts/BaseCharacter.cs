@@ -26,8 +26,11 @@ public class BaseCharacter : MonoBehaviour
     public Ability secondary;
     public Ability ultimate;
 
+    public int isVIP;
 
+    public delegate void DeathEvent(BaseCharacter character);
 
+    public event DeathEvent deathEvent;
 
     #region Audio Sources
     /// <summary>
@@ -54,11 +57,10 @@ public class BaseCharacter : MonoBehaviour
     public SpriteRenderer characterRenderer;
 
 
-
-
-
-
-
+    public void Start()
+    {
+        //deathEvent += testEvent;
+    }
 
 
     public void PlayFootstep()
@@ -66,6 +68,10 @@ public class BaseCharacter : MonoBehaviour
         AudioManager.instance.PlaySoundpool(footstepSource, Sounds.AsphaltFootsteps);
     }
 
+    public void testEvent()
+    {
+        Debug.Log("Death handling test");
+    }
 
     public void SlingStretch()
     {
@@ -76,6 +82,11 @@ public class BaseCharacter : MonoBehaviour
         gruntSource.Play();
         hitSource.Play();
         currentHealth -= damage;
+
+        if ( deathEvent != null && currentHealth <= 0)
+        {
+            deathEvent(this);
+        }
     }
 
 }
