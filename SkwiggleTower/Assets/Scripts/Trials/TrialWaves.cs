@@ -59,11 +59,11 @@ public class TrialWaves : Trial
             Debug.Log("Enemies Killed: " + enemiesKilledThisWave.ToString());
         }
 
-        // If the number of kills needed to win is greater than the maxAMount of enemies possible, increase maxAmount to accomodate
-        if (killsNeededThisWave > RoomManager.instance.maxAmount)
-        {
-            RoomManager.instance.maxAmount = killsNeededThisWave; 
-        }
+        //// If the number of kills needed to win is greater than the maxAMount of enemies possible, increase maxAmount to accomodate
+        //if (killsNeededThisWave > RoomManager.instance.maxAmount)
+        //{
+        //    RoomManager.instance.maxAmount = killsNeededThisWave;
+        //}
 
         // Script for completing a wave
         // If number of enemies killed is greater than / equal to max number of enemies (i.e. all enemies have been defeated)

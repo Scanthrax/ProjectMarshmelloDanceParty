@@ -29,11 +29,8 @@ public class BaseCharacter : MonoBehaviour, IPooledObject
     public Ability secondary;
     public Ability ultimate;
 
-    public int isVIP;
+    //public int isVIP;
 
-    public delegate void DeathEvent(BaseCharacter character);
-
-    public event DeathEvent deathEvent;
 
     #region Audio Sources
     /// <summary>
@@ -59,13 +56,6 @@ public class BaseCharacter : MonoBehaviour, IPooledObject
 
     public SpriteRenderer characterRenderer;
 
-
-<<<<<<< HEAD
-    public void Start()
-    {
-        //deathEvent += testEvent;
-    }
-=======
     public Transform audioSources;
 
 
@@ -82,7 +72,6 @@ public class BaseCharacter : MonoBehaviour, IPooledObject
     
 
 
->>>>>>> origin/RoomManager
 
     public void Start()
     {
@@ -113,12 +102,11 @@ public class BaseCharacter : MonoBehaviour, IPooledObject
 
         currentHealth -= damage;
 
-<<<<<<< HEAD
-        if ( deathEvent != null && currentHealth <= 0)
+
+        if ( DeathEvent != null && currentHealth <= 0)
         {
-            deathEvent(this);
+            DeathEvent(this);
         }
-=======
         if (currentHealth <= 0)
             OnDeath();
 
@@ -129,7 +117,7 @@ public class BaseCharacter : MonoBehaviour, IPooledObject
     {
         //print("I DIED");
         DeathEvent?.Invoke(this);
->>>>>>> origin/RoomManager
+
     }
 
     public virtual void OnDeath(bool b)

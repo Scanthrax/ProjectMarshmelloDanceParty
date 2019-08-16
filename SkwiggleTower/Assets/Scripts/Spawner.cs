@@ -30,7 +30,11 @@ public class Spawner : MonoBehaviour
 
 
 
+    public delegate void OnSpawnEnemyStart(BaseCharacter character);
+    public event OnSpawnEnemyStart OnSpawnStart;
 
+    public delegate void OnSpawnEnemyDeath(BaseCharacter character);
+    public event OnSpawnEnemyDeath onSpawnEnemyDeath;
 
 
     private void Start()
@@ -72,6 +76,7 @@ public class Spawner : MonoBehaviour
             return;
         }
 
+
         var character = enemy.GetComponentInChildren<BaseCharacter>();
 
         if (!character)
@@ -80,7 +85,10 @@ public class Spawner : MonoBehaviour
             return;
         }
 
-        character.StartEvent += ColorEnemy;
+        if(onSpawnEnemyDeath!=null)
+            character.DeathEvent += onSpawnEnemyDeath.Invoke;
+
+        //character.StartEvent += ColorEnemy;
         amtOfActiveEnemies++;
         character.DeathEvent += ReduceEnemyCounter;
     }
@@ -96,4 +104,11 @@ public class Spawner : MonoBehaviour
     {
         amtOfActiveEnemies--;
     }
+
+
+    //public void AddDeathEvents(BaseCharacter character)
+    //{
+
+    //}
+
 }

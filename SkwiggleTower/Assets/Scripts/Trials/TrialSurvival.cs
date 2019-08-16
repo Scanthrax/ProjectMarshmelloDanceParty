@@ -14,7 +14,7 @@ public class TrialSurvival : Trial
 
         // doubles the max amount of enemies that can be in a room at a single time, so as to increase difficulty
         // may need to be changed or balanced
-        RoomManager.instance.maxAmount *= 2;
+        //RoomManager.instance.maxAmount *= 2;
 
         // should also adjust enemy spawn rates, so they spawn more quickly/often, not sure what variable should be adjusted to achieve this
 
@@ -34,7 +34,7 @@ public class TrialSurvival : Trial
         // if the player survives until time runs out the trial is succesful, should not occur if player(s) is/are dead
         if (timer <= 0f)
         {
-            RoomManager.instance.maxAmount /= 2;
+            //RoomManager.instance.maxAmount /= 2;
             NotifyTrialComplete(true);
         }
     }

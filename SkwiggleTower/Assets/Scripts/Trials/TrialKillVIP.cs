@@ -42,8 +42,18 @@ public class TrialKillVIP : Trial
         VIPsKilled = 0;
         allVIPsKilled = false;
 
-        var enemy = Instantiate(baseCharacter,Vector3.zero,Quaternion.identity);
-        enemy.deathEvent += testEvent;
+        VIPsMax = 3;
+
+        //var enemy = Instantiate(baseCharacter,Vector3.zero,Quaternion.identity);
+        //enemy.DeathEvent += testEvent;
+
+        var rand = Random.Range(0, RoomManager.instance.listOfSpawners.Length - 1);
+        var spawnerVIPs = RoomManager.instance.listOfSpawners[rand];
+
+        spawnerVIPs.onSpawnEnemyDeath += VIPtick;
+
+        spawnerVIPs.color = Color.red;
+
     }
 
     public void testEvent(BaseCharacter character)
@@ -64,6 +74,14 @@ public class TrialKillVIP : Trial
             VIPsKilled++;
             Debug.Log("Enemies Killed: " + VIPsKilled.ToString());
         }
+       
+        
+    }
+
+    public void VIPtick (BaseCharacter character)
+    {
+        VIPsKilled++;
+
         VIPsRemaining = VIPsMax - VIPsKilled;
 
         // If number of enemies killed is greater than / equal to max number of enemies (i.e. all enemies have been defeated.
@@ -71,8 +89,8 @@ public class TrialKillVIP : Trial
         {
             allVIPsKilled = true;
             NotifyTrialComplete(allVIPsKilled);
-        }  
-        
+        }
+
     }
 
 }
