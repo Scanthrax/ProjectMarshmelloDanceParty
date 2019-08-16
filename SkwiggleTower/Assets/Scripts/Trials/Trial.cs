@@ -121,8 +121,6 @@ public class Trial : MonoBehaviour
     /// </summary>
     public virtual void Start()
     {
-        Debug.Log("Trial name: " + trialName);
-
 
         // set timer to the duration of the trial
         timer = duration;
@@ -135,8 +133,7 @@ public class Trial : MonoBehaviour
     /// </summary>
     public virtual void StartTrial()
     {
-        print("Starting Trial now...");
-        print(RoomManager.instance == null);
+        print("Starting Trial now: " + trialName);
         // only start the trial if it has not already been started
         if (!started)
             RoomManager.instance.introCutscene.Play();

@@ -143,13 +143,12 @@ public class ObjectPoolManager : MonoBehaviour
             return;
         }
 
-        print(tag);
         obj.gameObject.SetActive(active);
 
         poolDictionary[tag].Enqueue(obj);
         
 
-        PrintQueue(poolDictionary[tag]);
+        //PrintQueue(poolDictionary[tag]);
 
     }
 
@@ -175,7 +174,6 @@ public class ObjectPoolManager : MonoBehaviour
         character.properties.gameObject.SetActive(false);
         character.characterMovement.rigidBody.isKinematic = true;
         yield return new WaitForSeconds(1f);
-        print("putting back in queue");
         character.properties.gameObject.SetActive(true);
         character.characterMovement.rigidBody.isKinematic = false;
         BackToPool("Enemy", character.root,false);

@@ -30,7 +30,6 @@ public class WalkState : BaseState
         input.ChangeDirection();
 
         input.horizontal = 1f * input.faceDirection;
-        print("starting walk!");
 
         input.movement.movementSpeed = moveSpeed;
 

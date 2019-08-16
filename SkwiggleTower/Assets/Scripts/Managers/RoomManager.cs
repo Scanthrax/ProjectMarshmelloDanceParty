@@ -125,8 +125,6 @@ public class RoomManager : MonoBehaviour
             trial.StartTrial();
         }
 
-        print("Trial: " + trial.trialName);
-
 
 
     }

@@ -107,7 +107,7 @@ public class BaseCharacter : MonoBehaviour, IPooledObject
     [ContextMenu("Death")]
     public virtual void OnDeath()
     {
-        print("I DIED");
+        //print("I DIED");
         DeathEvent?.Invoke(this);
     }
 
@@ -130,7 +130,6 @@ public class BaseCharacter : MonoBehaviour, IPooledObject
     {
         StartEvent?.Invoke(this);
 
-        print("FULL HEALTH");
         currentHealth = maxHealth;
 
         melee.timer = melee.cooldownDuration;

@@ -796,14 +796,10 @@ GameObject:
   - component: {fileID: 4812394993851490658}
   - component: {fileID: 4812394993851490659}
   - component: {fileID: 4812394993851490656}
-  - component: {fileID: 4812394993851490660}
-  - component: {fileID: 1380746188764204530}
   - component: {fileID: 4812394993851490684}
-  - component: {fileID: 4812394993851490662}
-  - component: {fileID: 4812394993851490661}
-  - component: {fileID: 4812394993851490666}
-  - component: {fileID: 4812394993851490667}
-  - component: {fileID: 4812394993851490687}
+  - component: {fileID: 1697637172709564750}
+  - component: {fileID: 5764023584558421333}
+  - component: {fileID: 8757075064508605713}
   m_Layer: 8
   m_Name: Properties
   m_TagString: Player
@@ -910,67 +906,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.5, y: 1.35}
   m_Direction: 0
---- !u!114 &4812394993851490660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6537194553206792082}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9187403968de37b4a9d32a549317ad4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  horizontal: 0
-  jumpHold: 0
-  meleeHold: 0
-  primaryHold: 0
-  secondaryHold: 0
-  ultHold: 0
-  animator: {fileID: 4812394993851490658}
-  character: {fileID: 4812394993851490662}
-  movement: {fileID: 1380746188764204530}
-  animController: {fileID: 4812394993851490684}
-  controllerEnabled: 1
-  faceRight: 0
-  playerID: 0
-  inputPrefix: KB
---- !u!114 &1380746188764204530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6537194553206792082}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ff400fb49fe7ff4d9a2dbc9de97e331, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  faceDirection: 1
-  movementSpeed: 6
-  jumpForce: 17.6
-  footOffset: 0.2
-  eyeHeight: 1.5
-  groundDistance: 0.1
-  groundDistOffset: 0.1
-  wallDist: 0.32
-  wallOffset: -0.46
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 2560
-  isOnGround: 1
-  input: {fileID: 4812394993851490660}
-  bodyCollider: {fileID: 4812394993851490656}
-  rigidBody: {fileID: 7525248775304542206}
-  animator: {fileID: 4812394993851490658}
-  jumped: 0
-  doubleJumped: 0
-  character: {fileID: 4812394993851490662}
-  fallSpeed: 4.75
-  horizontalAxis: 0
-  doubleJumpMult: 0.66
 --- !u!114 &4812394993851490684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -984,7 +919,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 4812394993851490658}
---- !u!114 &4812394993851490662
+--- !u!114 &1697637172709564750
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -993,148 +928,83 @@ MonoBehaviour:
   m_GameObject: {fileID: 6537194553206792082}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2403e185b21aff948b5c46a08a997e2c, type: 3}
+  m_Script: {fileID: 11500000, guid: 3a265cf04afa7cd40a4affc2c256015a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  faceDirection: 1
+  movementSpeed: 6
+  jumpForce: 17.6
+  footOffset: 0.2
+  eyeHeight: 1.5
+  groundDistance: 0.1
+  groundDistOffset: 0.1
+  wallDist: 0.32
+  wallOffset: -0.46
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  isOnGround: 0
+  input: {fileID: 0}
+  bodyCollider: {fileID: 0}
+  rigidBody: {fileID: 0}
+  animator: {fileID: 0}
+  jumped: 0
+  doubleJumped: 0
+  character: {fileID: 0}
+  fallSpeed: 4.75
+  horizontalAxis: 0
+--- !u!114 &5764023584558421333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6537194553206792082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd339c17a1ca29941a942a0aaf2f6787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horizontal: 0
+  jumpHold: 0
+  meleeHold: 0
+  primaryHold: 0
+  secondaryHold: 0
+  ultHold: 0
+  animator: {fileID: 0}
+  character: {fileID: 0}
+  movement: {fileID: 0}
+  animController: {fileID: 0}
+  controllerEnabled: 0
+  faceRight: 0
+--- !u!114 &8757075064508605713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6537194553206792082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ecc989153124f74ead991b75b86d4c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 30
   currentHealth: 30
-  melee: {fileID: 4812394993851490661}
-  primary: {fileID: 4812394993851490666}
-  secondary: {fileID: 4812394993851490667}
-  ultimate: {fileID: 4812394993851490687}
-  hitSource: {fileID: 4787694065985938734}
-  gruntSource: {fileID: 6174364971790547616}
-  footstepSource: {fileID: 290606342937348045}
-  abilitySource: {fileID: 2948870185974234943}
-  landingClip: {fileID: 8300000, guid: 53d11789be9fd2e4dba7da6fffab8dd3, type: 3}
-  characterRenderer: {fileID: 4812394993851490659}
-  audioSources: {fileID: 9211372121184553282}
-  root: {fileID: 7525248775304542178}
-  properties: {fileID: 6675089117581875346}
-  characterMovement: {fileID: 1380746188764204530}
-  hud: {fileID: 0}
-  flashSpeedMin: 8
-  flashSpeedMax: 30
-  minAlpha: 0.158
-  maxAplha: 0.83
-  flashTime: 2
-  invincible: 0
-  maxUltCharge: 20
-  currentUltCharge: 20
---- !u!114 &4812394993851490661
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6537194553206792082}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90a164b26acb9b54eb97119176118dc8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timer: 0
-  cooldownDuration: 0
-  activateOnHold: 1
-  baseDamage: 1
-  characterMovement: {fileID: 1380746188764204530}
-  abilityIcon: {fileID: 0}
-  abilitySoundClip: {fileID: 8300000, guid: e7297f252285c244eb6d92fbaf06aab2, type: 3}
-  playSoundOnCast: 1
-  performInAir: 0
-  ultGain: 1
-  passive: 0
-  attackPos: {x: 0.27, y: 0}
-  attackRange: {x: 1, y: 0.85}
-  whatAreEnemies:
-    serializedVersion: 2
-    m_Bits: 2048
---- !u!114 &4812394993851490666
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6537194553206792082}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c018ae447ed695a448b23247b036d401, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timer: 0
-  cooldownDuration: 0.75
-  activateOnHold: 1
-  baseDamage: 2
-  characterMovement: {fileID: 1380746188764204530}
-  abilityIcon: {fileID: 21300000, guid: 96627f57c23bc2342997bf18213cd14f, type: 3}
-  abilitySoundClip: {fileID: 8300000, guid: 1e0d55f778c0f8d47a533956d7ce8cde, type: 3}
-  playSoundOnCast: 1
-  performInAir: 1
-  ultGain: 2
-  passive: 0
-  projectile: {fileID: 8729439247062421562, guid: 75d0b9380ef7e3e4e97cb973ba234e1d,
-    type: 3}
-  impulse: 10
-  offset: {x: -0.15, y: 0.15}
---- !u!114 &4812394993851490667
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6537194553206792082}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 600e0035d4e759e479a3b9f44c2755b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timer: 0
-  cooldownDuration: 3
-  activateOnHold: 0
-  baseDamage: 3
-  characterMovement: {fileID: 1380746188764204530}
-  abilityIcon: {fileID: 0}
-  abilitySoundClip: {fileID: 8300000, guid: 6c970ef9b57637c48a2416e748a3a629, type: 3}
-  playSoundOnCast: 1
-  performInAir: 1
-  ultGain: 3
-  passive: 0
-  attackPos: {x: 0.255, y: 0}
-  attackRange: {x: 1, y: 0.85}
-  whatAreEnemies:
-    serializedVersion: 2
-    m_Bits: 2048
-  dashDist: 6
-  dashDuration: 0.2
---- !u!114 &4812394993851490687
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6537194553206792082}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bfd4fa5d18aee34b9692435d87f29fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timer: 0
-  cooldownDuration: 60
-  activateOnHold: 0
-  baseDamage: 1
-  characterMovement: {fileID: 1380746188764204530}
-  abilityIcon: {fileID: 0}
-  abilitySoundClip: {fileID: 8300000, guid: 0462247fa4a78cb4d8909e517a71f406, type: 3}
-  playSoundOnCast: 1
-  performInAir: 0
-  ultGain: 0
-  passive: 1
-  chargesToApply: 2
-  amtOfTicks: 5
-  tickDuration: 0.75
-  totalCharges: 0
-  poisonAbilities:
-  - {fileID: 4812394993851490667}
+  melee: {fileID: 0}
+  primary: {fileID: 0}
+  secondary: {fileID: 0}
+  ultimate: {fileID: 0}
+  hitSource: {fileID: 0}
+  gruntSource: {fileID: 0}
+  footstepSource: {fileID: 0}
+  abilitySource: {fileID: 0}
+  landingClip: {fileID: 0}
+  characterRenderer: {fileID: 0}
+  audioSources: {fileID: 0}
+  root: {fileID: 0}
+  properties: {fileID: 0}
+  characterMovement: {fileID: 0}
 --- !u!1 &7525248775304542199
 GameObject:
   m_ObjectHideFlags: 0
@@ -1146,7 +1016,7 @@ GameObject:
   - component: {fileID: 7525248775304542178}
   - component: {fileID: 7525248775304542206}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Base Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

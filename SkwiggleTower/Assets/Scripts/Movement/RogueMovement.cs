@@ -16,7 +16,6 @@ public class RogueMovement : BaseMovement
             else if (!isOnGround)
             {
                 doubleJumped = true;
-                print("double!");
                 rigidBody.velocity = new Vector2(rigidBody.velocity.x, 0f);
             }
 

@@ -77,7 +77,6 @@ public class AbilityMelee : Ability
             {
                 var enemy = enemiesInRange[j].GetComponent<BaseCharacter>();
                 if (!enemy || enemy == characterMovement.character || enemiesHit.Contains(enemy)) continue;
-                Debug.Log("Hit enemy!");
                 
                 enemiesHit.Add(enemy);
 

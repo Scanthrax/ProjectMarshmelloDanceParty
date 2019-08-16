@@ -72,7 +72,6 @@ public class PursuitState : BaseState
     {
         base.StateExit();
         input.meleeAttack = false;
-        Debug.Log("Exiting pursuit!");
     }
 
 

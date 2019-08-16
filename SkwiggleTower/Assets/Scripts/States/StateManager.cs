@@ -83,7 +83,6 @@ public class StateManager : MonoBehaviour
             {
                 if (amt > 0)
                 {
-                    Debug.Log("I detect someone");
                     GoToState(typeof(PursuitState));
                 }
             }
@@ -91,7 +90,6 @@ public class StateManager : MonoBehaviour
             {
                 if (amt <= 0)
                 {
-                    Debug.Log("I can no longer see anyone!");
                     checkAggroEntry = true;
                     GoToState(typeof(IdleState));
                 }
