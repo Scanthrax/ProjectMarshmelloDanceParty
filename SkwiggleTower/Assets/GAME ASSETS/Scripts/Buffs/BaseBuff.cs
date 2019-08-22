@@ -7,19 +7,26 @@ public class BaseBuff : MonoBehaviour
     public BaseCharacter character;
     public Ability affector;
 
-    public void Start()
-    {
-        character = GetComponent<BaseCharacter>();
-    }
 
     public virtual void StartBuff()
     {
-
+        character = GetComponent<BaseCharacter>();
     }
 
     public virtual void Init()
     {
         
+    }
+
+    public virtual void EndBuff()
+    {
+
+    }
+
+
+    public void DestroyScriptInstance()
+    {
+        Destroy(this);
     }
 
 }

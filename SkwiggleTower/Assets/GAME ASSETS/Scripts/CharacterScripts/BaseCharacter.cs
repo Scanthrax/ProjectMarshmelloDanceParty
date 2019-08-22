@@ -8,6 +8,7 @@ using System;
 
 public class BaseCharacter : MonoBehaviour, IPooledObject
 {
+    [Header("Health")]
     /// <summary>
     /// The maximum amount of health this character has
     /// </summary>
@@ -22,6 +23,28 @@ public class BaseCharacter : MonoBehaviour, IPooledObject
     /// Returns the unit interval (percentage) of this character's health
     /// </summary>
     public float percentHealth { get { return (float)currentHealth / maxHealth; } }
+
+
+    [Header("Ult")]
+    /// <summary>
+    /// The maximum amount of health this character has
+    /// </summary>
+    [SerializeField] protected int maxUltCharge;
+
+    /// <summary>
+    /// The amount of health the character has at the moment
+    /// </summary>
+    [SerializeField] protected int currentUltCharge;
+
+    /// <summary>
+    /// Returns the unit interval (percentage) of this character's health
+    /// </summary>
+    public float percentUltCharge { get { return (float)currentUltCharge / maxUltCharge; } }
+
+
+    public bool fullUltCharge { get { return currentUltCharge >= maxUltCharge; } }
+
+
 
     #region Abilities
     [Header("Abilities")]
@@ -91,10 +114,12 @@ public class BaseCharacter : MonoBehaviour, IPooledObject
 
 
 
-    public virtual void RecieveDamage(int damage)
+    public virtual void RecieveDamage(int damage, bool playHit)
     {
         gruntSource.Play();
-        hitSource.Play();
+
+        if(playHit)
+            hitSource.Play();
 
         currentHealth -= damage;
 
@@ -149,6 +174,10 @@ public class BaseCharacter : MonoBehaviour, IPooledObject
     {
         DeathEvent = null;
         SpawnEvent = null;
+        foreach (BaseBuff buff in GetComponents<BaseBuff>())
+        {
+            buff.EndBuff();
+        }
     }
 
 

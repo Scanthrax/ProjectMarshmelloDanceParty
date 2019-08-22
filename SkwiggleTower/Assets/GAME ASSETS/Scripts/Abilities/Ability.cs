@@ -75,10 +75,10 @@ public class Ability : MonoBehaviour
 
     public bool passive;
 
-    public List<BuffStruct> buffs;
+    public List<Buff> buffs;
 
 
-
+    public bool playHitSourceOnDamage;
 
 
     public delegate void AbilityDamageEvent();
@@ -97,7 +97,6 @@ public class Ability : MonoBehaviour
     {
         timer = cooldownDuration;
         abilitySoundSource = characterMovement.character.abilitySource;
-        buffs = new List<BuffStruct>();
     }
 
     public virtual void ImmediateCast()
@@ -149,26 +148,20 @@ public class Ability : MonoBehaviour
 
 
 
-    public void DealDamage(BaseCharacter character)
+    public virtual void DealDamage(BaseCharacter character)
     {
         foreach (var debuff in buffs)
         {
-            print("SHOULD APPLY POISON");
-            var debuffVar = character.gameObject.AddComponent(debuff.buffType) as BaseBuff;
-            debuffVar.affector = debuff.caller;
+            var debuffVar = character.gameObject.AddComponent(BuffManager.instance.GetBuff(debuff)) as BaseBuff;
+            debuffVar.affector = this;
             debuffVar.Init();
             debuffVar.StartBuff();
-            (debuff.caller as AbilityPoisonUlt).RemoveCharge();
-
-            if ((debuff.caller as AbilityPoisonUlt).outOfCharges)
-                (debuff.caller as AbilityPoisonUlt).RemovePoison();
 
         }
 
-        character.RecieveDamage(baseDamage);
+        character.RecieveDamage(baseDamage,playHitSourceOnDamage);
 
-        if (abilityDamageEvent != null)
-            abilityDamageEvent();
+        abilityDamageEvent?.Invoke();
     }
 
     public void CooldownFinished()
@@ -197,16 +190,16 @@ public class Ability : MonoBehaviour
     }
 
 
-    public struct BuffStruct
-    {
-        public Type buffType;
-        public Ability caller;
+    //public struct BuffStruct
+    //{
+    //    public Buff buffType;
+    //    public Ability caller;
 
-        public BuffStruct(Type type, Ability abilty)
-        {
-            buffType = type;
-            caller = abilty;
-        }
-    }
+    //    public BuffStruct(Buff type, Ability abilty)
+    //    {
+    //        buffType = type;
+    //        caller = abilty;
+    //    }
+    //}
 
 }

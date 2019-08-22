@@ -22,23 +22,7 @@ public class PlayableCharacter : BaseCharacter
 
     public bool invincible;
 
-    /// <summary>
-    /// The maximum amount of health this character has
-    /// </summary>
-    [SerializeField] protected int maxUltCharge;
 
-    /// <summary>
-    /// The amount of health the character has at the moment
-    /// </summary>
-    [SerializeField] protected int currentUltCharge;
-
-    /// <summary>
-    /// Returns the unit interval (percentage) of this character's health
-    /// </summary>
-    public float percentUltCharge { get { return (float)currentUltCharge / maxUltCharge; } }
-
-
-    public bool fullUltCharge { get { return currentUltCharge >= maxUltCharge; } }
 
     public IEnumerator FlashCharacter()
     {
@@ -62,10 +46,10 @@ public class PlayableCharacter : BaseCharacter
         invincible = false;
     }
 
-    public override void RecieveDamage(int damage)
+    public override void RecieveDamage(int damage, bool hitSource)
     {
         if (invincible) return;
-        base.RecieveDamage(damage);
+        base.RecieveDamage(damage, hitSource);
         hud?.hpBar.SetProgress(percentHealth);
         StartCoroutine(FlashCharacter());
     }
@@ -81,7 +65,7 @@ public class PlayableCharacter : BaseCharacter
     public void ResetUltCharge()
     {
         currentUltCharge = 0;
-        hud.ultBar.SetProgress(percentUltCharge);
+        hud?.ultBar.SetProgress(percentUltCharge);
     }
 
 }

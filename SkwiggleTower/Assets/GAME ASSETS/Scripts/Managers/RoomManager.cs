@@ -18,7 +18,7 @@ public class RoomManager : MonoBehaviour
     public static RoomManager instance;
 
 
-
+    public bool useFirstTrial;
 
     /// <summary>
     /// Contains all of the spawners located in the room
@@ -93,39 +93,27 @@ public class RoomManager : MonoBehaviour
 
         
 
-        //// the trial component will be dragged onto this gameobject through the inspector
-        //trial = GetComponent<Trial>();
 
-        //// if a trial exists, set the UI
-        //if (trial)
-        //{
-        //    trialTextIntro.text = trial.trialName;
-        //    trialTextUI.text = trial.trialName;
-
-        //    trial.StartTrial();
-
-        //}
-        //else
-        //{
-            var listOfTrials = trials.GetComponents<Trial>();
-            trial = listOfTrials[UnityEngine.Random.Range(0, listOfTrials.Length)];
-
-        ///Debug.LogWarning("There is no trial set for this room!");
-        //}
+        var listOfTrials = trials.GetComponents<Trial>();
+        trial = listOfTrials[useFirstTrial ? 0 : UnityEngine.Random.Range(0, listOfTrials.Length)];
 
 
-        //poisonCharges.text = 0.ToString();
 
-        if (trial)
-        {
-            trialTextIntro.text = trial.trialName;
-            if(trialTextUI) trialTextUI.text = trial.trialName;
-            trial.StartTrial();
-        }
+
+
+        trial?.StartTrial();
 
 
 
     }
+
+    public void SetTrialUI()
+    {
+        if (!trial) return;
+        if (trialTextIntro) trialTextIntro.text = trial.trialName;
+        if (trialTextUI) trialTextUI.text = trial.trialName;
+    }
+
 
 
     private void Update()

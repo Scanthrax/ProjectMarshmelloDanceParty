@@ -14,7 +14,6 @@ public class PoisonDebuff : BaseBuff
 
     public override void StartBuff()
     {
-        Start();
         base.StartBuff();
         StartCoroutine(Poison());
     }
@@ -33,30 +32,38 @@ public class PoisonDebuff : BaseBuff
             }
             else
             {
-                character.RecieveDamage(damage);
+                character.RecieveDamage(damage,false);
                 timer = 0f;
                 tick++;
             }
             yield return null;
         }
 
-        character.characterRenderer.color = Color.white;
-        DestroyScriptInstance();
+        EndBuff();
 
     }
 
 
-    void DestroyScriptInstance()
-    {
-        Destroy(this);
-    }
+
 
     public override void Init()
     {
-        damage = affector.baseDamage;
+        //damage = affector.baseDamage;
 
-        maxTicks = (affector as AbilityPoisonUlt).amtOfTicks;
+        //maxTicks = (affector as AbilityPoisonUlt).amtOfTicks;
 
-        tickInterval = (affector as AbilityPoisonUlt).tickDuration;
+        //tickInterval = (affector as AbilityPoisonUlt).tickDuration;
+
+        damage = 1;
+
+        maxTicks = 3;
+
+        tickInterval = 1;
+    }
+
+    public override void EndBuff()
+    {
+        character.characterRenderer.color = Color.white;
+        DestroyScriptInstance();
     }
 }

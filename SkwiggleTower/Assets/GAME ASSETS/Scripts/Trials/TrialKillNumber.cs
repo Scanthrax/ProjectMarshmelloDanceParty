@@ -20,14 +20,9 @@ public class TrialKillNumber : Trial
 
         // you MUST place logic after the base method, since important things such as the roomManager reference are established there
 
-        if (killsNeeded == 1)
-        {
-            base.trialName = ("KILL " + killsNeeded.ToString() + " ENEMY!");
-        }
-        else
-        {
-            base.trialName = ("KILL " + killsNeeded.ToString() + " ENEMIES!");
-        }
+        base.trialName = ("KILL " + killsNeeded.ToString() + (killsNeeded ==  1 ? " ENEMY!" : " ENEMIES!"));
+
+        RoomManager.instance.SetTrialUI();
 
 
     }
@@ -37,12 +32,12 @@ public class TrialKillNumber : Trial
     {
         base.UpdateLogic();
 
-        // Increase enemies killed with K (For testing), only if enemies killed is fewer than / equal the amount of kills needed
-        if (Input.GetKeyDown(KeyCode.K) && RoomManager.instance.amtOfEnemiesKilled <= killsNeeded)
-        {
-            RoomManager.instance.amtOfEnemiesKilled++;
-            Debug.Log("Enemies Killed: " + RoomManager.instance.amtOfEnemiesKilled.ToString());
-        }
+        //// Increase enemies killed with K (For testing), only if enemies killed is fewer than / equal the amount of kills needed
+        //if (Input.GetKeyDown(KeyCode.K) && RoomManager.instance.amtOfEnemiesKilled <= killsNeeded)
+        //{
+        //    RoomManager.instance.amtOfEnemiesKilled++;
+        //    Debug.Log("Enemies Killed: " + RoomManager.instance.amtOfEnemiesKilled.ToString());
+        //}
 
         // If the number of kills needed to win is greater than the maxAMount of enemies possible, increase maxAmount to accomodate
         if (killsNeeded > RoomManager.instance.maxAmountOfEnemies)

@@ -1,19 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public enum Buff { Poison, Speed}
 
 public class BuffManager : MonoBehaviour
 {
-    [System.Serializable]
-    public struct BuffStruct
-    {
-        public Buff buffType;
-        public BaseBuff buff;
-    }
-    public List<BuffStruct> buffList;
-    public Dictionary<Buff, BaseBuff> buffDictionary;
+
+    public Dictionary<Buff, Type> buffDictionary;
 
 
     public static BuffManager instance;
@@ -23,7 +18,18 @@ public class BuffManager : MonoBehaviour
         instance = this;
 
 
-        buffDictionary = new Dictionary<Buff, BaseBuff>();
+        buffDictionary = new Dictionary<Buff, Type>();
+
+
+        buffDictionary.Add(Buff.Poison, typeof(PoisonDebuff));
+        buffDictionary.Add(Buff.Speed, typeof(SpeedBuff));
+    }
+
+
+
+    public Type GetBuff(Buff buff)
+    {
+        return buffDictionary[buff];
     }
 
 }

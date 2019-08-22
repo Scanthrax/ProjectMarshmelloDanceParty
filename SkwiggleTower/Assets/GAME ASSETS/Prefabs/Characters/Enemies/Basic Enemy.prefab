@@ -632,6 +632,8 @@ MonoBehaviour:
   performInAir: 1
   ultGain: 0
   passive: 0
+  buffs: 
+  playHitSourceOnDamage: 1
   attackPos: {x: 0.66, y: 0}
   attackRange: {x: 1.73, y: 1.26}
   whatAreEnemies:
@@ -1030,6 +1032,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 5
   currentHealth: 5
+  maxUltCharge: 0
+  currentUltCharge: 0
   melee: {fileID: 195652523583053260}
   primary: {fileID: 0}
   secondary: {fileID: 0}

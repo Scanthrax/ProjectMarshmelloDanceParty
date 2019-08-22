@@ -21,21 +21,13 @@ public class AbilityPoisonUlt : Ability
     public bool outOfCharges { get { return totalCharges <= 0; } }
 
 
-    BuffStruct buffStruct;
-
-    Dictionary<Ability, BuffStruct> dict;
-
-    List<Ability> tempList;
-
     new void Start()
     {
         base.Start();
 
         totalCharges = 0;
 
-        dict = new Dictionary<Ability, BuffStruct>();
 
-        buffStruct = new BuffStruct(typeof(PoisonDebuff),this);
     }
 
 
@@ -49,10 +41,11 @@ public class AbilityPoisonUlt : Ability
 
     public void ApplyPoison()
     {
-        //foreach (var ability in poisonAbilities)
-        //{
-        //    ability.buffs.Add(buffStruct);
-        //}
+        foreach (var ability in poisonAbilities)
+        {
+            ability.buffs.Add(Buff.Poison);
+            ability.abilityDamageEvent += RemoveCharge;
+        }
         totalCharges += chargesToApply;
     }
 
@@ -60,12 +53,16 @@ public class AbilityPoisonUlt : Ability
     {
         foreach (var ability in poisonAbilities)
         {
-            ability.buffs.Clear();
+            print("Removing poision");
+            ability.buffs.Remove(Buff.Poison);
+            ability.abilityDamageEvent -= RemoveCharge;
         }
     }
 
     public void RemoveCharge()
     {
         totalCharges--;
+        if (totalCharges <= 0)
+            RemovePoison();
     }
 }

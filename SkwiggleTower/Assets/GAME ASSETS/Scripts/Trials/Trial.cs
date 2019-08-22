@@ -42,7 +42,7 @@ public class Trial : MonoBehaviour
 
 
 
-    public bool debug;
+    //public bool debug;
 
 
 
@@ -107,13 +107,13 @@ public class Trial : MonoBehaviour
         if (timer <= 0f)
             NotifyTrialComplete(false);
 
-        if (debug)
-        {
-            if (Input.GetKeyDown(KeyCode.O))
-                NotifyTrialComplete(true);
-            if (Input.GetKeyDown(KeyCode.P))
-                NotifyTrialComplete(false);
-        }
+        //if (debug)
+        //{
+        //    if (Input.GetKeyDown(KeyCode.O))
+        //        NotifyTrialComplete(true);
+        //    if (Input.GetKeyDown(KeyCode.P))
+        //        NotifyTrialComplete(false);
+        //}
     }
 
     /// <summary>
@@ -124,14 +124,14 @@ public class Trial : MonoBehaviour
 
         // set timer to the duration of the trial
         timer = duration;
-        // display timer in UI
-        //roomManager.timerText.text = Mathf.CeilToInt(timer).ToString();
+
 
         foreach (var spawner in RoomManager.instance.listOfSpawners)
         {
             trialEndEvent += spawner.DisableSpawnerOnWin;
         }
 
+        RoomManager.instance.SetTrialUI();
     }
 
     /// <summary>
