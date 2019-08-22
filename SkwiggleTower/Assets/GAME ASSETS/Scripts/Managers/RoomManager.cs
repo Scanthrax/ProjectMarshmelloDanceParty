@@ -161,7 +161,7 @@ public class RoomManager : MonoBehaviour
 
     public void RestartScene()
     {
-        SceneManager.LoadScene("PrototypeLevel_v1.1");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 

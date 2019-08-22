@@ -6,11 +6,17 @@ using UnityEngine;
 public class TrialSurvival : Trial
 {
     // Matt Thompson
-    // Last Modified: 6/10/19
+    // Last Modified: 8/9/19
 
     public override void Start()
     {
         base.Start();
+
+        // doubles the max amount of enemies that can be in a room at a single time, so as to increase difficulty
+        // may need to be changed or balanced
+        //RoomManager.instance.maxAmount *= 2;
+
+        // should also adjust enemy spawn rates, so they spawn more quickly/often, not sure what variable should be adjusted to achieve this
 
         // you MUST place logic after the base method, since important things such as the roomManager reference are established there
 
@@ -25,8 +31,11 @@ public class TrialSurvival : Trial
         // display timer in UI
         RoomManager.instance.timerText.text = Mathf.CeilToInt(timer).ToString();
 
-        // if the player survives until time runs out the trial is succesful
+        // if the player survives until time runs out the trial is succesful, should not occur if player(s) is/are dead
         if (timer <= 0f)
-            NotifyTrialComplete(true);   
+        {
+            //RoomManager.instance.maxAmount /= 2;
+            NotifyTrialComplete(true);
+        }
     }
 }
