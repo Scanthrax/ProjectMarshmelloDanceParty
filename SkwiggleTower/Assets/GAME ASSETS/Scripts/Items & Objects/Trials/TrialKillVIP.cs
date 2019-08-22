@@ -50,9 +50,9 @@ public class TrialKillVIP : Trial
         var rand = Random.Range(0, RoomManager.instance.listOfSpawners.Length - 1);
         var spawnerVIPs = RoomManager.instance.listOfSpawners[rand];
 
-        spawnerVIPs.onSpawnEnemyDeath += VIPtick;
+        //spawnerVIPs.onSpawnEnemyDeath += VIPtick;
 
-        spawnerVIPs.color = Color.red;
+        //spawnerVIPs.color = Color.red;
 
     }
 

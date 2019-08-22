@@ -379,6 +379,16 @@ PrefabInstance:
       propertyPath: animLayer
       value: Rogue
       objectReference: {fileID: 0}
+    - target: {fileID: 6174364971790547616, guid: 6f46a075be5d8d3498be4ec6443fc972,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 365a9af404d6b914294286970243326f, type: 3}
+    - target: {fileID: 4787694065985938734, guid: 6f46a075be5d8d3498be4ec6443fc972,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: ec92647e95fdefd46adefa3b7f1fa9ca, type: 3}
     - target: {fileID: 8757075064508605713, guid: 6f46a075be5d8d3498be4ec6443fc972,
         type: 3}
       propertyPath: melee
@@ -449,16 +459,6 @@ PrefabInstance:
       propertyPath: characterMovement
       value: 
       objectReference: {fileID: 2432462591886719806}
-    - target: {fileID: 6174364971790547616, guid: 6f46a075be5d8d3498be4ec6443fc972,
-        type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 365a9af404d6b914294286970243326f, type: 3}
-    - target: {fileID: 4787694065985938734, guid: 6f46a075be5d8d3498be4ec6443fc972,
-        type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: ec92647e95fdefd46adefa3b7f1fa9ca, type: 3}
     m_RemovedComponents:
     - {fileID: 1697637172709564750, guid: 6f46a075be5d8d3498be4ec6443fc972, type: 3}
     - {fileID: 8757075064508605713, guid: 6f46a075be5d8d3498be4ec6443fc972, type: 3}
