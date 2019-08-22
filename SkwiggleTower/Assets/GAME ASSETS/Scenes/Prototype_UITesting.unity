@@ -220,6 +220,7 @@ GameObject:
   - component: {fileID: 277410760}
   - component: {fileID: 277410759}
   - component: {fileID: 277410758}
+  - component: {fileID: 277410770}
   m_Layer: 11
   m_Name: Rogue (3)
   m_TagString: Player
@@ -638,6 +639,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &277410770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 277410757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd88564871108244cb08d91e1b7ecd42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackSpeed: 1
 --- !u!1 &341395720
 GameObject:
   m_ObjectHideFlags: 0
@@ -941,7 +955,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dampTime: 0.15
-  target: {fileID: 712868875}
+  target:
+  - {fileID: 712868875}
   zoomSpeed: 4
   minZoom: 3
   maxZoom: 7
@@ -22502,6 +22517,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40eb703ae839c0841bf007c9bd9f9c43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &712868874 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3685032513800629301, guid: f83a991402496114cb47d6403a1bae81,
+    type: 3}
+  m_PrefabInstance: {fileID: 1291120780}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 712868867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9187403968de37b4a9d32a549317ad4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &712868875 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3685032513800629305, guid: f83a991402496114cb47d6403a1bae81,
@@ -36172,6 +36199,10 @@ MonoBehaviour:
   roundTextCompleted: {fileID: 0}
   trialTextCompleted: {fileID: 0}
   trials: {fileID: 801014292}
+  amtOfPlayers: 1
+  playerInputs:
+  - {fileID: 712868874}
+  amtOfCurrentPlayers: 1
 --- !u!222 &2172094994956537040
 CanvasRenderer:
   m_ObjectHideFlags: 2
@@ -37699,6 +37730,7 @@ GameObject:
   - component: {fileID: 503410941}
   - component: {fileID: 5420769238288300754}
   - component: {fileID: 5420769238288300755}
+  - component: {fileID: 5420769238288300760}
   m_Layer: 11
   m_Name: Rogue (2)
   m_TagString: Player
@@ -37895,6 +37927,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5420769238288300760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5420769238288300753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd88564871108244cb08d91e1b7ecd42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackSpeed: 1
 --- !u!114 &7683794651429803633
 MonoBehaviour:
   m_ObjectHideFlags: 0
