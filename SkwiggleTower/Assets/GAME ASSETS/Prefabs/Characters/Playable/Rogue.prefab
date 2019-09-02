@@ -314,9 +314,19 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7525248775304542199, guid: 6f46a075be5d8d3498be4ec6443fc972,
+    - target: {fileID: 6174364971790547616, guid: 6f46a075be5d8d3498be4ec6443fc972,
         type: 3}
-      propertyPath: m_Name
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 365a9af404d6b914294286970243326f, type: 3}
+    - target: {fileID: 4787694065985938734, guid: 6f46a075be5d8d3498be4ec6443fc972,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: ec92647e95fdefd46adefa3b7f1fa9ca, type: 3}
+    - target: {fileID: 4812394993851490684, guid: 6f46a075be5d8d3498be4ec6443fc972,
+        type: 3}
+      propertyPath: animLayer
       value: Rogue
       objectReference: {fileID: 0}
     - target: {fileID: 7525248775304542178, guid: 6f46a075be5d8d3498be4ec6443fc972,
@@ -374,21 +384,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4812394993851490684, guid: 6f46a075be5d8d3498be4ec6443fc972,
+    - target: {fileID: 7525248775304542199, guid: 6f46a075be5d8d3498be4ec6443fc972,
         type: 3}
-      propertyPath: animLayer
+      propertyPath: m_Name
       value: Rogue
       objectReference: {fileID: 0}
-    - target: {fileID: 6174364971790547616, guid: 6f46a075be5d8d3498be4ec6443fc972,
-        type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 365a9af404d6b914294286970243326f, type: 3}
-    - target: {fileID: 4787694065985938734, guid: 6f46a075be5d8d3498be4ec6443fc972,
-        type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: ec92647e95fdefd46adefa3b7f1fa9ca, type: 3}
     - target: {fileID: 8757075064508605713, guid: 6f46a075be5d8d3498be4ec6443fc972,
         type: 3}
       propertyPath: melee
