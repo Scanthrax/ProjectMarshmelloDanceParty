@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyInput : BaseInput
 {
-    public bool meleeAttack;
+    public bool basicAttack;
 
 
     public delegate void EndMeleeEvent();
@@ -19,7 +19,8 @@ public class EnemyInput : BaseInput
         // do not progress if the controller is disabled
         if (!controllerEnabled) return;
 
-        SetAnimatorValues(character.melee, "Melee", meleeAttack, false, false);
+        if(animator)
+            SetAnimatorValues(character.basicAttack, "Melee", basicAttack, false, false);
 
 
         RelayInfo();
@@ -36,6 +37,12 @@ public class EnemyInput : BaseInput
     {
         if(endMeleeEvent != null)
             endMeleeEvent();
+    }
+
+    public override void ChangeDirection(bool right)
+    {
+        base.ChangeDirection(right);
+        horizontal *= -1;
     }
 
 

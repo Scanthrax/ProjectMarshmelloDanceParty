@@ -14,7 +14,7 @@ public class PlayerHUD : MonoBehaviour
 
     public TextMeshPro primarySeconds, secondarySeconds, ultimateSeconds;
 
-    private void Start()
+    protected virtual void Start()
     {
         if (character)
         {

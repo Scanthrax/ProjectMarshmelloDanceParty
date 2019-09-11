@@ -20,9 +20,11 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: c62d85626550fb240a06e486de8121c1, type: 3}
+      value: {fileID: -3642870392553689150, guid: 9749b6cf63d60d945bac266bdfe3dccc,
+        type: 3}
     - time: 0.1
-      value: {fileID: 21300000, guid: 3e1b872f5a0678447bce29e40cdd510b, type: 3}
+      value: {fileID: 3441865647749420568, guid: 9749b6cf63d60d945bac266bdfe3dccc,
+        type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -42,8 +44,8 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: c62d85626550fb240a06e486de8121c1, type: 3}
-    - {fileID: 21300000, guid: 3e1b872f5a0678447bce29e40cdd510b, type: 3}
+    - {fileID: -3642870392553689150, guid: 9749b6cf63d60d945bac266bdfe3dccc, type: 3}
+    - {fileID: 3441865647749420568, guid: 9749b6cf63d60d945bac266bdfe3dccc, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -78,6 +80,13 @@ AnimationClip:
     messageOptions: 0
   - time: 0
     functionName: StandStill
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0
+    functionName: StartAbility
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

@@ -15,12 +15,9 @@ public class WalkState : BaseState
 
     public float moveSpeed;
 
+    public Vector2 checkForGapPoint;
 
-    private void Start()
-    {
-        
-        
-    }
+
 
 
     public override void StateStart()
@@ -38,17 +35,30 @@ public class WalkState : BaseState
 
         raycastInfo.x = Random.Range(raycastLengthMinMax.x, raycastLengthMinMax.y);
 
+
+        stateManager.wallInFront = false;
+        stateManager.ledgeGap = false;
     }
 
 
     public override void StateUpdate()
     {
-        result = Physics2D.RaycastNonAlloc(transform.position + transform.up * raycastInfo.y, transform.right * input.faceDirection, results, raycastInfo.x, mask);
 
+        #region Detect wall
+        result = Physics2D.RaycastNonAlloc(transform.position + transform.up * raycastInfo.y, transform.right * input.faceDirection, results, raycastInfo.x, mask);
         if (result != 0)
         {
-            stateManager.GoToState(typeof(IdleState));
+            stateManager.wallInFront = true;
         }
+        #endregion
+
+        #region Detect gap
+        if (!Physics2D.OverlapCircle((Vector2)transform.position + checkForGapPoint * new Vector2(input ? input.faceDirection : 1, 1),0.1f, mask))
+        {
+            stateManager.ledgeGap = true;
+        }
+        #endregion
+
     }
 
 
@@ -64,6 +74,7 @@ public class WalkState : BaseState
     private void OnDrawGizmos()
     {
         Gizmos.DrawLine(transform.position + transform.up * raycastInfo.y, transform.position + transform.right * raycastInfo.x * (input ? input.faceDirection : 1) + transform.up * raycastInfo.y);
+        Gizmos.DrawWireSphere((Vector2)transform.position + checkForGapPoint * new Vector2((input ? input.faceDirection : 1), 1), 0.1f);
     }
 
 }

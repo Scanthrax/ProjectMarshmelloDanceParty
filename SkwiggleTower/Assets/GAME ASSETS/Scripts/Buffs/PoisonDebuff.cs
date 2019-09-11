@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class PoisonDebuff : BaseBuff
 {
-    public int damage;
     public float tickInterval = 1f;
-
     public int tick;
     public int maxTicks = 3;
     float timer;
@@ -15,6 +13,10 @@ public class PoisonDebuff : BaseBuff
     public override void StartBuff()
     {
         base.StartBuff();
+
+        BuffTickEvent += PoisonTick;
+
+
         StartCoroutine(Poison());
     }
 
@@ -32,9 +34,7 @@ public class PoisonDebuff : BaseBuff
             }
             else
             {
-                character.RecieveDamage(damage,false);
-                timer = 0f;
-                tick++;
+                TickEvent();
             }
             yield return null;
         }
@@ -43,7 +43,12 @@ public class PoisonDebuff : BaseBuff
 
     }
 
-
+    public void PoisonTick()
+    {
+        applicant.DealDamage(character);
+        timer = 0f;
+        tick++;
+    }
 
 
     public override void Init()
@@ -54,7 +59,6 @@ public class PoisonDebuff : BaseBuff
 
         //tickInterval = (affector as AbilityPoisonUlt).tickDuration;
 
-        damage = 1;
 
         maxTicks = 3;
 

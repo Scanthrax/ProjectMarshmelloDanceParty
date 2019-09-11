@@ -2,11 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyCharacter : BaseCharacter
+public class EnemyCharacter : BaseCharacter, IPooledObject
 {
 
+    public StateManager stateManager;
+
+    public new void Start()
+    {
+        InitEvent += stateManager.StateManagerInit;
+
+        // have the enemies vaporize upon death?
+        //RoomManager.instance.trial.trialEndEvent += OnDeath;
+
+        base.Start();
+    }
 
 
+    
 
 
     public override void OnObjectSpawn()
@@ -14,12 +26,9 @@ public class EnemyCharacter : BaseCharacter
         base.OnObjectSpawn();
         print("ENEMY ONSPAWN");
 
-        RoomManager.instance.trial.trialEndEvent += OnDeath;
+        
 
-        SpawnEvent += stateManager.StateManagerInit;
-
-
-        DeathEvent += IncreaseKillCounter;
+        
 
     }
 
@@ -28,4 +37,6 @@ public class EnemyCharacter : BaseCharacter
     {
         RoomManager.instance.amtOfEnemiesKilled++;
     }
+
+
 }

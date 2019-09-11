@@ -8,40 +8,38 @@ public class IdleState : BaseState
 
     public float duration;
 
-    private IEnumerator coroutine;
-
-
-    private void Awake()
-    {
-        //coroutine = Idle();
-    }
 
 
     public override void StateStart()
     {
         base.StateStart();
-        //print("starting idle!");
+        //Debug.Log("starting idle!", gameObject);
 
         input.horizontal = 0f;
 
-        duration = Random.Range(durationMinMax.x, durationMinMax.y);
+        stateManager.duration = Random.Range(durationMinMax.x, durationMinMax.y);
 
-        StartCoroutine(Idle());
-        
+        stateManager.timer = 0f;
+
+        StartEvent();
     }
 
 
-    public IEnumerator Idle()
+    public override void StateUpdate()
     {
-        yield return new WaitForSeconds(duration);
-        stateManager.GoToState(typeof(WalkState));
+        if (durationMinMax == Vector2.zero) return;
+
+        stateManager.timer += Time.deltaTime;
+
     }
+
+
+
 
 
     public override void StateExit()
     {
-        StopCoroutine(Idle());
-
+        stateManager.timer = 0f;
         //Debug.Log("Exiting Idle!");
     }
 }

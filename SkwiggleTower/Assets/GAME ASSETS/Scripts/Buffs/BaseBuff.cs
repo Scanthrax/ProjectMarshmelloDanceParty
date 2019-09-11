@@ -5,8 +5,11 @@ using UnityEngine;
 public class BaseBuff : MonoBehaviour
 {
     public BaseCharacter character;
+    public Ability applicant;
     public Ability affector;
 
+    public delegate void BuffTickHandler();
+    public event BuffTickHandler BuffTickEvent;
 
     public virtual void StartBuff()
     {
@@ -23,6 +26,10 @@ public class BaseBuff : MonoBehaviour
 
     }
 
+    public void TickEvent()
+    {
+        BuffTickEvent?.Invoke();
+    }
 
     public void DestroyScriptInstance()
     {

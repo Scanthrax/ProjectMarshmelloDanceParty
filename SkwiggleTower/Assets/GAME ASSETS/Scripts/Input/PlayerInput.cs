@@ -6,8 +6,6 @@
 //We first ensure this script runs before all other player scripts to prevent laggy
 //inputs
 //[DefaultExecutionOrder(-100)]
-[RequireComponent(typeof(BaseCharacter))]
-[RequireComponent(typeof(AnimatorController))]
 public class PlayerInput : BaseInput
 {
 
@@ -76,7 +74,7 @@ public class PlayerInput : BaseInput
 
 
 
-        SetAnimatorValues(character.melee, "Melee", mHold, mPressed, mReleased);
+        SetAnimatorValues(character.basicAttack, "Melee", mHold, mPressed, mReleased);
         SetAnimatorValues(character.primary, "Primary", pHold, pPressed, pReleased);
         SetAnimatorValues(character.secondary, "Secondary", sHold, sPressed, sReleased);
         SetAnimatorValues(character.ultimate, "Ult", uHold, uPressed, uReleased);

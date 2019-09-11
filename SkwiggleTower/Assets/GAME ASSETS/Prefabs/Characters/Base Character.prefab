@@ -35,6 +35,36 @@ Transform:
   m_Father: {fileID: 7525248775304542178}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2408368899817679317
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7768444144746584530}
+  m_Layer: 8
+  m_Name: Primary
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7768444144746584530
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2408368899817679317}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5318343307620911716}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3628616445756727104
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,6 +192,36 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &4010532264530438185
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8296877161212675771}
+  m_Layer: 8
+  m_Name: Ult
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8296877161212675771
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4010532264530438185}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5318343307620911716}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4970332204196670454
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,7 +360,7 @@ GameObject:
   - component: {fileID: 7335209897114393899}
   - component: {fileID: 290606342937348045}
   m_Layer: 11
-  m_Name: Footstep
+  m_Name: Foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -554,7 +614,7 @@ GameObject:
   - component: {fileID: 4977397547313191986}
   - component: {fileID: 6174364971790547616}
   m_Layer: 11
-  m_Name: Grunt
+  m_Name: Mouth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -703,7 +763,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 5318343307620911716}
   m_Father: {fileID: 7525248775304542178}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -834,7 +895,6 @@ MonoBehaviour:
   rigidBody: {fileID: 0}
   animator: {fileID: 0}
   jumped: 0
-  doubleJumped: 0
   character: {fileID: 0}
   fallSpeed: 4.75
   horizontalAxis: 0
@@ -876,26 +936,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 30
   currentHealth: 30
-  melee: {fileID: 0}
+  maxUltCharge: 20
+  currentUltCharge: 0
+  basicAttack: {fileID: 0}
   primary: {fileID: 0}
   secondary: {fileID: 0}
   ultimate: {fileID: 0}
-  hitSource: {fileID: 0}
-  gruntSource: {fileID: 0}
-  footstepSource: {fileID: 0}
-  abilitySource: {fileID: 0}
-  spawnDeathSource: {fileID: 0}
+  characterRenderer: {fileID: 4812394993851490659}
+  characterCollider: {fileID: 4812394993851490656}
+  animator: {fileID: 4812394993851490658}
+  rigidBody: {fileID: 7525248775304542206}
+  impactSource: {fileID: 4787694065985938734}
+  mouthSource: {fileID: 6174364971790547616}
+  footSource: {fileID: 290606342937348045}
+  abilitySource: {fileID: 2948870185974234943}
+  spawnDeathSource: {fileID: 3284851672856525724}
   spawnSound: {fileID: 0}
-  deathSound: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: e6e394d5740343946958614390a3ce9f, type: 3}
   landingClip: {fileID: 0}
-  characterRenderer: {fileID: 0}
-  audioSources: {fileID: 0}
-  animController: {fileID: 0}
-  root: {fileID: 0}
-  properties: {fileID: 0}
-  poolTag: 
-  characterMovement: {fileID: 0}
-  stateManager: {fileID: 0}
+  movement: {fileID: 1697637172709564750}
+  input: {fileID: 5764023584558421333}
+  animController: {fileID: 4812394993851490684}
+  root: {fileID: 7525248775304542178}
+  properties: {fileID: 6675089117581875346}
 --- !u!1 &7525248775304542199
 GameObject:
   m_ObjectHideFlags: 0
@@ -950,3 +1013,128 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!1 &8136779360496763803
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5318343307620911716}
+  m_Layer: 8
+  m_Name: Abilities
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5318343307620911716
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8136779360496763803}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1950768933465522869}
+  - {fileID: 7768444144746584530}
+  - {fileID: 8003237928985547695}
+  - {fileID: 8296877161212675771}
+  m_Father: {fileID: 6675089117581875346}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8672876443161418910
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1950768933465522869}
+  - component: {fileID: 8183896563539950393}
+  m_Layer: 8
+  m_Name: Melee
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1950768933465522869
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8672876443161418910}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5318343307620911716}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8183896563539950393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8672876443161418910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90a164b26acb9b54eb97119176118dc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timer: 0
+  cooldownDuration: 0
+  activateOnHold: 1
+  baseDamage: 1
+  characterMovement: {fileID: 1697637172709564750}
+  abilityIcon: {fileID: 0}
+  abilitySoundClip: {fileID: 0}
+  playSoundOnCast: 1
+  performInAir: 0
+  ultGain: 1
+  oneShot: 0
+  buffs: 
+  playHitSourceOnDamage: 0
+  attackPos: {x: 0.42, y: 0}
+  attackRange: {x: 0.88, y: 0.87}
+  whatAreEnemies:
+    serializedVersion: 2
+    m_Bits: 0
+--- !u!1 &8813671744490995344
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8003237928985547695}
+  m_Layer: 8
+  m_Name: Secondary
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8003237928985547695
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8813671744490995344}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5318343307620911716}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

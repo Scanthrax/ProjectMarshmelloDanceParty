@@ -73,7 +73,7 @@ public class Ability : MonoBehaviour
 
     public int ultGain;
 
-    public bool passive;
+    public bool oneShot;
 
     public List<Buff> buffs;
 
@@ -84,19 +84,21 @@ public class Ability : MonoBehaviour
     public delegate void AbilityDamageEvent();
     public event AbilityDamageEvent abilityDamageEvent;
 
-    public delegate void AbilityCastEvent();
-    public event AbilityCastEvent abilityCastEvent;
+    public delegate void AbilityCastHandler();
+    public event AbilityCastHandler AbilityCastEvent;
 
-    public delegate void AbilityEndEvent();
-    public event AbilityCastEvent abilityEndEvent;
+    public delegate void AbilityEndHandler();
+    public event AbilityEndHandler AbilityEndEvent;
 
-
+    public delegate void BuffApplicationHandler(BaseBuff buff);
+    public event BuffApplicationHandler BuffApplicationEvent;
 
 
     public virtual void Start()
     {
         timer = cooldownDuration;
-        abilitySoundSource = characterMovement.character.abilitySource;
+        if(characterMovement.character.abilitySource)
+            abilitySoundSource = characterMovement.character.abilitySource;
     }
 
     public virtual void ImmediateCast()
@@ -120,11 +122,11 @@ public class Ability : MonoBehaviour
 
         cooldownHUD?.Invoke();
 
-        abilityCastEvent?.Invoke();
+        AbilityCastEvent?.Invoke();
     }
 
 
-
+    #region cooldown
     public IEnumerator StartCooldown()
     {
         // reset the timer
@@ -145,7 +147,7 @@ public class Ability : MonoBehaviour
 
         //print("cooldown is done!");
     }
-
+    #endregion
 
 
     public virtual void DealDamage(BaseCharacter character)
@@ -156,6 +158,7 @@ public class Ability : MonoBehaviour
             debuffVar.affector = this;
             debuffVar.Init();
             debuffVar.StartBuff();
+            BuffApplicationEvent?.Invoke(debuffVar);
 
         }
 
@@ -186,7 +189,7 @@ public class Ability : MonoBehaviour
 
     public void End()
     {
-        abilityEndEvent?.Invoke();
+        AbilityEndEvent?.Invoke();
     }
 
 

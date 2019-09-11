@@ -83,6 +83,7 @@ public class Spawner : MonoBehaviour
 
         amtOfActiveEnemies++;
 
+        character.DeathEvent -= ReduceEnemyCounter;
         character.DeathEvent += ReduceEnemyCounter;
     }
 
@@ -91,7 +92,7 @@ public class Spawner : MonoBehaviour
 
 
 
-    public void ReduceEnemyCounter(BaseCharacter character)
+    public void ReduceEnemyCounter()
     {
         amtOfActiveEnemies--;
     }

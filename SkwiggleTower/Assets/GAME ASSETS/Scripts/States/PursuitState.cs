@@ -5,22 +5,21 @@ using UnityEngine;
 public class PursuitState : BaseState
 {
     public float moveSpeed;
-    public Transform target;
+    
 
-    protected float thisX, targetX;
+    float thisX, targetX;
 
     RaycastHit2D[] results;
     int result;
 
     public float meleeDistance;
 
-
+    public bool targetToRight;
 
     public void Start()
     {
         results = new RaycastHit2D[1];
 
-        input.endMeleeEvent += FaceMelee;
     }
 
 
@@ -29,9 +28,11 @@ public class PursuitState : BaseState
         base.StateStart();
         //print("starting pursuit!");
         input.movement.movementSpeed = moveSpeed;
-        input.horizontal = 1f * input.faceDirection;
-        target = stateManager.visionColliders[0].transform;
-        stateManager.checkAggroEntry = false;
+        input.horizontal = input.faceDirection;
+        
+
+
+        StartCoroutine(stateManager.ShowMarker(true));
         
     }
 
@@ -40,30 +41,32 @@ public class PursuitState : BaseState
     {
         base.StateUpdate();
 
-        thisX = transform.position.x;
-        targetX = target.position.x;
-
-        if (input.faceRight != thisX < targetX && Mathf.Abs(thisX - targetX) > 0.7f && !input.animator.GetBool("AbilityActive"))
+        if (stateManager.target)
         {
-            input.ChangeDirection();
-            input.horizontal = 1f * input.faceDirection;
+            if (input.movement.IsToRight(transform, stateManager.target.transform) == input.faceRight)
+            {
+                print("CHANGE DIRECTION");
+                input.ChangeDirection(input.faceDirection != 1);
+            }
         }
 
 
 
-        result = Physics2D.RaycastNonAlloc(transform.position , transform.right * input.faceDirection, results, meleeDistance,LayerMask.GetMask("Player"));
-        
-        if(result > 0)
+
+        result = Physics2D.RaycastNonAlloc(transform.position, transform.right * input.faceDirection, results, meleeDistance, LayerMask.GetMask("Player"));
+
+        if (result > 0)
         {
-            input.meleeAttack = true;
+            input.basicAttack = true;
         }
         else
-            input.meleeAttack = false;
+            input.basicAttack = false;
 
 
-        if(Physics2D.RaycastNonAlloc(transform.position, transform.right * input.faceDirection, results, meleeDistance, LayerMask.GetMask("Platform")) > 0)
-        {
-        }
+
+
+
+
 
     }
 
@@ -71,15 +74,12 @@ public class PursuitState : BaseState
     public override void StateExit()
     {
         base.StateExit();
-        input.meleeAttack = false;
+        input.basicAttack = false;
+        StartCoroutine(stateManager.ShowMarker(false));
     }
 
 
-    public void FaceMelee()
-    {
-        input.ChangeDirection(input.faceRight != thisX < targetX);
-        input.horizontal = 1f * input.faceDirection;
-    }
+
 
     private void OnDrawGizmos()
     {

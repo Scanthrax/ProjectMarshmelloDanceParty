@@ -79,6 +79,25 @@ public class RoomManager : MonoBehaviour
 
     public ParticleSystem deathParticles;
 
+
+
+
+
+    //public delegate void SkeletonDetachHandler(Transform tr);
+    //public event SkeletonDetachHandler SkeletonDetachEvent;
+
+    public List<EnemyCharacter> listOfSkeletonBodies, listOfSkeletonHeads;
+
+
+
+
+
+    public AudioClip spawnSound, despawnSound;
+
+    public Sprite exclamation, question;
+
+    public Transform skeletonPrefab;
+
     public void Awake()
     {
         instance = this;
@@ -165,5 +184,26 @@ public class RoomManager : MonoBehaviour
     }
 
 
+
+
+    public void CalculateClosestBody()
+    {
+        foreach (var skull in listOfSkeletonHeads)
+        {
+            BaseCharacter newTarget = null;
+            if(listOfSkeletonBodies.Count > 0)
+            {
+                foreach (var body in listOfSkeletonBodies)
+                {
+                    if(newTarget == null || Vector2.Distance(skull.transform.position,body.transform.position) < Vector2.Distance(skull.transform.position, newTarget.transform.position))
+                    {
+                        newTarget = body;
+                    }
+                }
+            }
+
+            skull.stateManager.target = newTarget;
+        }
+    }
 
 }

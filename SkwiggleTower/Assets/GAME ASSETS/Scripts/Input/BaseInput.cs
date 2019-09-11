@@ -82,11 +82,11 @@ public class BaseInput : MonoBehaviour
     /// <summary>
     /// Changes the direction that this character is facing
     /// </summary>
-    public void ChangeDirection() { faceRight = !faceRight; FlipCharacter(); }
+    public virtual void ChangeDirection() { faceRight = !faceRight; FlipCharacter(); }
     /// <summary>
     /// Changes the direction that this character is facing
     /// </summary>
-    public void ChangeDirection(bool right) { faceRight = right; FlipCharacter(); }
+    public virtual void ChangeDirection(bool right) { faceRight = right; FlipCharacter(); }
 
     /// <summary>
     /// Flips the character's x-scale
@@ -120,18 +120,18 @@ public class BaseInput : MonoBehaviour
     }
     public void EndAbility()
     {
-        //print("ending ability");
+        print("ending ability");
         animator.SetBool("AbilityActive", false);
     }
 
     public void StartMelee()
     {
         //print("start melee");
-        character.melee.Cast();
+        character.basicAttack.Cast();
     }
     public void EndMelee()
     {
-        character.melee.End();
+        character.basicAttack.End();
     }
 
     public void StartPrimary()
@@ -184,6 +184,8 @@ public class BaseInput : MonoBehaviour
         {
             if (hold)
             {
+                print(!ability.onCooldown + "1");
+                print(!animator.GetBool("AbilityActive") + "2");
                 if (!ability.onCooldown && !animator.GetBool("AbilityActive"))
                 {
                     SetTrigger(ability, abilityType);
@@ -235,11 +237,8 @@ public class BaseInput : MonoBehaviour
 
         animator.SetTrigger(abilityStr + "Trigger");
         
-        if (!ability.passive)
-        {
-            StartAbility();
-        }
-        else
+
+        if(ability.oneShot)
         {
             ability.ImmediateCast();
         }
