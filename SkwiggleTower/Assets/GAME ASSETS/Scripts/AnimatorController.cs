@@ -8,14 +8,9 @@ public class AnimatorController : MonoBehaviour
 
     public string animLayer;
 
-    private void Start()
-    {
-        SetAnimatorLayer(null);
-    }
 
-    public void SetAnimatorLayer(BaseCharacter x)
+    public void SetAnimatorLayer()
     {
-        //print("SETTING ANIM LAYER????");
         for (int i = 0; i < animator.layerCount; i++)
         {
             animator.SetLayerWeight(i, 0f);

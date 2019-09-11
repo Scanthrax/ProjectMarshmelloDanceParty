@@ -32,7 +32,11 @@ public class AbilityMelee : Ability
     protected bool attackBoxActive;
 
 
-    //bool isRunning;
+    public delegate void OnKillHandler();
+    public event OnKillHandler OnKillEvent;
+
+
+    public bool alwaysActive;
 
     public override void Start()
     {
@@ -43,8 +47,11 @@ public class AbilityMelee : Ability
         enemiesHit = new List<BaseCharacter>();
 
 
-        abilityEndEvent += DisableAttackBox;
+        AbilityEndEvent += DisableAttackBox;
         //isRunning = false;
+
+        if (alwaysActive)
+            Cast();
 
     }
 
@@ -59,38 +66,70 @@ public class AbilityMelee : Ability
 
     public IEnumerator Melee()
     {
-        //if(isRunning)
-        //{
-        //    print("This is already running?");
-        //    yield break;
-        //}
-        //isRunning = true;
-        //print("doing melee");
-        attackBoxActive = true;
-        var dir = characterMovement.faceDirection;
-        enemiesHit.Clear();
-
-        while (attackBoxActive)
+        if (!alwaysActive)
         {
-            var amtOfEnemies = Physics2D.OverlapBoxNonAlloc(transform.position + new Vector3(attackPos.x * dir, attackPos.y), attackRange, 0, enemiesInRange,whatAreEnemies);
-            for (int j = 0; j < amtOfEnemies; j++)
+            // activate the attack hitbox upon starting
+            attackBoxActive = true;
+
+            // keep track of the character's direction
+            var dir = characterMovement.faceDirection;
+
+            // clear the list of enemies (this can go either at the end of the attack or the beginning)
+            enemiesHit.Clear();
+
+            // this occurs during the duration of the attack
+            while (attackBoxActive)
             {
-                var enemy = enemiesInRange[j].GetComponent<BaseCharacter>();
-                if (!enemy || enemy == characterMovement.character || enemiesHit.Contains(enemy)) continue;
-                
-                enemiesHit.Add(enemy);
+                var amtOfEnemies = Physics2D.OverlapBoxNonAlloc(transform.position + new Vector3(attackPos.x * dir, attackPos.y), attackRange, 0, enemiesInRange, whatAreEnemies);
+                for (int j = 0; j < amtOfEnemies; j++)
+                {
+                    var enemy = enemiesInRange[j].GetComponent<BaseCharacter>();
+                    if (!enemy || enemy == characterMovement.character || enemiesHit.Contains(enemy)) continue;
 
-                DealDamage(enemy);
+                    enemiesHit.Add(enemy);
 
-                //var hitSound = enemy.GetComponent<ImpactSound>();
-                //if(hitSound)
-                //    hitSound.
+                    DealDamage(enemy);
+                }
+
+                if (oneShot) break;
+
+                yield return null;
             }
-            yield return null;
-        }
-        characterMovement.input.EnableControls();
+            characterMovement.input.EnableControls();
 
-        //isRunning = false;
+            //isRunning = false;
+        }
+
+        else
+        {
+            //print("SKULL ATTACKING");
+            // activate the attack hitbox upon starting
+            attackBoxActive = true;
+
+            
+
+            enemiesInRange = new Collider2D[10];
+
+            // this occurs during the duration of the attack
+            while (attackBoxActive)
+            {
+                // keep track of the character's direction
+                var dir = characterMovement.faceDirection;
+
+                var amtOfEnemies = Physics2D.OverlapBoxNonAlloc(transform.position + new Vector3(attackPos.x * dir, attackPos.y), attackRange, 0, enemiesInRange, whatAreEnemies);
+                for (int j = 0; j < amtOfEnemies; j++)
+                {
+                    var enemy = enemiesInRange[j].GetComponent<BaseCharacter>();
+                    if (!enemy || enemy == characterMovement.character) continue;
+
+
+                    DealDamage(enemy);
+                }
+
+                //print("SKULL ATTACKING");
+                yield return null;
+            }
+        }
     }
 
     public void DisableAttackBox()

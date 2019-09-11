@@ -52,38 +52,44 @@ public class AbilityDash : AbilityMelee
     public void StandStill()
     {
         prevGravity = rigidBody.gravityScale;
+        print("prev gravity: " + prevGravity);
         rigidBody.gravityScale = 0f;
         rigidBody.velocity = Vector2.zero;
+
+
     }
 
     public IEnumerator Dash()
     {
+        print("start of dash!");
+
         var playableCharacter = characterMovement.character as PlayableCharacter;
+
         if (playableCharacter)
-            playableCharacter.invincible = true;
+            playableCharacter.StallInvincibility(true);
 
 
         var dir = characterMovement.faceDirection;
         var time = Time.fixedDeltaTime;
-        rigidBody.gravityScale = 0f;
-        rigidBody.velocity = Vector2.zero;
         gameObject.layer = LayerMask.NameToLayer("Debris");
-        
+
+
         for (float i = 0; i < dashDuration; i += time)
         {
             rigidBody.MovePosition((Vector2)transform.position + new Vector2((dashDist/dashDuration) * time * dir, 0));
             yield return null;
         }
         DisableAttackBox();
-        rigidBody.gravityScale = prevGravity;
+
+        End();
         gameObject.layer = prevLayer;
         characterMovement.input.EndAbility();
-        print("end of dash!");
 
-        if (playableCharacter)
-            playableCharacter.invincible = false;
+        playableCharacter.StallInvincibility(false);
+        print("end of dash! ");
 
-        yield break;
+
+
     }
 
 

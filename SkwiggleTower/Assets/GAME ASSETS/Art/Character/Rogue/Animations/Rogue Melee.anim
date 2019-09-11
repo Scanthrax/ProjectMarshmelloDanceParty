@@ -20,16 +20,22 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: c62d85626550fb240a06e486de8121c1, type: 3}
-    - time: 0.125
-      value: {fileID: 21300000, guid: 42530ca5d9728474eb7436d185f12ee8, type: 3}
-    - time: 0.25
-      value: {fileID: 21300000, guid: c94a59b423d44f641b3667a630553a69, type: 3}
+      value: {fileID: 2895661320035646764, guid: fdee28bf54282ec4aa1ab74d2364072f,
+        type: 3}
+    - time: 0.11111111
+      value: {fileID: -1854309744613700423, guid: fdee28bf54282ec4aa1ab74d2364072f,
+        type: 3}
+    - time: 0.22222222
+      value: {fileID: 3967639813704724269, guid: fdee28bf54282ec4aa1ab74d2364072f,
+        type: 3}
+    - time: 0.33333334
+      value: {fileID: -3076767014458609440, guid: fdee28bf54282ec4aa1ab74d2364072f,
+        type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 8
+  m_SampleRate: 9
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -44,15 +50,16 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: c62d85626550fb240a06e486de8121c1, type: 3}
-    - {fileID: 21300000, guid: 42530ca5d9728474eb7436d185f12ee8, type: 3}
-    - {fileID: 21300000, guid: c94a59b423d44f641b3667a630553a69, type: 3}
+    - {fileID: 2895661320035646764, guid: fdee28bf54282ec4aa1ab74d2364072f, type: 3}
+    - {fileID: -1854309744613700423, guid: fdee28bf54282ec4aa1ab74d2364072f, type: 3}
+    - {fileID: 3967639813704724269, guid: fdee28bf54282ec4aa1ab74d2364072f, type: 3}
+    - {fileID: -3076767014458609440, guid: fdee28bf54282ec4aa1ab74d2364072f, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.375
+    m_StopTime: 0.44444445
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -79,22 +86,29 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.125
+  - time: 0
+    functionName: StartAbility
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.22222222
     functionName: StartMelee
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.25
-    functionName: EndMelee
+  - time: 0.33333334
+    functionName: EndAbility
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.375
-    functionName: EndAbility
+  - time: 0.33333334
+    functionName: EndMelee
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

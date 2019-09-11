@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(BaseCharacter))]
 public class BaseMovement : MonoBehaviour
 {
     /// <summary>
@@ -34,7 +33,7 @@ public class BaseMovement : MonoBehaviour
     public Animator animator;
 
     Vector2 size;
-    public bool jumped, doubleJumped;
+    public bool jumped;
 
 
     public BaseCharacter character;
@@ -47,10 +46,19 @@ public class BaseMovement : MonoBehaviour
     public float horizontalAxis;
 
 
+    public void Start()
+    {
+        if (bodyCollider)
+        {
+            if (bodyCollider is CapsuleCollider2D)
+                size = (bodyCollider as CapsuleCollider2D).size;
+            else if (bodyCollider is CircleCollider2D)
+                size = Vector2.one * (bodyCollider as CircleCollider2D).radius;
+        }
+    }
 
 
-
-    void FixedUpdate()
+    public void FixedUpdate()
     {
         //Check the environment to determine status
         PhysicsCheck();
@@ -59,14 +67,14 @@ public class BaseMovement : MonoBehaviour
 
         rigidBody.velocity = new Vector2(movementSpeed * horizontalAxis, rigidBody.velocity.y);
 
-
+        if(animator)
         animator.SetFloat("moveSpeed", Mathf.Abs(rigidBody.velocity.x));
 
 
 
     }
 
-    void PhysicsCheck()
+    public void PhysicsCheck()
     {
         // store 1 raycast hit; it 'should' be the ground
         // we can worry about other cases later; i.e. cases where we're on top of other characters
@@ -129,10 +137,10 @@ public class BaseMovement : MonoBehaviour
 
                 // reset jump values when we land
                 jumped = false;
-                doubleJumped = false;
+                
 
-                character.footstepSource.clip = character.landingClip;
-                character.footstepSource.Play();
+                character.footSource.clip = character.landingClip;
+                character.footSource.Play();
             }
             // OFF THE GROUND
             else
@@ -180,15 +188,27 @@ public class BaseMovement : MonoBehaviour
 
     private void OnValidate()
     {
-        if(bodyCollider)
-            size = (bodyCollider as CapsuleCollider2D).size;
+        //if (bodyCollider)
+        //    size = (bodyCollider as CapsuleCollider2D).size;
 
-        if (rigidBody)
-        {
-            rigidBody.gravityScale = fallSpeed;
-            jumpForce = fallSpeed*2.4f + 6.2f;
-        }
+        //if (rigidBody)
+        //{
+        //    rigidBody.gravityScale = fallSpeed;
+        //    jumpForce = fallSpeed * 2.4f + 6.2f;
+        //}
 
 
     }
+
+
+
+
+    public bool IsToRight(Transform a, Transform b)
+    {
+        return a.position.x > b.position.x;
+    }
+
+
+
+
 }

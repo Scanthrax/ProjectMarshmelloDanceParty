@@ -21,7 +21,9 @@ public class PlayableCharacter : BaseCharacter
 
 
     public bool invincible;
+    bool stallInvincibility;
 
+    public List<BaseCharacter> listOfAggro;
 
 
     public IEnumerator FlashCharacter()
@@ -30,7 +32,10 @@ public class PlayableCharacter : BaseCharacter
 
         var flashSpeed = flashSpeedMin + (flashSpeedMax - flashSpeedMin) * (1 - percentHealth);
 
-        for (float i = 0; i < flashTime; i += Time.deltaTime)
+
+
+        float timer = 0f;
+        while(timer <= flashTime)
         {
             var diff = maxAplha - minAlpha;
             var topDiff = 1 - maxAplha;
@@ -40,18 +45,24 @@ public class PlayableCharacter : BaseCharacter
                 * 0.5f * diff)
                 + (1 - diff * 0.5f) - topDiff);
 
+
+            if (!stallInvincibility)
+                timer += Time.deltaTime;
+
             yield return null;
         }
         characterRenderer.color = new Color(1,1,1,1);
         invincible = false;
     }
 
-    public override void RecieveDamage(int damage, bool hitSource)
+    public override bool RecieveDamage(int damage, bool hitSource)
     {
-        if (invincible) return;
-        base.RecieveDamage(damage, hitSource);
+        if (invincible) return false;
+        var dies = base.RecieveDamage(damage, hitSource);
         hud?.hpBar.SetProgress(percentHealth);
         StartCoroutine(FlashCharacter());
+
+        return dies;
     }
 
 
@@ -68,4 +79,9 @@ public class PlayableCharacter : BaseCharacter
         hud?.ultBar.SetProgress(percentUltCharge);
     }
 
+
+    public void StallInvincibility(bool b)
+    {
+        stallInvincibility = b;
+    }
 }

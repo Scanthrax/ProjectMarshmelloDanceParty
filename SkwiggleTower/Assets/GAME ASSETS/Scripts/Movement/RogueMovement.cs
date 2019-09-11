@@ -6,6 +6,16 @@ public class RogueMovement : BaseMovement
 {
 
     public float doubleJumpMult;
+    public bool doubleJumped;
+
+    float prevGravity;
+
+
+    public new void Start()
+    {
+        base.Start();
+        character.secondary.AbilityEndEvent += RevertGravity;
+    }
 
     public override void Jump()
     {
@@ -24,5 +34,28 @@ public class RogueMovement : BaseMovement
         }
     }
 
+
+    public new void FixedUpdate()
+    {
+        base.FixedUpdate();
+
+        if (isOnGround)
+            if (doubleJumped)
+                doubleJumped = false;
+    }
+
+
+
+    public void StandStill()
+    {
+        prevGravity = rigidBody.gravityScale;
+        rigidBody.gravityScale = 0f;
+        rigidBody.velocity = Vector2.zero;
+    }
+
+    public void RevertGravity()
+    {
+        rigidBody.gravityScale = prevGravity;
+    }
 
 }

@@ -22,8 +22,8 @@ public class SpeedBuff : BaseBuff
         timer = 0f;
         print("TURN BLUE");
         character.characterRenderer.color = Color.blue;
-        diff = character.characterMovement.movementSpeed * (1 + percentIncrease * 0.01f) - character.characterMovement.movementSpeed;
-        character.characterMovement.movementSpeed += diff;
+        diff = character.movement.movementSpeed * (1 + percentIncrease * 0.01f) - character.movement.movementSpeed;
+        character.movement.movementSpeed += diff;
         while (timer < duration)
         {
             timer += Time.deltaTime;
@@ -37,7 +37,7 @@ public class SpeedBuff : BaseBuff
 
     public override void EndBuff()
     {
-        character.characterMovement.movementSpeed -= diff;
+        character.movement.movementSpeed -= diff;
         character.characterRenderer.color = Color.white;
         DestroyScriptInstance();
     }

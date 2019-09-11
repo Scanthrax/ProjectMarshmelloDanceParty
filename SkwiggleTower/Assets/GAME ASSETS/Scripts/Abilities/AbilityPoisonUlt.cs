@@ -33,8 +33,8 @@ public class AbilityPoisonUlt : Ability
 
     public override void Cast()
     {
-        base.Cast();
         ApplyPoison();
+        base.Cast();
         characterMovement.animator.SetBool("AbilityActive", false);
 
     }
@@ -45,8 +45,18 @@ public class AbilityPoisonUlt : Ability
         {
             ability.buffs.Add(Buff.Poison);
             ability.abilityDamageEvent += RemoveCharge;
+            ability.BuffApplicationEvent += ApplyBuff;
         }
         totalCharges += chargesToApply;
+    }
+
+
+    public void RemoveCharge()
+    {
+        totalCharges--;
+        if (totalCharges <= 0)
+            RemovePoison();
+
     }
 
     public void RemovePoison()
@@ -59,10 +69,9 @@ public class AbilityPoisonUlt : Ability
         }
     }
 
-    public void RemoveCharge()
+    public void ApplyBuff(BaseBuff buff)
     {
-        totalCharges--;
-        if (totalCharges <= 0)
-            RemovePoison();
+        buff.applicant = this;
     }
+
 }

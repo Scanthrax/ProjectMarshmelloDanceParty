@@ -8,6 +8,7 @@ using System;
 
 public class BaseCharacter : MonoBehaviour, IPooledObject
 {
+    #region Health
     [Header("Health")]
     /// <summary>
     /// The maximum amount of health this character has
@@ -24,7 +25,10 @@ public class BaseCharacter : MonoBehaviour, IPooledObject
     /// </summary>
     public float percentHealth { get { return (float)currentHealth / maxHealth; } }
 
+    public bool dead { get { return currentHealth <= 0; } }
+    #endregion
 
+    #region Ult
     [Header("Ult")]
     /// <summary>
     /// The maximum amount of health this character has
@@ -43,34 +47,40 @@ public class BaseCharacter : MonoBehaviour, IPooledObject
 
 
     public bool fullUltCharge { get { return currentUltCharge >= maxUltCharge; } }
-
-
+    #endregion
 
     #region Abilities
     [Header("Abilities")]
-    public Ability melee;
+    public Ability basicAttack;
     public Ability primary;
     public Ability secondary;
     public Ability ultimate;
     #endregion
 
+    #region Components
+    [Header("Components")]
+    public SpriteRenderer characterRenderer;
+    public Collider2D characterCollider;
+    public Animator animator;
+    public Rigidbody2D rigidBody;
+    #endregion
 
     #region Audio Sources
     [Header("Audio")]
     /// <summary>
     /// The audio source that plays a sound when they get hit by an attack (e.g. a rock impact sound on armor)
     /// </summary>
-    public AudioSource hitSource;
+    public AudioSource impactSource;
 
     /// <summary>
     /// The audio source that plays a grunt when damage is recieved
     /// </summary>
-    public AudioSource gruntSource;
+    public AudioSource mouthSource;
 
     /// <summary>
     /// The audio source responsible for playing footsteps
     /// </summary>
-    public AudioSource footstepSource;
+    public AudioSource footSource;
 
     public AudioSource abilitySource;
 
@@ -78,102 +88,107 @@ public class BaseCharacter : MonoBehaviour, IPooledObject
     [Space(20)]
     #endregion
 
-    #region Audio Sources
-    public AudioClip spawnSound;
+    #region Audio Clips
     public AudioClip deathSound;
     public AudioClip landingClip;
-    [Space(30)]
     #endregion
-
-    public SpriteRenderer characterRenderer;
-
-
-    public Transform audioSources;
-
-    public AnimatorController animController;
-
-    public Transform root;
-    public Transform properties;
-
 
     #region Events
-    public delegate void DeathHandler(BaseCharacter character);
+    public delegate void DeathHandler();
     public event DeathHandler DeathEvent;
 
-    public delegate void SpawnHandler(BaseCharacter character);
-    public event SpawnHandler SpawnEvent;
+    public delegate void InitializationHandler();
+    public event InitializationHandler InitEvent;
     #endregion
 
-    public string poolTag;
+    #region Scripts
+    [Header("Scripts")]
+    public BaseMovement movement;
+    public BaseInput input;
+    public AnimatorController animController;
+    #endregion
+
+    #region Containers
+    [Header("Containers")]
+    public Transform root;
+    public Transform properties;
+    #endregion
 
 
-    public BaseMovement characterMovement;
-    public StateManager stateManager;
-
-
-
-
-
-    public virtual void RecieveDamage(int damage, bool playHit)
+    public void Start()
     {
-        gruntSource.Play();
+        OnObjectSpawn();
+    }
 
-        if(playHit)
-            hitSource.Play();
+
+    public virtual bool RecieveDamage(int damage, bool playImpact)
+    {
+        var dies = false;
+
+        if(playImpact)
+            impactSource.Play();
 
         currentHealth -= damage;
 
-        if (currentHealth <= 0)
+        if (dead)
+        {
+            mouthSource.clip = deathSound;
             Die();
+            dies = true;
+        }
 
+        mouthSource.Play();
+
+
+        return dies;
     }
+
+
 
     [ContextMenu("Death")]
     public virtual void Die()
     {
-        DeathEvent?.Invoke(this);
-    }
-
-    public virtual void OnDeath(bool b)
-    {
-        if(b)
-            DeathEvent?.Invoke(this);
+        DeathEvent?.Invoke();
     }
 
 
-    public int RecursiveDamage(int damage, ref int source)
+
+    public virtual void Init()
     {
-        source -= damage;
-        return source;
+        InitEvent += delegate { currentHealth = maxHealth; };
+        InitEvent += delegate { currentUltCharge = 0; };
+
+        InitEvent += delegate { basicAttack.timer = basicAttack.cooldownDuration; };
+        if (primary)
+            InitEvent += delegate { primary.timer = primary.cooldownDuration; };
+        if (secondary)
+            InitEvent += delegate { secondary.timer = secondary.cooldownDuration; };
+        if (ultimate)
+            InitEvent += delegate { ultimate.timer = ultimate.cooldownDuration; };
+
+        InitEvent += SetAndPlaySpawnSound;
+
+        if (animator)
+            InitEvent += animController.SetAnimatorLayer;
+
+
+        DeathEvent += KillEnemy;
+        DeathEvent += SetAndPlayDeathSound;
     }
 
 
 
     public virtual void OnObjectSpawn()
     {
-        
-
-        currentHealth = maxHealth;
-
-        melee.timer = melee.cooldownDuration;
-
-        spawnDeathSource.clip = spawnSound;
-        spawnDeathSource.Play();
-
-
-        DeathEvent += ObjectPoolManager.instance.KillEnemy;
-        DeathEvent += SetAndPlayDeathSound;
-
-        SpawnEvent += animController.SetAnimatorLayer;
-
+        Init();
         // make sure this is the last line in the method
-        SpawnEvent?.Invoke(this);
+        InitEvent?.Invoke();
     }
 
     public virtual void OnObjectDespawn()
     {
         DeathEvent = null;
-        SpawnEvent = null;
+        InitEvent = null;
         foreach (BaseBuff buff in GetComponents<BaseBuff>())
         {
             buff.EndBuff();
@@ -182,20 +197,43 @@ public class BaseCharacter : MonoBehaviour, IPooledObject
 
 
 
-    public void SetAndPlaySpawnSound(BaseCharacter x)
+    public void SetAndPlaySpawnSound()
     {
-        spawnDeathSource.clip = spawnSound;
+        spawnDeathSource.clip = RoomManager.instance.spawnSound;
         spawnDeathSource.Play();
     }
-    public void SetAndPlayDeathSound(BaseCharacter x)
+    public void SetAndPlayDeathSound()
     {
-        spawnDeathSource.clip = deathSound;
+        spawnDeathSource.clip = RoomManager.instance.despawnSound;
         spawnDeathSource.Play();
     }
 
+
+
+
+
+
     public void PlayFootstep()
     {
-        AudioManager.instance.PlaySoundpool(footstepSource, Sounds.AsphaltFootsteps);
+        AudioManager.instance.PlaySoundpool(footSource, Sounds.AsphaltFootsteps);
+    }
+
+
+    public void KillEnemy()
+    {
+        RoomManager.instance.StartCoroutine(KillEnemyCoroutine());
+    }
+
+    public IEnumerator KillEnemyCoroutine()
+    {
+        var particles = ObjectPoolManager.instance.SpawnFromPool(RoomManager.instance.deathParticles.transform, transform.position, Quaternion.identity);
+        properties.gameObject.SetActive(false);
+        movement.rigidBody.isKinematic = true;
+        yield return new WaitForSeconds(1f);
+        properties.gameObject.SetActive(true);
+        movement.rigidBody.isKinematic = false;
+        ObjectPoolManager.instance.BackToPool(root, false);
+        ObjectPoolManager.instance.BackToPool(particles, false);
     }
 
 }

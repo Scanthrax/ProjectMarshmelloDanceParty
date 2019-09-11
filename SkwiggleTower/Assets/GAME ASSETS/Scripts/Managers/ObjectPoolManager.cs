@@ -76,7 +76,12 @@ public class ObjectPoolManager : MonoBehaviour
         objToSpawn.rotation = rot;
 
         // call the item's Spawn method
-        objToSpawn.GetComponentInChildren<IPooledObject>()?.OnObjectSpawn();
+        //objToSpawn.GetComponentInChildren<IPooledObject>()?.OnObjectSpawn();
+        var spawn = objToSpawn.GetComponentInChildren<IPooledObject>();
+
+        if (spawn != null)
+            spawn.OnObjectSpawn();
+        else Debug.LogWarning("Object does not have the Pooled Object interface");
 
         // we're done; return the object
         return objToSpawn;
@@ -127,22 +132,7 @@ public class ObjectPoolManager : MonoBehaviour
     }
 
 
-    public void KillEnemy(BaseCharacter character)
-    {
-        StartCoroutine(KillEnemyCoroutine(character));
-    }
 
-    public IEnumerator KillEnemyCoroutine(BaseCharacter character)
-    {
-        var particles = SpawnFromPool(RoomManager.instance.deathParticles.transform, character.transform.position, Quaternion.identity);
-        character.properties.gameObject.SetActive(false);
-        character.characterMovement.rigidBody.isKinematic = true;
-        yield return new WaitForSeconds(1f);
-        character.properties.gameObject.SetActive(true);
-        character.characterMovement.rigidBody.isKinematic = false;
-        BackToPool(character.transform.parent,false);
-        BackToPool(particles,false);
-    }
 
 
 
